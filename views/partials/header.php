@@ -8,6 +8,5 @@
     <link rel="stylesheet" href="/public/css/layout.css" />
     <link rel="stylesheet" href="/public/css/components.css" />
     <link rel="stylesheet" href="/public/css/tokens.css" />
-    <link rel="stylesheet" href="/public/css/style.css" />
 </head>
 <body>
