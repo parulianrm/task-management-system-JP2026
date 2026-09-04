@@ -1,0 +1,74 @@
+.login-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.login-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.divider {
+    height: 2px;
+    width: 32px;
+    background-color: var(--color-text);
+    margin-bottom: 24px;
+    border-radius: 2px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    width: 90px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.form-group input {
+    flex: 1;
+    border: none;
+    border-bottom: 2px solid var(--color-placeholder);
+    padding: 6px 4px;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+    border-bottom-color: var(--color-accent);
+}
+
+.form-group input::placeholder {
+    color: var(--color-placeholder);
+}
+
+.btn-submit {
+    margin-top: 12px;
+    padding: 8px 24px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 2px solid var(--color-text);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-text);
+    color: var(--color-surface);
+}

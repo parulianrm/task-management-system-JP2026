@@ -13,76 +13,6 @@ body {
     min-height: 100vh;
 }
 
-.login-card {
-    background-color: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 32px 28px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.login-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 8px;
-}
-
-.divider {
-    height: 2px;
-    width: 32px;
-    background-color: #1f2937;
-    margin-bottom: 24px;
-    border-radius: 2px;
-}
-
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    width: 90px;
-    font-size: 14px;
-    color: #374151;
-    font-weight: 500;
-}
-
-.form-group input {
-    flex: 1;
-    border: none;
-    border-bottom: 2px solid #9ca3af;
-    padding: 6px 4px;
-    font-size: 14px;
-    outline: none;
-    background-color: transparent;
-    transition: border-color 0.2s ease;
-}
-
-.form-group input:focus {
-    border-bottom-color: #2563eb;
-}
-
-.form-group input::placeholder {
-    color: #9ca3af;
-}
-
-.btn-submit {
-    margin-top: 12px;
-    padding: 8px 24px;
-    background-color: #ffffff;
-    color: #1f2937;
-    border: 2px solid #1f2937;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
 .btn-logout {
     margin-top: 12px;
     padding: 8px 24px;
@@ -273,7 +203,6 @@ body {
     background-color: #374151;
 }
 
-/* Projects Grid Layout */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -316,7 +245,7 @@ body {
 }
 
 .project-meta {
-    font-size: 13px;
+    font-size: 10px;
     color: #6b7280;
     margin-bottom: 16px;
 }
