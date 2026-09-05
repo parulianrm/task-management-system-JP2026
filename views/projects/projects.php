@@ -22,8 +22,6 @@ require __DIR__ . '/../partials/header.php';
             </form>
             </div>
 
-            
-
             <div class="projects-grid">
                 <div class="project-card">
                     <div>
