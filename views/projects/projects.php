@@ -35,7 +35,7 @@ require __DIR__ . '/../partials/header.php';
                     </div>
                     <div class="project-card-footer">
                         <span class="project-task-count">8 Task Aktif</span>
-                        <a href="#" class="link-detail">Lihat Detail &rarr;</a>
+                        <a href="detail.php" class="link-detail">Lihat Detail &rarr;</a>
                     </div>
                 </div>
 

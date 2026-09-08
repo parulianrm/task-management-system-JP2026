@@ -600,8 +600,8 @@
 }
 
 .badge-inactive {
-    background-color: #f3f4f6;
-    color: #4b5563;
+    background-color: var(--color-bg);
+    color: var(--color-inactive);
 }
 
 .pagination {
@@ -623,7 +623,7 @@
 
 .pagination-page.is-active {
     background-color: var(--color-text);
-    color: #fff;
+    color: var(--color-surface);
     border-color: var(--color-text);
 }
 
@@ -631,4 +631,97 @@
     color: var(--color-text-muted);
     pointer-events: none;
     opacity: 0.5;
+}
+
+dialog.modal-box {
+    border: none;
+    border-radius: 10px;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 12px 32px var(--color-shadow);
+}
+
+dialog.modal-box::backdrop {
+    background: var(--color-modal);
+}
+
+.project-detail-info {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.project-detail-desc {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 12px 0;
+}
+
+.project-detail-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.meta-label {
+    display: block;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.meta-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.section-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 12px;
+}
+
+.project-form {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 480px;
+}
+
+.project-form .btn-primary {
+    width: 100%;
+    border: none;
+    margin-top: 8px;
+}
+
+.form-group-textarea {
+    align-items: flex-start;
+}
+
+.form-group textarea,
+.form-group select {
+    flex: 1;
+    padding: 6px 4px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 2px solid var(--color-placeholder);
+    background-color: transparent;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.form-group textarea:focus,
+.form-group select:focus {
+    border-bottom-color: var(--color-accent);
 }
