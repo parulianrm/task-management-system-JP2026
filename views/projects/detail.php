@@ -17,7 +17,7 @@ require __DIR__ . '/../partials/header.php';
                     <a href="projects.php" class="link-detail">&larr; Kembali ke Daftar Proyek</a>
                     <h1 class="page-title">E-Commerce Mobile App</h1>
                 </div>
-                <a href="form.php" class="btn-primary">Edit Project</a>
+               <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
             </div>
 
             <div class="project-detail-info">
@@ -71,6 +71,41 @@ require __DIR__ . '/../partials/header.php';
                     </tbody>
                 </table>
             </div>
+                        <dialog id="project-form-modal" class="modal-box modal-box-wide">
+                <div class="modal-header">
+                    <span class="modal-title">Edit Project</span>
+                    <button type="button" class="modal-close" data-modal-close>&times;</button>
+                </div>
+                <form method="dialog">
+                    <div class="form-group">
+                        <label for="project-name">Nama</label>
+                        <input type="text" id="project-name" name="name" value="E-Commerce Mobile App" required />
+                    </div>
+                    <div class="form-group form-group-textarea">
+                        <label for="project-desc">Deskripsi</label>
+                        <textarea id="project-desc" name="description" rows="3">Aplikasi mobile untuk berbelanja online, mencakup katalog produk, keranjang, dan proses checkout.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-status">Status</label>
+                        <select id="project-status" name="status">
+                            <option value="Planning">Planning</option>
+                            <option value="Active" selected>Active</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Archived">Archived</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-start">Tanggal Mulai</label>
+                        <input type="date" id="project-start" name="start_date" value="2026-10-05" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="project-target">Tanggal Target</label>
+                        <input type="date" id="project-target" name="target_date" value="2026-10-15" required />
+                    </div>
+                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
+                </form>
+            </dialog>
+
         </main>
     </div>
 </div>

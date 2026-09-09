@@ -17,7 +17,8 @@ require __DIR__ . '/../partials/header.php';
                 <form role="search" class="search-form">
                 <div class="search-input-group">
                     <input type="search" id="site-search" name="q" placeholder="Cari nama project" class="search-input" />
-                    <a href="#" class="btn-primary">+ Project Baru</a>
+                    <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project Baru</button>
+
                 </div>
             </form>
             </div>
@@ -90,5 +91,41 @@ require __DIR__ . '/../partials/header.php';
         </main>
     </div>
 </div>
+
+<dialog id="project-form-modal" class="modal-box modal-box-wide">
+    <div class="modal-header">
+        <span class="modal-title">Tambah Project Baru</span>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form method="dialog">
+        <div class="form-group">
+            <label for="project-name">Nama</label>
+            <input type="text" id="project-name" name="name" placeholder="Nama project" required />
+        </div>
+        <div class="form-group form-group-textarea">
+            <label for="project-desc">Deskripsi</label>
+            <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="project-status">Status</label>
+            <select id="project-status" name="status">
+                <option value="Planning" selected>Planning</option>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
+                <option value="Archived">Archived</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="project-start">Tanggal Mulai</label>
+            <input type="date" id="project-start" name="start_date" required />
+        </div>
+        <div class="form-group">
+            <label for="project-target">Tanggal Target</label>
+            <input type="date" id="project-target" name="target_date" required />
+        </div>
+        <button type="submit" class="btn-primary">Simpan Project</button>
+    </form>
+</dialog>
+
 
 <?php require __DIR__ . '/../partials/footer.php'; ?>

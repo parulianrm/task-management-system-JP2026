@@ -153,6 +153,5 @@ require __DIR__ . '/../partials/header.php';
     </div>
 </div>
 
-<script src="../../public/js/users.js" defer></script>
 
 <?php require __DIR__ . '/../partials/footer.php'; ?>
