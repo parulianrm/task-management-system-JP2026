@@ -71,43 +71,54 @@ require __DIR__ . '/../partials/header.php';
                     </tbody>
                 </table>
             </div>
-                        <dialog id="project-form-modal" class="modal-box modal-box-wide">
-                <div class="modal-header">
-                    <span class="modal-title">Edit Project</span>
-                    <button type="button" class="modal-close" data-modal-close>&times;</button>
-                </div>
-                <form method="dialog">
-                    <div class="form-group">
-                        <label for="project-name">Nama</label>
-                        <input type="text" id="project-name" name="name" value="E-Commerce Mobile App" required />
-                    </div>
-                    <div class="form-group form-group-textarea">
-                        <label for="project-desc">Deskripsi</label>
-                        <textarea id="project-desc" name="description" rows="3">Aplikasi mobile untuk berbelanja online, mencakup katalog produk, keranjang, dan proses checkout.</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="project-status">Status</label>
-                        <select id="project-status" name="status">
-                            <option value="Planning">Planning</option>
-                            <option value="Active" selected>Active</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Archived">Archived</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="project-start">Tanggal Mulai</label>
-                        <input type="date" id="project-start" name="start_date" value="2026-10-05" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="project-target">Tanggal Target</label>
-                        <input type="date" id="project-target" name="target_date" value="2026-10-15" required />
-                    </div>
-                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
-                </form>
-            </dialog>
+            <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
+    <div class="modal-header">
+        <span class="modal-title">Edit Project</span>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form method="dialog" id="project-form" novalidate>
+        <div class="form-group">
+            <label for="project-name">Nama</label>
+            <div class="field-wrap">
+                <input type="text" id="project-name" name="name" value="E-Commerce Mobile App" required />
+                <span class="field-error" id="project-name-error"></span>
+            </div>
+        </div>
+        <div class="form-group form-group-textarea">
+            <label for="project-desc">Deskripsi</label>
+            <textarea id="project-desc" name="description" rows="3">Aplikasi mobile untuk berbelanja online, mencakup katalog produk, keranjang, dan proses checkout.</textarea>
+        </div>
+        <div class="form-group">
+            <label for="project-status">Status</label>
+            <select id="project-status" name="status">
+                <option value="Planning">Planning</option>
+                <option value="Active" selected>Active</option>
+                <option value="Completed">Completed</option>
+                <option value="Archived">Archived</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="project-start">Tanggal Mulai</label>
+            <div class="field-wrap">
+                <input type="date" id="project-start" name="start_date" value="2026-10-05" required />
+                <span class="field-error" id="project-start-error"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="project-target">Tanggal Target</label>
+            <div class="field-wrap">
+                <input type="date" id="project-target" name="target_date" value="2026-10-15" required />
+                <span class="field-error" id="project-target-error"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn-primary">Simpan Perubahan</button>
+    </form>
+</dialog>
+
 
         </main>
     </div>
 </div>
 
+<script src="/public/js/validate-project.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

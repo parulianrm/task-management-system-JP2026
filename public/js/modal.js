@@ -18,5 +18,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 dialog.close();
             }
         });
+
+        dialog.addEventListener('close', function () {
+            if (dialog.hasAttribute('data-reset-on-close')) {
+                var form = dialog.querySelector('form');
+                if (form) form.reset();
+
+                dialog.querySelectorAll('.field-error').forEach(function (errorEl) {
+                    errorEl.textContent = '';
+                });
+            }
+        });
+
     });
 });
