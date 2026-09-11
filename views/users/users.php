@@ -33,22 +33,45 @@ require __DIR__ . '/../partials/header.php';
                             <td>Dimas Aditya</td>
                             <td>dimas.aditya@neuronworks.co.id</td>
                             <td><span class="badge badge-role-admin">Admin</span></td>
-                            <td><span class="badge badge-active">Aktif</span></td>
-                            <td><button type="button" class="link-detail" data-modal-open="edit-user-1">Edit</button></td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-status-toggle />
+                                    <span class="switch-slider"></span>
+                                </label>
+                                <span class="status-text">Aktif</span>
+                            </td>
+
+                            <td><button type="button" class="link-detail" data-modal-open="edit-user-1">Edit</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Parulian R M</td>
                             <td>parulian.manik@neuronworks.co.id</td>
                             <td><span class="badge badge-role-member">Member</span></td>
-                            <td><span class="badge badge-active">Aktif</span></td>
-                            <td><button type="button" class="link-detail" data-modal-open="edit-user-2">Edit</button></td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-status-toggle />
+                                    <span class="switch-slider"></span>
+                                </label>
+                                <span class="status-text">Aktif</span>
+                            </td>
+                            <td><button type="button" class="link-detail" data-modal-open="edit-user-2">Edit</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Rian Hidayat</td>
                             <td>rian.hidayat@neuronworks.co.id</td>
                             <td><span class="badge badge-role-member">Member</span></td>
-                            <td><span class="badge badge-inactive">Nonaktif</span></td>
-                            <td><button type="button" class="link-detail" data-modal-open="edit-user-3">Edit</button></td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" data-status-toggle />
+                                    <span class="switch-slider"></span>
+                                </label>
+                                <span class="status-text">Nonaktif</span>
+                            </td>
+
+                            <td><button type="button" class="link-detail" data-modal-open="edit-user-3">Edit</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -153,5 +176,5 @@ require __DIR__ . '/../partials/header.php';
     </div>
 </div>
 
-
+<script src="/public/js/users-status.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

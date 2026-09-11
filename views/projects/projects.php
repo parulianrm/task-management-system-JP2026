@@ -92,40 +92,50 @@ require __DIR__ . '/../partials/header.php';
     </div>
 </div>
 
-<dialog id="project-form-modal" class="modal-box modal-box-wide">
+<dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
     <div class="modal-header">
         <span class="modal-title">Tambah Project Baru</span>
         <button type="button" class="modal-close" data-modal-close>&times;</button>
     </div>
-    <form method="dialog">
-        <div class="form-group">
-            <label for="project-name">Nama</label>
+    <form method="dialog" id="project-form" novalidate>
+    <div class="form-group">
+        <label for="project-name">Nama</label>
+        <div class="field-wrap">
             <input type="text" id="project-name" name="name" placeholder="Nama project" required />
+            <span class="field-error" id="project-name-error"></span>
         </div>
-        <div class="form-group form-group-textarea">
-            <label for="project-desc">Deskripsi</label>
-            <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="project-status">Status</label>
-            <select id="project-status" name="status">
-                <option value="Planning" selected>Planning</option>
-                <option value="Active">Active</option>
-                <option value="Completed">Completed</option>
-                <option value="Archived">Archived</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="project-start">Tanggal Mulai</label>
+    </div>
+    <div class="form-group form-group-textarea">
+        <label for="project-desc">Deskripsi</label>
+        <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="project-status">Status</label>
+        <select id="project-status" name="status">
+            <option value="Planning" selected>Planning</option>
+            <option value="Active">Active</option>
+            <option value="Completed">Completed</option>
+            <option value="Archived">Archived</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="project-start">Tanggal Mulai</label>
+        <div class="field-wrap">
             <input type="date" id="project-start" name="start_date" required />
+            <span class="field-error" id="project-start-error"></span>
         </div>
-        <div class="form-group">
-            <label for="project-target">Tanggal Target</label>
+    </div>
+    <div class="form-group">
+        <label for="project-target">Tanggal Target</label>
+        <div class="field-wrap">
             <input type="date" id="project-target" name="target_date" required />
+            <span class="field-error" id="project-target-error"></span>
         </div>
-        <button type="submit" class="btn-primary">Simpan Project</button>
-    </form>
+    </div>
+    <button type="submit" class="btn-primary">Simpan Project</button>
+</form>
+
 </dialog>
 
-
+<script src="/public/js/validate-project.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>
