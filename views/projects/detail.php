@@ -14,7 +14,7 @@ require __DIR__ . '/../partials/header.php';
         <main class="dashboard-container">
             <div class="page-header">
                 <div>
-                    <a href="projects.php" class="link-detail">&larr; Kembali ke Daftar Proyek</a>
+                    <a href="/projects" class="link-detail">&larr; Kembali ke Daftar Proyek</a>
                     <h1 class="page-title">E-Commerce Mobile App</h1>
                 </div>
                <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
@@ -120,5 +120,5 @@ require __DIR__ . '/../partials/header.php';
     </div>
 </div>
 
-<script src="/public/js/validate-project.js" defer></script>
+<script src="/js/validate-project.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

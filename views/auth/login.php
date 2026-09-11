@@ -6,8 +6,17 @@
   <div class="login-card">
     <h2 class="login-title">Login</h2>
     <div class="divider"></div>
-
-    <form id="login-form" action="#" method="POST" novalidate>
+    <?php $error = $_GET['error'] ?? ''; ?>
+    <?php if ($error === 'invalid'): ?>
+      <div class="alert alert-error" role="alert">
+        Email atau password salah.
+      </div>
+    <?php elseif ($error === 'inactive'): ?>
+      <div class="alert alert-error" role="alert">
+        Akun Anda tidak aktif. Silakan hubungi Admin.
+      </div>
+    <?php endif; ?>
+    <form id="login-form" action="/login" method="POST" novalidate>
       <div class="form-group">
         <label for="email">Email</label>
         <div class="field-wrap">
@@ -29,6 +38,5 @@
   </div>
 </main>
 
-<script src="/public/js/validate-login.js" defer></script>
-
+<script src="/js/validate-login.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

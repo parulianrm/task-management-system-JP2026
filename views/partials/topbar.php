@@ -18,7 +18,7 @@
             <hr class="nav-dropdown-divider" />
             <a href="#" class="nav-dropdown-item">👤 My Profile</a>
             <hr class="nav-dropdown-divider" />
-            <a href="#" class="nav-dropdown-item nav-dropdown-item-danger">↩ Logout</a>
+            <a href="/logout" class="nav-dropdown-item nav-dropdown-item-danger">↩ Logout</a>
         </div>
     </details>
 </header>
