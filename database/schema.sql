@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS PROJECTS (
     description TEXT NULL,
     status ENUM(
         'Planning',
-        'In Progress',
+        'Active',
         'Completed',
         'Archived'
     ) NOT NULL DEFAULT 'Planning',
@@ -29,16 +29,16 @@ CREATE TABLE IF NOT EXISTS PROJECTS (
 
 -- 3. Buat Tabel TASKS
 CREATE TABLE IF NOT EXISTS TASKS (
-id INT AUTO_INCREMENT PRIMARY KEY,
-project_id INT NOT NULL,
-title VARCHAR(255) NOT NULL,
-description TEXT NULL,
-assignee_id INT NULL,
-status ENUM('To Do', 'In Progress', 'Done') NOT NULL DEFAULT 'To Do',
-priority ENUM('Low', 'Medium', 'High') NOT NULL DEFAULT 'Medium',
-due_date DATE NULL,
-created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NULL,
+    assignee_id INT NULL,
+    status ENUM('To Do', 'In Progress', 'Done') NOT NULL DEFAULT 'To Do',
+    priority ENUM('Low', 'Medium', 'High') NOT NULL DEFAULT 'Medium',
+    due_date DATE NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
 -- Foreign Key Constraints
 
@@ -49,18 +49,10 @@ CONSTRAINT fk_tasks_project
 
     CONSTRAINT fk_tasks_assignee
         FOREIGN KEY (assignee_id) REFERENCES USERS(id)
-        ON DELETE SET NULL ON UPDATE CASCADE
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CONSTRAINT fk_tasks_assignee
-        FOREIGN KEY (assignee_id) REFERENCES USERS(id)
         ON DELETE SET NULL ON UPDATE CASCADE,
 
     INDEX idx_tasks_project (project_id),
     INDEX idx_tasks_assignee (assignee_id),
     INDEX idx_tasks_status (status),
     INDEX idx_tasks_due_date (due_date)
-
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
