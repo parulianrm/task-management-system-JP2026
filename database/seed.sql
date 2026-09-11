@@ -1,67 +1,71 @@
--- USERS
 INSERT INTO
     USERS (
         name,
         email,
         password_hash,
         role,
-        is_active
+        is_active,
+        updated_by
     )
 VALUES (
         'Parulian R M',
         'parulian.manik@neuronworks.co.id',
         '$2y$10$eImiTXuWVxfM37uY4JANjQhTftIM0M8H1eIkFVDIEYzJXbf4wLGCe',
         'Admin',
-        TRUE
+        TRUE,
+        NULL
     ),
     (
         'Abrar Halomoan R M',
         'abrar@neuronworks.co.id',
         '$2y$10$eImiTXuWVxfM37uY4JANjQhTftIM0M8H1eIkFVDIEYzJXbf4wLGCe',
         'Member',
-        TRUE
+        TRUE,
+        1
     ),
     (
         'Rian Hidayat',
         'rian@neuronworks.co.id',
         '$2y$10$eImiTXuWVxfM37uY4JANjQhTftIM0M8H1eIkFVDIEYzJXbf4wLGCe',
         'Member',
-        FALSE
+        FALSE,
+        1
     );
 
--- PROJECTS
 INSERT INTO
     PROJECTS (
         name,
         description,
         status,
         start_date,
-        target_date
+        target_date,
+        updated_by
     )
 VALUES (
         'E-Commerce Mobile App',
         'Aplikasi belanja mobile untuk pelanggan retail.',
         'Active',
         '2026-08-01',
-        '2026-10-31'
+        '2026-10-31',
+        1
     ),
     (
         'HRIS Internal System',
         'Sistem informasi kepegawaian internal.',
         'Planning',
         '2026-09-01',
-        '2026-12-01'
+        '2026-12-01',
+        1
     ),
     (
         'Payment Gateway Integration',
         'Integrasi payment gateway ke sistem checkout.',
         'Completed',
         '2026-06-01',
-        '2026-08-15'
+        '2026-08-15',
+        1
     );
 
--- TASKS
--- TASKS
 INSERT INTO
     TASKS (
         project_id,
@@ -70,10 +74,11 @@ INSERT INTO
         assignee_id,
         status,
         priority,
-        due_date
+        due_date,
+        updated_by
     )
 VALUES
-    -- Project 1: E-Commerce Mobile App (Active, 2026-08-01 s.d. 2026-10-31)
+    -- Project 1: E-Commerce Mobile App
     (
         1,
         'Fix Auth API',
@@ -81,7 +86,8 @@ VALUES
         2,
         'To Do',
         'High',
-        '2026-09-04'
+        '2026-09-04',
+        1
     ),
     (
         1,
@@ -90,7 +96,8 @@ VALUES
         1,
         'In Progress',
         'High',
-        '2026-09-20'
+        '2026-09-20',
+        1
     ),
     (
         1,
@@ -99,7 +106,8 @@ VALUES
         2,
         'Done',
         'Medium',
-        '2026-09-14'
+        '2026-09-14',
+        1
     ),
     (
         1,
@@ -108,7 +116,8 @@ VALUES
         2,
         'To Do',
         'High',
-        '2026-09-06'
+        '2026-09-06',
+        1
     ),
     (
         1,
@@ -117,7 +126,8 @@ VALUES
         1,
         'To Do',
         'Medium',
-        '2026-10-01'
+        '2026-10-01',
+        1
     ),
     (
         1,
@@ -126,7 +136,8 @@ VALUES
         1,
         'In Progress',
         'Low',
-        '2026-10-15'
+        '2026-10-15',
+        1
     ),
     (
         1,
@@ -135,7 +146,8 @@ VALUES
         1,
         'To Do',
         'Low',
-        '2026-10-25'
+        '2026-10-25',
+        1
     ),
     (
         1,
@@ -144,7 +156,8 @@ VALUES
         2,
         'To Do',
         'Medium',
-        '2026-09-25'
+        '2026-09-25',
+        1
     ),
     (
         1,
@@ -153,7 +166,8 @@ VALUES
         1,
         'Done',
         'High',
-        '2026-08-20'
+        '2026-08-20',
+        1
     ),
     (
         1,
@@ -162,162 +176,178 @@ VALUES
         2,
         'To Do',
         'Medium',
-        '2026-10-10'
+        '2026-10-10',
+        1
     ),
-
--- Project 2: HRIS Internal System (Planning, 2026-09-01 s.d. 2026-12-01)
-(
-    2,
-    'Design ERD Diagram',
-    'Rancang ERD untuk modul HRIS, termasuk relasi antar tabel.',
-    2,
-    'In Progress',
-    'Medium',
-    '2026-09-15'
-),
-(
-    2,
-    'Setup Database HRIS',
-    'Siapkan skema database awal untuk modul HRIS.',
-    1,
-    'To Do',
-    'High',
-    '2026-09-10'
-),
-(
-    2,
-    'Analisis Kebutuhan Payroll',
-    'Kumpulkan requirement perhitungan payroll dari HR.',
-    2,
-    'Done',
-    'Medium',
-    '2026-09-05'
-),
-(
-    2,
-    'Wireframe Modul Absensi',
-    'Buat wireframe low-fi untuk modul absensi.',
-    1,
-    'To Do',
-    'Low',
-    '2026-10-01'
-),
-(
-    2,
-    'Testing Modul Payroll',
-    'Uji coba perhitungan payroll untuk berbagai skenario.',
-    1,
-    'In Progress',
-    'Medium',
-    '2026-11-01'
-),
-(
-    2,
-    'Update Dependency',
-    'Update dependency Composer yang sudah usang.',
-    2,
-    'To Do',
-    'Low',
-    '2026-11-15'
-),
-(
-    2,
-    'Setup Role & Permission',
-    'Konfigurasi hak akses Admin/Member di modul HRIS.',
-    1,
-    'To Do',
-    'High',
-    '2026-10-20'
-),
-(
-    2,
-    'Integrasi Absensi Fingerprint',
-    'Hubungkan sistem absensi ke alat fingerprint.',
-    2,
-    'To Do',
-    'Medium',
-    '2026-11-25'
-),
-(
-    2,
-    'Dokumentasi Modul HRIS',
-    'Tulis dokumentasi teknis modul HRIS.',
-    1,
-    'To Do',
-    'Low',
-    '2026-12-01'
-),
-
--- Project 3: Payment Gateway Integration (Completed, 2026-06-01 s.d. 2026-08-15)
-(
-    3,
-    'Midtrans Integration',
-    'Integrasikan payment gateway Midtrans ke proses checkout.',
-    3,
-    'Done',
-    'Low',
-    '2026-08-10'
-),
-(
-    3,
-    'Fix Pagination Bug',
-    'Perbaiki bug pagination yang salah hitung total halaman.',
-    1,
-    'Done',
-    'Medium',
-    '2026-07-20'
-),
-(
-    3,
-    'Optimasi Query Report',
-    'Optimalkan query laporan yang lambat.',
-    2,
-    'Done',
-    'Low',
-    '2026-08-05'
-),
-(
-    3,
-    'Setup Webhook Payment',
-    'Konfigurasi webhook notifikasi status pembayaran.',
-    1,
-    'Done',
-    'High',
-    '2026-07-01'
-),
-(
-    3,
-    'Testing Refund Flow',
-    'Uji coba alur pengembalian dana.',
-    2,
-    'Done',
-    'Medium',
-    '2026-08-12'
-),
-(
-    3,
-    'Perbaikan UI Mobile Payment',
-    'Perbaiki tampilan UI yang rusak di layar kecil.',
-    2,
-    'Done',
-    'Medium',
-    '2026-07-15'
-),
-(
-    3,
-    'Audit Keamanan Transaksi',
-    'Audit keamanan dasar pada alur transaksi.',
-    1,
-    'Done',
-    'High',
-    '2026-08-14'
-),
-(
-    3,
-    'Dokumentasi API Payment',
-    'Tulis dokumentasi endpoint API payment gateway.',
-    1,
-    'Done',
-    'Low',
-    '2026-07-25'
-);
+    -- Project 2: HRIS Internal System
+    (
+        2,
+        'Design ERD Diagram',
+        'Rancang ERD untuk modul HRIS, termasuk relasi antar tabel.',
+        2,
+        'In Progress',
+        'Medium',
+        '2026-09-15',
+        1
+    ),
+    (
+        2,
+        'Setup Database HRIS',
+        'Siapkan skema database awal untuk modul HRIS.',
+        1,
+        'To Do',
+        'High',
+        '2026-09-10',
+        1
+    ),
+    (
+        2,
+        'Analisis Kebutuhan Payroll',
+        'Kumpulkan requirement perhitungan payroll dari HR.',
+        2,
+        'Done',
+        'Medium',
+        '2026-09-05',
+        1
+    ),
+    (
+        2,
+        'Wireframe Modul Absensi',
+        'Buat wireframe low-fi untuk modul absensi.',
+        1,
+        'To Do',
+        'Low',
+        '2026-10-01',
+        1
+    ),
+    (
+        2,
+        'Testing Modul Payroll',
+        'Uji coba perhitungan payroll untuk berbagai skenario.',
+        1,
+        'In Progress',
+        'Medium',
+        '2026-11-01',
+        1
+    ),
+    (
+        2,
+        'Update Dependency',
+        'Update dependency Composer yang sudah usang.',
+        2,
+        'To Do',
+        'Low',
+        '2026-11-15',
+        1
+    ),
+    (
+        2,
+        'Setup Role & Permission',
+        'Konfigurasi hak akses Admin/Member di modul HRIS.',
+        1,
+        'To Do',
+        'High',
+        '2026-10-20',
+        1
+    ),
+    (
+        2,
+        'Integrasi Absensi Fingerprint',
+        'Hubungkan sistem absensi ke alat fingerprint.',
+        2,
+        'To Do',
+        'Medium',
+        '2026-11-25',
+        1
+    ),
+    (
+        2,
+        'Dokumentasi Modul HRIS',
+        'Tulis dokumentasi teknis modul HRIS.',
+        1,
+        'To Do',
+        'Low',
+        '2026-12-01',
+        1
+    ),
+    -- Project 3: Payment Gateway Integration
+    (
+        3,
+        'Midtrans Integration',
+        'Integrasikan payment gateway Midtrans ke proses checkout.',
+        3,
+        'Done',
+        'Low',
+        '2026-08-10',
+        1
+    ),
+    (
+        3,
+        'Fix Pagination Bug',
+        'Perbaiki bug pagination yang salah hitung total halaman.',
+        1,
+        'Done',
+        'Medium',
+        '2026-07-20',
+        1
+    ),
+    (
+        3,
+        'Optimasi Query Report',
+        'Optimalkan query laporan yang lambat.',
+        2,
+        'Done',
+        'Low',
+        '2026-08-05',
+        1
+    ),
+    (
+        3,
+        'Setup Webhook Payment',
+        'Konfigurasi webhook notifikasi status pembayaran.',
+        1,
+        'Done',
+        'High',
+        '2026-07-01',
+        1
+    ),
+    (
+        3,
+        'Testing Refund Flow',
+        'Uji coba alur pengembalian dana.',
+        2,
+        'Done',
+        'Medium',
+        '2026-08-12',
+        1
+    ),
+    (
+        3,
+        'Perbaikan UI Mobile Payment',
+        'Perbaiki tampilan UI yang rusak di layar kecil.',
+        2,
+        'Done',
+        'Medium',
+        '2026-07-15',
+        1
+    ),
+    (
+        3,
+        'Audit Keamanan Transaksi',
+        'Audit keamanan dasar pada alur transaksi.',
+        1,
+        'Done',
+        'High',
+        '2026-08-14',
+        1
+    ),
+    (
+        3,
+        'Dokumentasi API Payment',
+        'Tulis dokumentasi endpoint API payment gateway.',
+        1,
+        'Done',
+        'Low',
+        '2026-07-25',
+        1
+    );
