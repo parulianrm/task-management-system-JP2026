@@ -12,8 +12,5 @@ async function apiPost(url, data) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    if (!res.ok) {
-        throw new Error('Gagal mengirim data ke ' + url);
-    }
     return res.json();
 }

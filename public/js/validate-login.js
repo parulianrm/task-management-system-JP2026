@@ -6,17 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var passwordInput = document.getElementById('password');
     var emailError = document.getElementById('email-error');
     var passwordError = document.getElementById('password-error');
+    var serverAlert = document.querySelector('.alert.alert-error');
 
     function isValidEmail(value) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     }
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
         emailError.textContent = '';
         passwordError.textContent = '';
-
+        if (serverAlert) serverAlert.style.display = 'none';
         var isValid = true;
 
         if (emailInput.value.trim() === '') {
@@ -32,8 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
             isValid = false;
         }
 
-        if (isValid) {
-            console.log('Form valid — siap dikirim ke server (belum ada backend).');
+        if (!isValid) {
+            event.preventDefault();
         }
     });
+
 });

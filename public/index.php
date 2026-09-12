@@ -53,14 +53,32 @@ switch (true) {
         break;
 
     case $uri === '/projects':
-        AuthMiddleware::requireLogin();
-        require __DIR__ . '/../views/projects/projects.php';
-        break;
+    AuthMiddleware::requireLogin();
+    $repository = new \App\Repositories\ProjectRepository();
+    $projects = $_SESSION['role'] === 'Admin'
+        ? $repository->findAll()
+        : $repository->findAllForMember((int) $_SESSION['user_id']);
+    require __DIR__ . '/../views/projects/projects.php';
+    break;
 
     case $uri === '/projects/detail':
-        AuthMiddleware::requireLogin();
-        require __DIR__ . '/../views/projects/detail.php';
+    AuthMiddleware::requireLogin();
+    $repository = new \App\Repositories\ProjectRepository();
+    $projectId = (int) ($_GET['id'] ?? 0);
+    $project = $repository->findById($projectId);
+
+    if ($project === null) {
+        http_response_code(404);
+        require __DIR__ . '/../views/errors/404.php';
         break;
+    }
+
+    $taskRepository = new \App\Repositories\TaskRepository();
+    $tasks = $taskRepository->findByProject($projectId);
+
+    require __DIR__ . '/../views/projects/detail.php';
+    break;
+
 
     case $uri === '/tasks':
         AuthMiddleware::requireLogin();

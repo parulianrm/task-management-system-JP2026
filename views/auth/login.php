@@ -7,15 +7,6 @@
     <h2 class="login-title">Login</h2>
     <div class="divider"></div>
     <?php $error = $_GET['error'] ?? ''; ?>
-    <?php if ($error === 'invalid'): ?>
-      <div class="alert alert-error" role="alert">
-        Email atau password salah.
-      </div>
-    <?php elseif ($error === 'inactive'): ?>
-      <div class="alert alert-error" role="alert">
-        Akun Anda tidak aktif. Silakan hubungi Admin.
-      </div>
-    <?php endif; ?>
     <form id="login-form" action="/login" method="POST" novalidate>
       <div class="form-group">
         <label for="email">Email</label>
@@ -32,6 +23,15 @@
           <span class="field-error" id="password-error"></span>
         </div>
       </div>
+       <?php if ($error === 'invalid'): ?>
+      <div class="alert alert-error" role="alert">
+        Email atau password salah.
+      </div>
+    <?php elseif ($error === 'inactive'): ?>
+      <div class="alert alert-error" role="alert">
+        Akun Anda tidak aktif. Silakan hubungi Admin.
+      </div>
+    <?php endif; ?>
 
       <button type="submit" class="btn-submit">Masuk</button>
     </form>

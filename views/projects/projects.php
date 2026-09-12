@@ -18,88 +18,63 @@ require __DIR__ . '/../partials/header.php';
                     <div class="search-input-group">
                         <input type="search" id="site-search" name="q" placeholder="Cari nama project"
                             class="search-input" />
-                        <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project
-                            Baru</button>
+                        <?php if ($_SESSION['role'] === 'Admin'): ?>
+                            <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project
+                                Baru</button>
+                        <?php endif; ?>
+
 
                     </div>
                 </form>
             </div>
 
             <div class="projects-grid">
-                <div class="project-card">
-                    <div>
-                        <div class="project-card-header">
-                            <a href="#" class="project-name">E-Commerce Mobile App</a>
-                            <span class="badge badge-progress">In Progress</span>
+                <?php if (empty($projects)): ?>
+                    <p class="empty-state">Belum ada project. Klik "+ Project Baru" untuk membuat project pertama.</p>
+                <?php else: ?>
+                    <?php foreach ($projects as $project): ?>
+                        <?php
+                        $badgeClass = match ($project['status']) {
+                            'Planning' => 'badge-pending',
+                            'Active' => 'badge-progress',
+                            'Completed' => 'badge-completed',
+                            'Archived' => 'badge-archived',
+                            default => 'badge-pending',
+                        };
+                        $taskCount = $repository->countTasks((int) $project['id']);
+                        ?>
+                        <div class="project-card">
+                            <div>
+                                <div class="project-card-header">
+                                    <a href="/projects/detail?id=<?= $project['id'] ?>"
+                                        class="project-name"><?= htmlspecialchars($project['name']) ?></a>
+                                    <span class="badge <?= $badgeClass ?>"><?= htmlspecialchars($project['status']) ?></span>
+                                </div>
+                                <div class="project-meta">
+                                    Mulai: <strong><?= date('d M Y', strtotime($project['start_date'])) ?></strong>
+                                    &mdash; Target: <strong><?= date('d M Y', strtotime($project['target_date'])) ?></strong>
+                                </div>
+                            </div>
+                            <div class="project-card-footer">
+                                <span class="project-task-count"><?= $taskCount ?> Task</span>
+                                <a href="/projects/detail?id=<?= $project['id'] ?>" class="link-detail">Lihat Detail &rarr;</a>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            Mulai: <strong>05 Okt 2026</strong> Target Selesai: <strong>15 Okt 2026</strong>
-                        </div>
-                    </div>
-                    <div class="project-card-footer">
-                        <span class="project-task-count">8 Task Aktif</span>
-                        <a href="/projects/detail" class="link-detail">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div>
-                        <div class="project-card-header">
-                            <a href="#" class="project-name">HRIS Internal System</a>
-                            <span class="badge badge-pending">Pending</span>
-                        </div>
-                        <div class="project-meta">
-                            Target Selesai: <strong>01 Des 2026</strong>
-                        </div>
-                    </div>
-                    <div class="project-card-footer">
-                        <span class="project-task-count">4 Task Aktif</span>
-                        <a href="#" class="link-detail">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div>
-                        <div class="project-card-header">
-                            <a href="#" class="project-name">Payment Gateway Integration</a>
-                            <span class="badge badge-progress">In Progress</span>
-                        </div>
-                        <div class="project-meta">
-                            Target Selesai: <strong>20 Sep 2026</strong>
-                        </div>
-                    </div>
-                    <div class="project-card-footer">
-                        <span class="project-task-count">6 Task Aktif</span>
-                        <a href="#" class="link-detail">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div>
-                        <div class="project-card-header">
-                            <a href="#" class="project-name">Company Landing Page</a>
-                            <span class="badge badge-completed">Completed</span>
-                        </div>
-                        <div class="project-meta">
-                            Target Selesai: <strong>30 Jun 2026</strong>
-                        </div>
-                    </div>
-                    <div class="project-card-footer">
-                        <span class="project-task-count">Selesai</span>
-                        <a href="#" class="link-detail">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
+
         </main>
     </div>
 </div>
 
+<?php if ($_SESSION['role'] === 'Admin'): ?>
 <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
     <div class="modal-header">
         <span class="modal-title">Tambah Project Baru</span>
         <button type="button" class="modal-close" data-modal-close>&times;</button>
     </div>
-    <form method="dialog" id="project-form" novalidate>
+    <form id="project-form" novalidate>
         <div class="form-group">
             <label for="project-name">Nama</label>
             <div class="field-wrap">
@@ -138,6 +113,7 @@ require __DIR__ . '/../partials/header.php';
     </form>
 
 </dialog>
+<?php endif; ?>
 
 <script src="/js/validate-project.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>
