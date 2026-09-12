@@ -40,6 +40,16 @@ class ProjectRepository
         return (int) $stmt->fetchColumn();
     }
 
+    public function countIncompleteTasks(int $projectId): int
+    {
+        $stmt = Database::getConnection()->prepare(
+            "SELECT COUNT(*) FROM TASKS WHERE project_id = :id AND status != 'Done'"
+        );
+        $stmt->execute(['id' => $projectId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+
     public function create(array $data, int $updatedBy): int
     {
         $stmt = Database::getConnection()->prepare(

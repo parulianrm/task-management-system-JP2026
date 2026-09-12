@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var passwordInput = document.getElementById('password');
     var emailError = document.getElementById('email-error');
     var passwordError = document.getElementById('password-error');
-    var serverAlert = document.querySelector('.alert.alert-error');
+    var serverAlert = document.querySelector('.alert-error');
+
+    if (serverAlert && window.location.search.includes('error=')) {
+        window.history.replaceState(null, '', window.location.pathname);
+    }
 
     function isValidEmail(value) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -16,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         emailError.textContent = '';
         passwordError.textContent = '';
         if (serverAlert) serverAlert.style.display = 'none';
+
         var isValid = true;
 
         if (emailInput.value.trim() === '') {
@@ -35,5 +40,4 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
         }
     });
-
 });

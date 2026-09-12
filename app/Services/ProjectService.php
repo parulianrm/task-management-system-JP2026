@@ -52,9 +52,19 @@ class ProjectService
 
     public function archive(int $id, int $userId): array
     {
+        $incomplete = $this->repository->countIncompleteTasks($id);
+
+        if ($incomplete > 0) {
+            return [
+                'success' => false,
+                'message' => "Masih ada {$incomplete} task yang belum selesai. Selesaikan dulu sebelum mengarsipkan project ini.",
+            ];
+        }
+
         $this->repository->archive($id, $userId);
         return ['success' => true];
     }
+
 
     public function canBeDeleted(int $id): bool
     {
