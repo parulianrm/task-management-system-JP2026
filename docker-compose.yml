@@ -13,6 +13,22 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      
+  app:
+    build: .
+    container_name: tms-app
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      DB_HOST: database
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_PASSWORD}
 
 volumes:
   db_data:

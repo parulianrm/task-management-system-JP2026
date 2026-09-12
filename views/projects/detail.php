@@ -1,8 +1,27 @@
 <?php
 $pageTitle = 'Detail Project - Task Management System';
 $activePage = 'projects';
-$basePath = '../';
 require __DIR__ . '/../partials/header.php';
+
+$badgeClass = match ($project['status']) {
+    'Planning' => 'badge-pending',
+    'Active' => 'badge-progress',
+    'Completed' => 'badge-completed',
+    'Archived' => 'badge-archived',
+    default => 'badge-pending',
+};
+
+$priorityBadge = [
+    'Low' => 'badge-priority-low',
+    'Medium' => 'badge-priority-medium',
+    'High' => 'badge-priority-high',
+];
+
+$statusBadge = [
+    'To Do' => 'badge-status-todo',
+    'In Progress' => 'badge-status-progress',
+    'Done' => 'badge-status-done',
+];
 ?>
 
 <div class="app-layout">
@@ -14,18 +33,28 @@ require __DIR__ . '/../partials/header.php';
         <main class="dashboard-container">
             <div class="page-header">
                 <div>
-                    <a href="projects.php" class="link-detail">&larr; Kembali ke Daftar Proyek</a>
-                    <h1 class="page-title">E-Commerce Mobile App</h1>
+                    <a href="/projects" class="link-detail">&larr; Kembali ke Daftar Proyek</a>
+                    <h1 class="page-title"><?= htmlspecialchars($project['name']) ?></h1>
                 </div>
-               <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
+                <?php if ($_SESSION['role'] === 'Admin'): ?>
+                    <div style="display:flex; gap:0.5rem;">
+                        <?php if ($project['status'] !== 'Archived' && $repository->countIncompleteTasks($project['id']) === 0): ?>
+                            <button type="button" class="btn-secondary" id="btn-archive-project">Arsipkan</button>
+                        <?php endif; ?>
+
+                        <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="project-detail-info">
-                <span class="badge badge-progress">In Progress</span>
-                <p class="project-detail-desc">Aplikasi mobile untuk berbelanja online, mencakup katalog produk, keranjang, dan proses checkout.</p>
+                <span class="badge <?= $badgeClass ?>"><?= htmlspecialchars($project['status']) ?></span>
+                <p class="project-detail-desc"><?= nl2br(htmlspecialchars($project['description'] ?? '-')) ?></p>
                 <div class="project-detail-meta">
-                    <div><span class="meta-label">Tanggal Mulai</span><span class="meta-value">05 Okt 2026</span></div>
-                    <div><span class="meta-label">Target Selesai</span><span class="meta-value">15 Okt 2026</span></div>
+                    <div><span class="meta-label">Tanggal Mulai</span><span
+                            class="meta-value"><?= date('d M Y', strtotime($project['start_date'])) ?></span></div>
+                    <div><span class="meta-label">Target Selesai</span><span
+                            class="meta-value"><?= date('d M Y', strtotime($project['target_date'])) ?></span></div>
                 </div>
             </div>
 
@@ -40,85 +69,74 @@ require __DIR__ . '/../partials/header.php';
                             <th>Priority</th>
                             <th>Due Date</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Fix Auth API</td>
-                            <td>Parulian R M</td>
-                            <td><span class="badge badge-priority-high">High</span></td>
-                            <td class="is-overdue">04 Sep 2026</td>
-                            <td><span class="badge badge-status-todo">To Do</span></td>
-                            <td><a href="#" class="link-detail">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>Integrasi Payment Gateway</td>
-                            <td>Dimas Aditya</td>
-                            <td><span class="badge badge-priority-high">High</span></td>
-                            <td>12 Sep 2026</td>
-                            <td><span class="badge badge-status-progress">In Progress</span></td>
-                            <td><a href="#" class="link-detail">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>Desain Halaman Checkout</td>
-                            <td>Parulian R M</td>
-                            <td><span class="badge badge-priority-medium">Medium</span></td>
-                            <td>14 Sep 2026</td>
-                            <td><span class="badge badge-status-done">Done</span></td>
-                            <td><a href="#" class="link-detail">Detail</a></td>
-                        </tr>
+                        <?php if (empty($tasks)): ?>
+                            <tr>
+                                <td colspan="5" class="empty-row">Belum ada task di project ini.</td>
+                            </tr>
+                        <?php else: ?>
+                            <?php foreach ($tasks as $task): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($task['title']) ?></td>
+                                    <td><?= htmlspecialchars($task['assignee_name'] ?? '-') ?></td>
+                                    <td><span
+                                            class="badge <?= $priorityBadge[$task['priority']] ?>"><?= $task['priority'] ?></span>
+                                    </td>
+                                    <td><?= date('d M Y', strtotime($task['due_date'])) ?></td>
+                                    <td><span class="badge <?= $statusBadge[$task['status']] ?>"><?= $task['status'] ?></span>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
-            <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
-    <div class="modal-header">
-        <span class="modal-title">Edit Project</span>
-        <button type="button" class="modal-close" data-modal-close>&times;</button>
-    </div>
-    <form method="dialog" id="project-form" novalidate>
-        <div class="form-group">
-            <label for="project-name">Nama</label>
-            <div class="field-wrap">
-                <input type="text" id="project-name" name="name" value="E-Commerce Mobile App" required />
-                <span class="field-error" id="project-name-error"></span>
-            </div>
-        </div>
-        <div class="form-group form-group-textarea">
-            <label for="project-desc">Deskripsi</label>
-            <textarea id="project-desc" name="description" rows="3">Aplikasi mobile untuk berbelanja online, mencakup katalog produk, keranjang, dan proses checkout.</textarea>
-        </div>
-        <div class="form-group">
-            <label for="project-status">Status</label>
-            <select id="project-status" name="status">
-                <option value="Planning">Planning</option>
-                <option value="Active" selected>Active</option>
-                <option value="Completed">Completed</option>
-                <option value="Archived">Archived</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="project-start">Tanggal Mulai</label>
-            <div class="field-wrap">
-                <input type="date" id="project-start" name="start_date" value="2026-10-05" required />
-                <span class="field-error" id="project-start-error"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="project-target">Tanggal Target</label>
-            <div class="field-wrap">
-                <input type="date" id="project-target" name="target_date" value="2026-10-15" required />
-                <span class="field-error" id="project-target-error"></span>
-            </div>
-        </div>
-        <button type="submit" class="btn-primary">Simpan Perubahan</button>
-    </form>
-</dialog>
 
-
+            <?php if ($_SESSION['role'] === 'Admin'): ?>
+                <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
+                    <div class="modal-header">
+                        <span class="modal-title">Edit Project</span>
+                        <button type="button" class="modal-close" data-modal-close>&times;</button>
+                    </div>
+                    <form id="project-form" data-project-id="<?= $project['id'] ?>" novalidate>
+                        <div class="form-group">
+                            <label for="project-name">Nama</label>
+                            <div class="field-wrap">
+                                <input type="text" id="project-name" name="name"
+                                    value="<?= htmlspecialchars($project['name']) ?>" required />
+                                <span class="field-error" id="project-name-error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-textarea">
+                            <label for="project-desc">Deskripsi</label>
+                            <textarea id="project-desc" name="description"
+                                rows="3"><?= htmlspecialchars($project['description'] ?? '') ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-start">Tanggal Mulai</label>
+                            <div class="field-wrap">
+                                <input type="date" id="project-start" name="start_date"
+                                    value="<?= $project['start_date'] ?>" required />
+                                <span class="field-error" id="project-start-error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-target">Tanggal Target</label>
+                            <div class="field-wrap">
+                                <input type="date" id="project-target" name="target_date"
+                                    value="<?= $project['target_date'] ?>" required />
+                                <span class="field-error" id="project-target-error"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Simpan Perubahan</button>
+                    </form>
+                </dialog>
+            <?php endif; ?>
         </main>
     </div>
 </div>
 
-<script src="/public/js/validate-project.js" defer></script>
+<script src="/js/validate-project.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

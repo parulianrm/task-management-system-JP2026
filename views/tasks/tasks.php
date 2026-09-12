@@ -186,6 +186,6 @@ require __DIR__ . '/../partials/header.php';
     </form>
 </dialog>
 
-<script src="/public/js/tasks.js" defer></script>
-<script src="/public/js/validate-task.js" defer></script>
+<script src="/js/tasks.js" defer></script>
+<script src="/js/validate-task.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>
