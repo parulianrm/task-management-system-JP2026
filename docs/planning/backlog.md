@@ -7,11 +7,11 @@ Centang [x] kalau sudah BENAR-BENAR berfungsi (bukan cuma tampilan statis).
 
 ### AUTH-01 — Login dan session
 
-- [ ] Login valid mengarah ke dashboard sesuai role
-- [ ] Kredensial salah menampilkan pesan aman (generik)
-- [ ] User tidak aktif tidak dapat login
-- [ ] Halaman terlindungi tidak dapat diakses tanpa session
-- [ ] Password pakai password_hash() / password_verify()
+- [x] Login valid mengarah ke dashboard sesuai role
+- [x] Kredensial salah menampilkan pesan aman (generik)
+- [x] User tidak aktif tidak dapat login
+- [x] Halaman terlindungi tidak dapat diakses tanpa session
+- [x] Password pakai password_hash() / password_verify()
 
 ### AUTH-02 — Logout
 

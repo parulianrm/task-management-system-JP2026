@@ -82,6 +82,15 @@ switch (true) {
 
     case $uri === '/tasks':
         AuthMiddleware::requireLogin();
+        $taskRepository = new \App\Repositories\TaskRepository();
+        $projectRepository = new \App\Repositories\ProjectRepository();
+        $userRepository = new \App\Repositories\UserRepository();
+
+        $filters = $_SESSION['role'] === 'Admin' ? [] : ['assignee_id' => (int) $_SESSION['user_id']];
+        $tasks = $taskRepository->findAll($filters);
+        $projects = $projectRepository->findAll();
+        $activeUsers = $userRepository->findActiveUsers();
+
         require __DIR__ . '/../views/tasks/tasks.php';
         break;
 

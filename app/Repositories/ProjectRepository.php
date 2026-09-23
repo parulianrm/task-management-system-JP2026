@@ -49,7 +49,6 @@ class ProjectRepository
         return (int) $stmt->fetchColumn();
     }
 
-
     public function create(array $data, int $updatedBy): int
     {
         $stmt = Database::getConnection()->prepare(
