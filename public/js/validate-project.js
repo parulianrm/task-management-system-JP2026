@@ -88,4 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    var unarchiveBtn = document.getElementById('btn-unarchive-project');
+    if (unarchiveBtn) {
+        unarchiveBtn.addEventListener('click', function () {
+            if (!confirm('Batalkan arsip project ini?')) return;
+            var projectId = document.getElementById('project-form').dataset.projectId;
+            apiPost('/api/projects.php', { id: projectId, action: 'unarchive' }).then(function (result) {
+                if (result.success) {
+                    window.location.reload();
+                }
+            });
+        });
+    }
 });

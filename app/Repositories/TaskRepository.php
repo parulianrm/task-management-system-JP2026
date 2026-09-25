@@ -40,13 +40,12 @@ class TaskRepository
         [$where, $params] = $this->buildWhere($filters);
         $sortDir = ($filters['sort'] ?? 'asc') === 'desc' ? 'DESC' : 'ASC';
 
-        $sql = "SELECT TASKS.id, TASKS.project_id, TASKS.title, TASKS.assignee_id,
-                       TASKS.status, TASKS.priority, TASKS.due_date,
+        $sql = "SELECT TASKS.id, TASKS.project_id, TASKS.title, TASKS.description, TASKS.assignee_id, TASKS.status, TASKS.priority, TASKS.due_date,
                        PROJECTS.name AS project_name, USERS.name AS assignee_name
                 FROM TASKS
                 JOIN PROJECTS ON PROJECTS.id = TASKS.project_id
                 LEFT JOIN USERS ON USERS.id = TASKS.assignee_id
-                WHERE {$where}
+                WHERE PROJECTS.status != 'Archived' AND {$where}
                 ORDER BY TASKS.due_date {$sortDir}";
 
         if (!empty($filters['limit'])) {
@@ -63,7 +62,7 @@ class TaskRepository
         [$where, $params] = $this->buildWhere($filters);
 
         $stmt = Database::getConnection()->prepare(
-            "SELECT COUNT(*) FROM TASKS JOIN PROJECTS ON PROJECTS.id = TASKS.project_id WHERE {$where}"
+            "SELECT COUNT(*) FROM TASKS JOIN PROJECTS ON PROJECTS.id = TASKS.project_id WHERE PROJECTS.status != 'Archived' AND {$where}"
         );
         $stmt->execute($params);
         return (int) $stmt->fetchColumn();

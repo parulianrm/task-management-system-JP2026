@@ -29,6 +29,7 @@ if ($uri === '/login' && $method === 'POST') {
     session_regenerate_id(true);
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = $user['name'];
+    $_SESSION['user_email'] = $user['email'];
     $_SESSION['role'] = $user['role'];
 
     header('Location: /dashboard');
@@ -95,9 +96,13 @@ switch (true) {
         break;
 
     case $uri === '/users':
-        AuthMiddleware::requireLogin();
-        require __DIR__ . '/../views/users/users.php';
-        break;
+    AuthMiddleware::requireLogin();
+    \App\Services\AuthorizationService::requireRole('Admin');
+    $userRepository = new \App\Repositories\UserRepository();
+    $users = $userRepository->findAll();
+    require __DIR__ . '/../views/users/users.php';
+    break;
+
 
     default:
         http_response_code(404);

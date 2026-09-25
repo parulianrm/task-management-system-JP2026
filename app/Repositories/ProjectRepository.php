@@ -85,15 +85,21 @@ class ProjectRepository
         ]);
     }
 
-    public function archive(int $id, int $updatedBy): void
+    public function setStatus(int $id, string $status, int $updatedBy): void
     {
         $stmt = Database::getConnection()->prepare(
             'UPDATE PROJECTS SET status = :status, updated_by = :updated_by WHERE id = :id'
         );
         $stmt->execute([
-            'status' => 'Archived',
+            'status' => $status,
             'updated_by' => $updatedBy,
             'id' => $id,
         ]);
     }
+
+    public function archive(int $id, int $updatedBy): void
+    {
+        $this->setStatus($id, 'Archived', $updatedBy);
+    }
+
 }

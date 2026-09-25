@@ -66,24 +66,25 @@ class TaskService
         }
 
         $id = $this->repository->create($data, $userId);
+        $this->syncProjectStatus((int) $data['project_id'], $userId);
         return ['success' => true, 'id' => $id];
     }
 
-   public function update(int $id, array $data, int $userId): array
-{
-    $existing = $this->repository->findById($id);
-    if ($existing === null) {
-        return ['success' => false, 'message' => 'Task tidak ditemukan.'];
-    }
+    public function update(int $id, array $data, int $userId): array
+    {
+        $existing = $this->repository->findById($id);
+        if ($existing === null) {
+            return ['success' => false, 'message' => 'Task tidak ditemukan.'];
+        }
 
-    $errors = $this->validate($data, $existing);
-    if (!empty($errors)) {
-        return ['success' => false, 'errors' => $errors];
-    }
+        $errors = $this->validate($data, $existing);
+        if (!empty($errors)) {
+            return ['success' => false, 'errors' => $errors];
+        }
 
-    $this->repository->update($id, $data, $userId);
-    return ['success' => true];
-}
+        $this->repository->update($id, $data, $userId);
+        return ['success' => true];
+    }
 
 
     public function updateStatus(int $id, string $status, int $userId, string $role): array
@@ -107,6 +108,28 @@ class TaskService
         }
 
         $this->repository->updateStatus($id, $status, $userId);
+        $this->syncProjectStatus((int) $existing['project_id'], $userId);
         return ['success' => true];
     }
+
+    private function syncProjectStatus(int $projectId, int $userId): void
+    {
+        $project = $this->projectRepository->findById($projectId);
+        if ($project === null || $project['status'] === 'Archived') {
+            return;
+        }
+
+        $totalTasks = $this->projectRepository->countTasks($projectId);
+        if ($totalTasks === 0) {
+            return;
+        }
+
+        $incompleteTasks = $this->projectRepository->countIncompleteTasks($projectId);
+        $newStatus = $incompleteTasks === 0 ? 'Completed' : 'Active';
+
+        if ($newStatus !== $project['status']) {
+            $this->projectRepository->setStatus($projectId, $newStatus, $userId);
+        }
+    }
+
 }

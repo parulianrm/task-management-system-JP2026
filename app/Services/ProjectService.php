@@ -65,6 +65,12 @@ class ProjectService
         return ['success' => true];
     }
 
+    public function unarchive(int $id, int $userId): array
+    {
+        $this->repository->setStatus($id, 'Active', $userId);
+        return ['success' => true];
+    }
+
 
     public function canBeDeleted(int $id): bool
     {

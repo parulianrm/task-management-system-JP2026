@@ -2,8 +2,8 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use App\Repositories\ProjectRepository;
-use App\Services\ProjectService;
+use App\Repositories\UserRepository;
+use App\Services\UserService;
 use App\Services\AuthorizationService;
 
 session_start();
@@ -15,35 +15,29 @@ if (empty($_SESSION['user_id'])) {
     exit;
 }
 
+AuthorizationService::requireRole('Admin', isApi: true);
+
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true) ?? [];
-$service = new ProjectService();
-$repository = new ProjectRepository();
+$service = new UserService();
+$repository = new UserRepository();
 
 try {
     switch ($method) {
         case 'GET':
-            $projects = $_SESSION['role'] === 'Admin'
-                ? $repository->findAll()
-                : $repository->findAllForMember((int) $_SESSION['user_id']);
-            echo json_encode(['success' => true, 'data' => $projects]);
+            echo json_encode(['success' => true, 'data' => $repository->findAll()]);
             break;
 
         case 'POST':
-            AuthorizationService::requireRole('Admin', isApi: true);
+            $action = $input['action'] ?? null;
 
-            $action = $input['action'] ?? 'create';
-
-            if ($action === 'archive') {
-                $result = $service->archive((int) $input['id'], (int) $_SESSION['user_id']);
-            } elseif ($action === 'unarchive') {
-                $result = $service->unarchive((int) $input['id'], (int) $_SESSION['user_id']);
+            if ($action === 'toggle_active') {
+                $result = $service->setActive((int) $input['id'], (bool) $input['is_active'], (int) $_SESSION['user_id']);
             } elseif (!empty($input['id'])) {
                 $result = $service->update((int) $input['id'], $input, (int) $_SESSION['user_id']);
             } else {
                 $result = $service->create($input, (int) $_SESSION['user_id']);
             }
-
 
             http_response_code($result['success'] ? 200 : 422);
             echo json_encode($result);

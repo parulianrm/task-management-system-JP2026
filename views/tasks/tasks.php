@@ -1,8 +1,25 @@
 <?php
 $pageTitle = 'Tasks - Task Management System';
 $activePage = 'tasks';
-$basePath = '../';
 require __DIR__ . '/../partials/header.php';
+
+function daysOverdue(string $dueDate): int
+{
+    $due = new DateTime($dueDate);
+    $today = new DateTime(date('Y-m-d'));
+    return (int) $today->diff($due)->days;
+}
+
+$statusBadge = [
+    'To Do' => 'badge-status-todo',
+    'In Progress' => 'badge-status-progress',
+    'Done' => 'badge-status-done',
+];
+$priorityBadge = [
+    'Low' => 'badge-priority-low',
+    'Medium' => 'badge-priority-medium',
+    'High' => 'badge-priority-high',
+];
 ?>
 
 <div class="app-layout">
@@ -14,35 +31,10 @@ require __DIR__ . '/../partials/header.php';
         <main class="dashboard-container">
             <div class="page-header">
                 <h1 class="page-title">Daftar Task</h1>
-                <button type="button" class="btn-primary" data-modal-open="task-form-modal">+ Task Baru</button>
+                <?php if ($_SESSION['role'] === 'Admin'): ?>
+                    <button type="button" class="btn-primary" data-modal-open="task-form-modal">+ Task Baru</button>
+                <?php endif; ?>
             </div>
-
-            <form role="search" class="task-filter-bar">
-                <input type="search" name="q" placeholder="Cari judul task..." class="search-input" />
-                <select name="project" class="filter-select">
-                    <option value="">Semua Project</option>
-                    <option value="1">E-Commerce Mobile App</option>
-                    <option value="2">HRIS Internal System</option>
-                    <option value="3">Payment Gateway Integration</option>
-                </select>
-                <select name="status" class="filter-select">
-                    <option value="">Semua Status</option>
-                    <option value="To Do">To Do</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Done">Done</option>
-                </select>
-                <select name="priority" class="filter-select">
-                    <option value="">Semua Priority</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
-                <select name="sort" class="filter-select">
-                    <option value="due_asc">Due Date &uarr;</option>
-                    <option value="due_desc">Due Date &darr;</option>
-                </select>
-                <button type="submit" class="btn-search"><span>Cari</span></button>
-            </form>
 
             <div class="table-wrap">
                 <table class="data-table">
@@ -54,32 +46,66 @@ require __DIR__ . '/../partials/header.php';
                             <th>Priority</th>
                             <th>Due Date</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <?php if ($_SESSION['role'] === 'Admin'): ?><th>Aksi</th><?php endif; ?>
                         </tr>
                     </thead>
                     <tbody id="task-table-body">
-                        <!-- diisi otomatis oleh public/js/tasks.js -->
+                        <?php if (empty($tasks)): ?>
+                            <tr><td colspan="7" class="empty-row">Belum ada task.</td></tr>
+                        <?php else: ?>
+                            <?php foreach ($tasks as $task): ?>
+                                <?php
+                                $isOverdue = $task['due_date'] < date('Y-m-d') && $task['status'] !== 'Done';
+                                $canEdit = $_SESSION['role'] === 'Admin' || (int) $task['assignee_id'] === (int) $_SESSION['user_id'];
+                                ?>
+                                <tr data-task-id="<?= $task['id'] ?>">
+                                    <td><?= htmlspecialchars($task['title']) ?></td>
+                                    <td><?= htmlspecialchars($task['project_name']) ?></td>
+                                    <td><?= htmlspecialchars($task['assignee_name'] ?? '-') ?></td>
+                                    <td><span class="badge <?= $priorityBadge[$task['priority']] ?>"><?= $task['priority'] ?></span></td>
+                                    <td>
+                                        <?= date('d M Y', strtotime($task['due_date'])) ?>
+                                        <?php if ($isOverdue): ?>
+                                            <span class="badge badge-overdue"><?= daysOverdue($task['due_date']) ?>d overdue</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($canEdit): ?>
+                                            <select class="status-select" data-task-status="<?= $task['id'] ?>">
+                                                <?php foreach (['To Do', 'In Progress', 'Done'] as $s): ?>
+                                                    <option value="<?= $s ?>" <?= $s === $task['status'] ? 'selected' : '' ?>><?= $s ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php else: ?>
+                                            <span class="badge <?= $statusBadge[$task['status']] ?>"><?= $task['status'] ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <?php if ($_SESSION['role'] === 'Admin'): ?>
+                                        <td><button type="button" class="link-detail" data-task-edit="<?= $task['id'] ?>">Edit</button></td>
+                                    <?php endif; ?>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
-
-            <nav class="pagination" id="task-pagination" aria-label="Navigasi halaman"></nav>
         </main>
     </div>
 </div>
 
+<?php if ($_SESSION['role'] === 'Admin'): ?>
 <dialog id="task-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
     <div class="modal-header">
         <span class="modal-title">Tambah Task Baru</span>
         <button type="button" class="modal-close" data-modal-close>&times;</button>
     </div>
-    <form method="dialog" class="task-form" novalidate>
+    <form class="task-form" novalidate>
         <div class="form-group">
             <label for="task-project">Project</label>
             <select id="task-project" name="project_id">
-                <option value="1">E-Commerce Mobile App</option>
-                <option value="2">HRIS Internal System</option>
-                <option value="3">Payment Gateway Integration</option>
+                <?php foreach ($projects as $p): ?>
+                    <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['name']) ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group">
@@ -96,16 +122,10 @@ require __DIR__ . '/../partials/header.php';
         <div class="form-group">
             <label for="task-assignee">Assignee</label>
             <select id="task-assignee" name="assignee_id">
-                <option value="2">Parulian R M</option>
-                <option value="1">Dimas Aditya</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="task-status">Status</label>
-            <select id="task-status" name="status">
-                <option value="To Do" selected>To Do</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Done">Done</option>
+                <option value="">- Belum ditugaskan -</option>
+                <?php foreach ($activeUsers as $u): ?>
+                    <option value="<?= $u['id'] ?>"><?= htmlspecialchars($u['name']) ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group">
@@ -127,18 +147,18 @@ require __DIR__ . '/../partials/header.php';
     </form>
 </dialog>
 
-<dialog id="task-edit-modal" class="modal-box modal-box-wide">
+<dialog id="task-edit-modal" class="modal-box modal-box-wide" data-reset-on-close>
     <div class="modal-header">
         <span class="modal-title">Edit Task</span>
         <button type="button" class="modal-close" data-modal-close>&times;</button>
     </div>
-    <form method="dialog" class="task-form" novalidate>
+    <form class="task-form" data-task-id="" novalidate>
         <div class="form-group">
             <label for="edit-task-project">Project</label>
-            <select id="edit-task-project" name="project_id">
-                <option value="1">E-Commerce Mobile App</option>
-                <option value="2">HRIS Internal System</option>
-                <option value="3">Payment Gateway Integration</option>
+            <select id="edit-task-project" name="project_id" disabled>
+                <?php foreach ($projects as $p): ?>
+                    <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['name']) ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group">
@@ -155,16 +175,10 @@ require __DIR__ . '/../partials/header.php';
         <div class="form-group">
             <label for="edit-task-assignee">Assignee</label>
             <select id="edit-task-assignee" name="assignee_id">
-                <option value="2">Parulian R M</option>
-                <option value="1">Dimas Aditya</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="edit-task-status">Status</label>
-            <select id="edit-task-status" name="status">
-                <option value="To Do">To Do</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Done">Done</option>
+                <option value="">- Belum ditugaskan -</option>
+                <?php foreach ($activeUsers as $u): ?>
+                    <option value="<?= $u['id'] ?>"><?= htmlspecialchars($u['name']) ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group">
@@ -185,7 +199,11 @@ require __DIR__ . '/../partials/header.php';
         <button type="submit" class="btn-primary">Simpan Perubahan</button>
     </form>
 </dialog>
+<?php endif; ?>
 
+<script>
+    var TASKS_DATA = <?= json_encode($tasks) ?>;
+</script>
 <script src="/js/tasks.js" defer></script>
 <script src="/js/validate-task.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>
