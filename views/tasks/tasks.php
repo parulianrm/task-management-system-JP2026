@@ -75,7 +75,8 @@ $priorityBadge = [
                                 <option value="">Semua Priority</option>
                                 <?php foreach (['Low', 'Medium', 'High'] as $p): ?>
                                     <option value="<?= $p ?>" <?= ($_GET['priority'] ?? '') === $p ? 'selected' : '' ?>>
-                                        <?= $p ?></option>
+                                        <?= $p ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -157,19 +158,35 @@ $priorityBadge = [
                     </tbody>
                 </table>
             </div>
+            <div class="pagination-bar">
+                <form method="GET" action="/tasks" class="per-page-form">
+                    <?php foreach (['q', 'project_id', 'status', 'priority', 'sort'] as $key): ?>
+                        <input type="hidden" name="<?= $key ?>" value="<?= htmlspecialchars($_GET[$key] ?? '') ?>" />
+                    <?php endforeach; ?>
+                    <label for="per-page-select">Tampilkan</label>
+                    <select name="per_page" id="per-page-select" onchange="this.form.submit()">
+                        <?php foreach ([5, 10, 25, 50] as $n): ?>
+                            <option value="<?= $n ?>" <?= $perPage === $n ? 'selected' : '' ?>><?= $n ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+
+                <nav class="pagination" aria-label="Navigasi halaman">
+                    <a href="<?= buildTaskPageUrl(max(1, $page - 1)) ?>"
+                        class="pagination-btn<?= $page === 1 ? ' is-disabled' : '' ?>">&laquo; Sebelumnya</a>
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="<?= buildTaskPageUrl($i) ?>"
+                            class="pagination-page<?= $i === $page ? ' is-active' : '' ?>"><?= $i ?></a>
+                    <?php endfor; ?>
+                    <a href="<?= buildTaskPageUrl(min($totalPages, $page + 1)) ?>"
+                        class="pagination-btn<?= $page === $totalPages ? ' is-disabled' : '' ?>">Berikutnya &raquo;</a>
+                </nav>
+            </div>
         </main>
     </div>
 </div>
 
-<nav class="pagination" aria-label="Navigasi halaman">
-    <a href="<?= buildTaskPageUrl(max(1, $page - 1)) ?>"
-        class="pagination-btn<?= $page === 1 ? ' is-disabled' : '' ?>">&laquo; Sebelumnya</a>
-    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-        <a href="<?= buildTaskPageUrl($i) ?>" class="pagination-page<?= $i === $page ? ' is-active' : '' ?>"><?= $i ?></a>
-    <?php endfor; ?>
-    <a href="<?= buildTaskPageUrl(min($totalPages, $page + 1)) ?>"
-        class="pagination-btn<?= $page === $totalPages ? ' is-disabled' : '' ?>">Berikutnya &raquo;</a>
-</nav>
+
 
 
 <?php if ($_SESSION['role'] === 'Admin'): ?>

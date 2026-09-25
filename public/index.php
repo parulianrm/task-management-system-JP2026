@@ -50,8 +50,19 @@ switch (true) {
 
     case $uri === '/dashboard':
         AuthMiddleware::requireLogin();
+        $dashboardRepository = new \App\Repositories\DashboardRepository();
+
+        $isAdmin = $_SESSION['role'] === 'Admin';
+        $scopeUserId = $isAdmin ? null : (int) $_SESSION['user_id'];
+
+        $activeProjects = $isAdmin ? $dashboardRepository->countActiveProjects() : null;
+        $tasksByStatus = $dashboardRepository->countTasksByStatus($scopeUserId);
+        $overdueCount = $dashboardRepository->countOverdueTasks($scopeUserId);
+        $upcomingTasks = $dashboardRepository->findUpcomingTasks($scopeUserId, 5);
+
         require __DIR__ . '/../views/dashboard.php';
         break;
+
 
     case $uri === '/projects':
         AuthMiddleware::requireLogin();
@@ -93,7 +104,12 @@ switch (true) {
         $userRepository = new \App\Repositories\UserRepository();
 
         $page = max(1, (int) ($_GET['page'] ?? 1));
-        $perPage = 10;
+        $allowedPerPage = [5, 10, 25, 50];
+        $perPage = (int) ($_GET['per_page'] ?? 10);
+        if (!in_array($perPage, $allowedPerPage, true)) {
+            $perPage = 10;
+        }
+
 
         $filters = [
             'search' => $_GET['q'] ?? '',
