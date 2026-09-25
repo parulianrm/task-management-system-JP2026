@@ -7,23 +7,53 @@ use PDO;
 
 class ProjectRepository
 {
-    public function findAll(): array
+    public function findAll(array $filters = []): array
     {
-        $stmt = Database::getConnection()->query('SELECT * FROM PROJECTS ORDER BY created_at DESC');
+        $conditions = ['1=1'];
+        $params = [];
+
+        if (!empty($filters['search'])) {
+            $conditions[] = 'name LIKE :search';
+            $params['search'] = '%' . $filters['search'] . '%';
+        }
+        if (!empty($filters['status'])) {
+            $conditions[] = 'status = :status';
+            $params['status'] = $filters['status'];
+        }
+
+        $where = implode(' AND ', $conditions);
+
+        $stmt = Database::getConnection()->prepare("SELECT * FROM PROJECTS WHERE {$where} ORDER BY created_at DESC");
+        $stmt->execute($params);
         return $stmt->fetchAll();
     }
 
-    public function findAllForMember(int $userId): array
+    public function findAllForMember(int $userId, array $filters = []): array
     {
+        $conditions = ['1=1'];
+        $params = ['userId' => $userId];
+
+        if (!empty($filters['search'])) {
+            $conditions[] = 'PROJECTS.name LIKE :search';
+            $params['search'] = '%' . $filters['search'] . '%';
+        }
+        if (!empty($filters['status'])) {
+            $conditions[] = 'PROJECTS.status = :status';
+            $params['status'] = $filters['status'];
+        }
+
+        $where = implode(' AND ', $conditions);
+
         $stmt = Database::getConnection()->prepare(
-            'SELECT DISTINCT PROJECTS.* FROM PROJECTS
-             JOIN TASKS ON TASKS.project_id = PROJECTS.id
-             WHERE TASKS.assignee_id = :userId
-             ORDER BY PROJECTS.created_at DESC'
+            "SELECT DISTINCT PROJECTS.* FROM PROJECTS
+         JOIN TASKS ON TASKS.project_id = PROJECTS.id
+         WHERE TASKS.assignee_id = :userId AND {$where}
+         ORDER BY PROJECTS.created_at DESC"
         );
-        $stmt->execute(['userId' => $userId]);
+        $stmt->execute($params);
         return $stmt->fetchAll();
     }
+
 
     public function findById(int $id): ?array
     {
@@ -48,7 +78,6 @@ class ProjectRepository
         $stmt->execute(['id' => $projectId]);
         return (int) $stmt->fetchColumn();
     }
-
 
     public function create(array $data, int $updatedBy): int
     {
@@ -86,15 +115,21 @@ class ProjectRepository
         ]);
     }
 
-    public function archive(int $id, int $updatedBy): void
+    public function setStatus(int $id, string $status, int $updatedBy): void
     {
         $stmt = Database::getConnection()->prepare(
             'UPDATE PROJECTS SET status = :status, updated_by = :updated_by WHERE id = :id'
         );
         $stmt->execute([
-            'status' => 'Archived',
+            'status' => $status,
             'updated_by' => $updatedBy,
             'id' => $id,
         ]);
     }
+
+    public function archive(int $id, int $updatedBy): void
+    {
+        $this->setStatus($id, 'Archived', $updatedBy);
+    }
+
 }

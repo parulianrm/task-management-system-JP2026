@@ -38,13 +38,17 @@ $statusBadge = [
                 </div>
                 <?php if ($_SESSION['role'] === 'Admin'): ?>
                     <div style="display:flex; gap:0.5rem;">
-                        <?php if ($project['status'] !== 'Archived' && $repository->countIncompleteTasks($project['id']) === 0): ?>
-                            <button type="button" class="btn-secondary" id="btn-archive-project">Arsipkan</button>
+                        <?php if ($project['status'] === 'Archived'): ?>
+                            <button type="button" class="btn-secondary" id="btn-unarchive-project">Aktifkan Kembali</button>
+                        <?php else: ?>
+                            <?php if ($repository->countIncompleteTasks($project['id']) === 0): ?>
+                                <button type="button" class="btn-secondary" id="btn-archive-project">Arsipkan</button>
+                            <?php endif; ?>
+                            <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
                         <?php endif; ?>
-
-                        <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
                     </div>
                 <?php endif; ?>
+
             </div>
 
             <div class="project-detail-info">

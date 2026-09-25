@@ -1,7 +1,6 @@
 <?php
 $pageTitle = 'Users - Task Management System';
 $activePage = 'users';
-$basePath = '../';
 require __DIR__ . '/../partials/header.php';
 ?>
 
@@ -14,7 +13,7 @@ require __DIR__ . '/../partials/header.php';
         <main class="dashboard-container">
             <div class="page-header">
                 <h1 class="page-title">Manajemen User</h1>
-                <a href="#" class="btn-primary">+ User Baru</a>
+                <button type="button" class="btn-primary" data-modal-open="user-form-modal">+ User Baru</button>
             </div>
 
             <div class="table-wrap">
@@ -29,152 +28,108 @@ require __DIR__ . '/../partials/header.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Dimas Aditya</td>
-                            <td>dimas.aditya@neuronworks.co.id</td>
-                            <td><span class="badge badge-role-admin">Admin</span></td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" checked data-status-toggle />
-                                    <span class="switch-slider"></span>
-                                </label>
-                                <span class="status-text">Aktif</span>
-                            </td>
-
-                            <td><button type="button" class="link-detail" data-modal-open="edit-user-1">Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Parulian R M</td>
-                            <td>parulian.manik@neuronworks.co.id</td>
-                            <td><span class="badge badge-role-member">Member</span></td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" checked data-status-toggle />
-                                    <span class="switch-slider"></span>
-                                </label>
-                                <span class="status-text">Aktif</span>
-                            </td>
-                            <td><button type="button" class="link-detail" data-modal-open="edit-user-2">Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Rian Hidayat</td>
-                            <td>rian.hidayat@neuronworks.co.id</td>
-                            <td><span class="badge badge-role-member">Member</span></td>
-                            <td>
-                                <label class="switch">
-                                    <input type="checkbox" data-status-toggle />
-                                    <span class="switch-slider"></span>
-                                </label>
-                                <span class="status-text">Nonaktif</span>
-                            </td>
-
-                            <td><button type="button" class="link-detail" data-modal-open="edit-user-3">Edit</button>
-                            </td>
-                        </tr>
+                        <?php if (empty($users)): ?>
+                            <tr><td colspan="5" class="empty-row">Belum ada user.</td></tr>
+                        <?php else: ?>
+                            <?php foreach ($users as $user): ?>
+                                <tr data-user-id="<?= $user['id'] ?>">
+                                    <td><?= htmlspecialchars($user['name']) ?></td>
+                                    <td><?= htmlspecialchars($user['email']) ?></td>
+                                    <td><span class="badge <?= $user['role'] === 'Admin' ? 'badge-role-admin' : 'badge-role-member' ?>"><?= $user['role'] ?></span></td>
+                                    <td>
+                                        <label class="switch">
+                                            <input type="checkbox" <?= $user['is_active'] ? 'checked' : '' ?>
+                                                data-user-toggle="<?= $user['id'] ?>"
+                                                <?= (int) $user['id'] === (int) $_SESSION['user_id'] ? 'disabled' : '' ?> />
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                        <span class="status-text"><?= $user['is_active'] ? 'Aktif' : 'Nonaktif' ?></span>
+                                    </td>
+                                    <td><button type="button" class="link-detail" data-user-edit="<?= $user['id'] ?>">Edit</button></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
-
-            <dialog id="edit-user-1" class="modal-box">
-                <div class="modal-header">
-                    <span class="modal-title">Edit User</span>
-                    <button type="button" class="modal-close" data-modal-close>&times;</button>
-                </div>
-                <form method="dialog">
-                    <div class="form-group">
-                        <label for="name-1">Nama</label>
-                        <input type="text" id="name-1" value="Dimas Aditya" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email-1">Email</label>
-                        <input type="email" id="email-1" value="dimas.aditya@neuronworks.co.id" />
-                    </div>
-                    <div class="form-group">
-                        <label for="role-1">Role</label>
-                        <select id="role-1">
-                            <option value="Admin" selected>Admin</option>
-                            <option value="Member">Member</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status-1">Status</label>
-                        <select id="status-1">
-                            <option value="1" selected>Aktif</option>
-                            <option value="0">Nonaktif</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
-                </form>
-            </dialog>
-
-            <dialog id="edit-user-2" class="modal-box">
-                <div class="modal-header">
-                    <span class="modal-title">Edit User</span>
-                    <button type="button" class="modal-close" data-modal-close>&times;</button>
-                </div>
-                <form method="dialog">
-                    <div class="form-group">
-                        <label for="name-2">Nama</label>
-                        <input type="text" id="name-2" value="Parulian R M" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email-2">Email</label>
-                        <input type="email" id="email-2" value="parulian.manik@neuronworks.co.id" />
-                    </div>
-                    <div class="form-group">
-                        <label for="role-2">Role</label>
-                        <select id="role-2">
-                            <option value="Admin">Admin</option>
-                            <option value="Member" selected>Member</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status-2">Status</label>
-                        <select id="status-2">
-                            <option value="1" selected>Aktif</option>
-                            <option value="0">Nonaktif</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
-                </form>
-            </dialog>
-
-            <dialog id="edit-user-3" class="modal-box">
-                <div class="modal-header">
-                    <span class="modal-title">Edit User</span>
-                    <button type="button" class="modal-close" data-modal-close>&times;</button>
-                </div>
-                <form method="dialog">
-                    <div class="form-group">
-                        <label for="name-3">Nama</label>
-                        <input type="text" id="name-3" value="Rian Hidayat" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email-3">Email</label>
-                        <input type="email" id="email-3" value="rian.hidayat@neuronworks.co.id" />
-                    </div>
-                    <div class="form-group">
-                        <label for="role-3">Role</label>
-                        <select id="role-3">
-                            <option value="Admin">Admin</option>
-                            <option value="Member" selected>Member</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status-3">Status</label>
-                        <select id="status-3">
-                            <option value="1">Aktif</option>
-                            <option value="0" selected>Nonaktif</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
-                </form>
-            </dialog>
         </main>
     </div>
 </div>
 
-<script src="/public/js/users-status.js" defer></script>
+<dialog id="user-form-modal" class="modal-box" data-reset-on-close>
+    <div class="modal-header">
+        <span class="modal-title">Tambah User Baru</span>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form id="user-form" novalidate>
+        <div class="form-group">
+            <label for="user-name">Nama</label>
+            <div class="field-wrap">
+                <input type="text" id="user-name" name="name" required />
+                <span class="field-error" data-error-for="name"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user-email">Email</label>
+            <div class="field-wrap">
+                <input type="email" id="user-email" name="email" required />
+                <span class="field-error" data-error-for="email"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user-password">Password</label>
+            <div class="field-wrap">
+                <input type="password" id="user-password" name="password" />
+                <span class="field-error" data-error-for="password"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user-role">Role</label>
+            <select id="user-role" name="role">
+                <option value="Member" selected>Member</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <span class="field-error" data-error-for="role"></span>
+        </div>
+        <button type="submit" class="btn-primary">Simpan User</button>
+    </form>
+</dialog>
+
+<dialog id="user-edit-modal" class="modal-box" data-reset-on-close>
+    <div class="modal-header">
+        <span class="modal-title">Edit User</span>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form id="user-edit-form" data-user-id="" novalidate>
+        <div class="form-group">
+            <label for="edit-user-name">Nama</label>
+            <div class="field-wrap">
+                <input type="text" id="edit-user-name" name="name" required />
+                <span class="field-error" data-error-for="name"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edit-user-email">Email</label>
+            <div class="field-wrap">
+                <input type="email" id="edit-user-email" name="email" required />
+                <span class="field-error" data-error-for="email"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edit-user-role">Role</label>
+            <select id="edit-user-role" name="role">
+                <option value="Member">Member</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <span class="field-error" data-error-for="role"></span>
+        </div>
+        <button type="submit" class="btn-primary">Simpan Perubahan</button>
+    </form>
+</dialog>
+
+<script>
+    var USERS_DATA = <?= json_encode($users) ?>;
+</script>
+<script src="/js/users-status.js" defer></script>
+<script src="/js/validate-user.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>
