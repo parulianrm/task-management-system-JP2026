@@ -14,19 +14,37 @@ require __DIR__ . '/../partials/header.php';
         <main class="dashboard-container">
             <div class="page-header">
                 <h1 class="page-title">Daftar Project</h1>
-                <form role="search" class="search-form">
-                    <div class="search-input-group">
-                        <input type="search" id="site-search" name="q" placeholder="Cari nama project"
-                            class="search-input" />
-                        <?php if ($_SESSION['role'] === 'Admin'): ?>
-                            <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project
-                                Baru</button>
-                        <?php endif; ?>
+                <?php if ($_SESSION['role'] === 'Admin'): ?>
+                    <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project Baru</button>
+                <?php endif; ?>
+            </div>
 
-
+            <div class="filter-card">
+                <form method="GET" action="/projects">
+                    <div class="filter-row">
+                        <div class="filter-field">
+                            <label for="filter-q">Cari Nama Project</label>
+                            <input type="search" id="filter-q" name="q" placeholder="Cari nama project..."
+                                value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" />
+                        </div>
+                        <div class="filter-field">
+                            <label for="filter-status">Status</label>
+                            <select id="filter-status" name="status">
+                                <option value="">Semua Status</option>
+                                <?php foreach (['Planning', 'Active', 'Completed', 'Archived'] as $s): ?>
+                                    <option value="<?= $s ?>" <?= ($_GET['status'] ?? '') === $s ? 'selected' : '' ?>><?= $s ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <a href="/projects" class="btn-secondary">Reset Filter</a>
+                        <button type="submit" class="btn-primary">Terapkan Filter</button>
                     </div>
                 </form>
             </div>
+
 
             <div class="projects-grid">
                 <?php if (empty($projects)): ?>
@@ -69,50 +87,50 @@ require __DIR__ . '/../partials/header.php';
 </div>
 
 <?php if ($_SESSION['role'] === 'Admin'): ?>
-<dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
-    <div class="modal-header">
-        <span class="modal-title">Tambah Project Baru</span>
-        <button type="button" class="modal-close" data-modal-close>&times;</button>
-    </div>
-    <form id="project-form" novalidate>
-        <div class="form-group">
-            <label for="project-name">Nama</label>
-            <div class="field-wrap">
-                <input type="text" id="project-name" name="name" placeholder="Nama project" required />
-                <span class="field-error" id="project-name-error"></span>
+    <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
+        <div class="modal-header">
+            <span class="modal-title">Tambah Project Baru</span>
+            <button type="button" class="modal-close" data-modal-close>&times;</button>
+        </div>
+        <form id="project-form" novalidate>
+            <div class="form-group">
+                <label for="project-name">Nama</label>
+                <div class="field-wrap">
+                    <input type="text" id="project-name" name="name" placeholder="Nama project" required />
+                    <span class="field-error" id="project-name-error"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group form-group-textarea">
-            <label for="project-desc">Deskripsi</label>
-            <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="project-status">Status</label>
-            <select id="project-status" name="status">
-                <option value="Planning" selected>Planning</option>
-                <option value="Active">Active</option>
-                <option value="Completed">Completed</option>
-                <option value="Archived">Archived</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="project-start">Tanggal Mulai</label>
-            <div class="field-wrap">
-                <input type="date" id="project-start" name="start_date" required />
-                <span class="field-error" id="project-start-error"></span>
+            <div class="form-group form-group-textarea">
+                <label for="project-desc">Deskripsi</label>
+                <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="project-target">Tanggal Target</label>
-            <div class="field-wrap">
-                <input type="date" id="project-target" name="target_date" required />
-                <span class="field-error" id="project-target-error"></span>
+            <div class="form-group">
+                <label for="project-status">Status</label>
+                <select id="project-status" name="status">
+                    <option value="Planning" selected>Planning</option>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Archived">Archived</option>
+                </select>
             </div>
-        </div>
-        <button type="submit" class="btn-primary">Simpan Project</button>
-    </form>
+            <div class="form-group">
+                <label for="project-start">Tanggal Mulai</label>
+                <div class="field-wrap">
+                    <input type="date" id="project-start" name="start_date" required />
+                    <span class="field-error" id="project-start-error"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="project-target">Tanggal Target</label>
+                <div class="field-wrap">
+                    <input type="date" id="project-target" name="target_date" required />
+                    <span class="field-error" id="project-target-error"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">Simpan Project</button>
+        </form>
 
-</dialog>
+    </dialog>
 <?php endif; ?>
 
 <script src="/js/validate-project.js" defer></script>

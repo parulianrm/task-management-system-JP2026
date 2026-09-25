@@ -54,31 +54,36 @@ switch (true) {
         break;
 
     case $uri === '/projects':
-    AuthMiddleware::requireLogin();
-    $repository = new \App\Repositories\ProjectRepository();
-    $projects = $_SESSION['role'] === 'Admin'
-        ? $repository->findAll()
-        : $repository->findAllForMember((int) $_SESSION['user_id']);
-    require __DIR__ . '/../views/projects/projects.php';
-    break;
+        AuthMiddleware::requireLogin();
+        $repository = new \App\Repositories\ProjectRepository();
+        $projectFilters = [
+            'search' => $_GET['q'] ?? '',
+            'status' => $_GET['status'] ?? '',
+        ];
+        $projects = $_SESSION['role'] === 'Admin'
+            ? $repository->findAll($projectFilters)
+            : $repository->findAllForMember((int) $_SESSION['user_id'], $projectFilters);
+        require __DIR__ . '/../views/projects/projects.php';
+        break;
+
 
     case $uri === '/projects/detail':
-    AuthMiddleware::requireLogin();
-    $repository = new \App\Repositories\ProjectRepository();
-    $projectId = (int) ($_GET['id'] ?? 0);
-    $project = $repository->findById($projectId);
+        AuthMiddleware::requireLogin();
+        $repository = new \App\Repositories\ProjectRepository();
+        $projectId = (int) ($_GET['id'] ?? 0);
+        $project = $repository->findById($projectId);
 
-    if ($project === null) {
-        http_response_code(404);
-        require __DIR__ . '/../views/errors/404.php';
+        if ($project === null) {
+            http_response_code(404);
+            require __DIR__ . '/../views/errors/404.php';
+            break;
+        }
+
+        $taskRepository = new \App\Repositories\TaskRepository();
+        $tasks = $taskRepository->findByProject($projectId);
+
+        require __DIR__ . '/../views/projects/detail.php';
         break;
-    }
-
-    $taskRepository = new \App\Repositories\TaskRepository();
-    $tasks = $taskRepository->findByProject($projectId);
-
-    require __DIR__ . '/../views/projects/detail.php';
-    break;
 
 
     case $uri === '/tasks':
@@ -87,21 +92,41 @@ switch (true) {
         $projectRepository = new \App\Repositories\ProjectRepository();
         $userRepository = new \App\Repositories\UserRepository();
 
-        $filters = $_SESSION['role'] === 'Admin' ? [] : ['assignee_id' => (int) $_SESSION['user_id']];
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = 10;
+
+        $filters = [
+            'search' => $_GET['q'] ?? '',
+            'project_id' => $_GET['project_id'] ?? '',
+            'status' => $_GET['status'] ?? '',
+            'priority' => $_GET['priority'] ?? '',
+            'sort' => $_GET['sort'] ?? 'asc',
+            'limit' => $perPage,
+            'offset' => ($page - 1) * $perPage,
+        ];
+
+        if ($_SESSION['role'] !== 'Admin') {
+            $filters['assignee_id'] = (int) $_SESSION['user_id'];
+        }
+
         $tasks = $taskRepository->findAll($filters);
+        $totalTasks = $taskRepository->countAll($filters);
+        $totalPages = max(1, (int) ceil($totalTasks / $perPage));
+
         $projects = $projectRepository->findAll();
         $activeUsers = $userRepository->findActiveUsers();
 
         require __DIR__ . '/../views/tasks/tasks.php';
         break;
 
+
     case $uri === '/users':
-    AuthMiddleware::requireLogin();
-    \App\Services\AuthorizationService::requireRole('Admin');
-    $userRepository = new \App\Repositories\UserRepository();
-    $users = $userRepository->findAll();
-    require __DIR__ . '/../views/users/users.php';
-    break;
+        AuthMiddleware::requireLogin();
+        \App\Services\AuthorizationService::requireRole('Admin');
+        $userRepository = new \App\Repositories\UserRepository();
+        $users = $userRepository->findAll();
+        require __DIR__ . '/../views/users/users.php';
+        break;
 
 
     default:
