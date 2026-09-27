@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Repositories\ProjectRepository;
+use App\Repositories\Contracts\ProjectRepositoryInterface;
 
 class ProjectService
 {
-    public function __construct(private ProjectRepository $repository = new ProjectRepository())
+    public function __construct(private ProjectRepositoryInterface $repository  =  new ProjectRepository())
     {
     }
 

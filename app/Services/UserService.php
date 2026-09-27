@@ -3,12 +3,11 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserService
 {
-    public function __construct(private UserRepository $repository = new UserRepository())
-    {
-    }
+    public function __construct(private UserRepositoryInterface $repository = new UserRepository()){}
 
     public function validate(array $data, ?int $excludeId = null): array
     {

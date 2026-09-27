@@ -4,8 +4,9 @@ namespace App\Repositories;
 
 use App\Core\Database;
 use PDO;
+use App\Repositories\Contracts\ProjectRepositoryInterface;
 
-class ProjectRepository
+class ProjectRepository implements ProjectRepositoryInterface
 {
     public function findAll(array $filters = []): array
     {
