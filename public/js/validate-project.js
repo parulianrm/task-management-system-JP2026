@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
+                sessionStorage.setItem('toastMessage', 'Project berhasil disimpan.');
+                sessionStorage.setItem('toastType', 'success');
                 document.getElementById('project-form-modal').close();
                 window.location.reload();
             }).catch(function () {
@@ -78,13 +80,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var archiveBtn = document.getElementById('btn-archive-project');
     if (archiveBtn) {
         archiveBtn.addEventListener('click', function () {
-            if (!confirm('Arsipkan project ini? Project yang diarsipkan tidak bisa diubah statusnya lagi.')) return;
-
-            var projectId = document.getElementById('project-form').dataset.projectId;
-            apiPost('/api/projects.php', { id: projectId, action: 'archive' }).then(function (result) {
-                if (result.success) {
-                    window.location.reload();
-                }
+            confirmAction('Arsipkan project ini? Project yang diarsipkan tidak bisa diubah statusnya lagi.', function () {
+                var projectId = document.getElementById('project-form').dataset.projectId;
+                apiPost('/api/projects.php', { id: projectId, action: 'archive' }).then(function (result) {
+                    if (result.success) {
+                        sessionStorage.setItem('toastMessage', 'Project berhasil diarsipkan.');
+                        sessionStorage.setItem('toastType', 'success');
+                        window.location.reload();
+                    } else {
+                        showToast(result.message || 'Gagal mengarsipkan project.', 'error');
+                    }
+                });
             });
         });
     }
@@ -92,12 +98,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var unarchiveBtn = document.getElementById('btn-unarchive-project');
     if (unarchiveBtn) {
         unarchiveBtn.addEventListener('click', function () {
-            if (!confirm('Batalkan arsip project ini?')) return;
-            var projectId = document.getElementById('project-form').dataset.projectId;
-            apiPost('/api/projects.php', { id: projectId, action: 'unarchive' }).then(function (result) {
-                if (result.success) {
-                    window.location.reload();
-                }
+            confirmAction('Batalkan arsip project ini?', function () {
+                var projectId = document.getElementById('project-form').dataset.projectId;
+                apiPost('/api/projects.php', { id: projectId, action: 'unarchive' }).then(function (result) {
+                    if (result.success) {
+                        sessionStorage.setItem('toastMessage', 'Project berhasil diaktifkan kembali.', 'success');
+                        sessionStorage.setItem('toastType', 'success');
+                        window.location.reload(); t
+                    } else {
+                        showToast(result.message || 'Gagal mengaktifkan project.', 'error');
+                    }
+                });
             });
         });
     }

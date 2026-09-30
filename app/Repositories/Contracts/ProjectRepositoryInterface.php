@@ -13,4 +13,6 @@ interface ProjectRepositoryInterface
     public function update(int $id, array $data, int $updatedBy): void;
     public function setStatus(int $id, string $status, int $updatedBy): void;
     public function archive(int $id, int $updatedBy): void;
+    public function isAssignedToMember(int $projectId, int $userId): bool;
+
 }

@@ -39,6 +39,7 @@ class ProjectServiceTest extends TestCase
     public function test_archive_rejected_when_tasks_incomplete(): void
     {
         $repository = $this->createMock(ProjectRepository::class);
+        $repository->method('findById')->willReturn(['id' => 1, 'status' => 'Active']);
         $repository->method('countIncompleteTasks')->willReturn(3);
 
         $service = new ProjectService($repository);
@@ -51,6 +52,7 @@ class ProjectServiceTest extends TestCase
     public function test_archive_succeeds_when_all_tasks_done(): void
     {
         $repository = $this->createMock(ProjectRepository::class);
+        $repository->method('findById')->willReturn(['id' => 1, 'status' => 'Active']);
         $repository->method('countIncompleteTasks')->willReturn(0);
         $repository->expects($this->once())->method('archive');
 
@@ -59,4 +61,5 @@ class ProjectServiceTest extends TestCase
 
         $this->assertTrue($result['success']);
     }
+
 }

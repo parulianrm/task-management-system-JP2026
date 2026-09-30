@@ -7,7 +7,7 @@ use App\Repositories\Contracts\ProjectRepositoryInterface;
 
 class ProjectService
 {
-    public function __construct(private ProjectRepositoryInterface $repository  =  new ProjectRepository())
+    public function __construct(private ProjectRepositoryInterface $repository = new ProjectRepository())
     {
     }
 
@@ -42,6 +42,10 @@ class ProjectService
 
     public function update(int $id, array $data, int $userId): array
     {
+        if ($this->repository->findById($id) === null) {
+            return ['success' => false, 'message' => 'Project tidak ditemukan.'];
+        }
+
         $errors = $this->validate($data, $id);
         if (!empty($errors)) {
             return ['success' => false, 'errors' => $errors];
@@ -53,6 +57,10 @@ class ProjectService
 
     public function archive(int $id, int $userId): array
     {
+        if ($this->repository->findById($id) === null) {
+            return ['success' => false, 'message' => 'Project tidak ditemukan.'];
+        }
+
         $incomplete = $this->repository->countIncompleteTasks($id);
 
         if ($incomplete > 0) {
@@ -68,10 +76,13 @@ class ProjectService
 
     public function unarchive(int $id, int $userId): array
     {
+        if ($this->repository->findById($id) === null) {
+            return ['success' => false, 'message' => 'Project tidak ditemukan.'];
+        }
+
         $this->repository->setStatus($id, 'Active', $userId);
         return ['success' => true];
     }
-
 
     public function canBeDeleted(int $id): bool
     {

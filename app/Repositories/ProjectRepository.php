@@ -47,14 +47,13 @@ class ProjectRepository implements ProjectRepositoryInterface
 
         $stmt = Database::getConnection()->prepare(
             "SELECT DISTINCT PROJECTS.* FROM PROJECTS
-         JOIN TASKS ON TASKS.project_id = PROJECTS.id
-         WHERE TASKS.assignee_id = :userId AND {$where}
-         ORDER BY PROJECTS.created_at DESC"
+             JOIN TASKS ON TASKS.project_id = PROJECTS.id
+             WHERE TASKS.assignee_id = :userId AND {$where}
+             ORDER BY PROJECTS.created_at DESC"
         );
         $stmt->execute($params);
         return $stmt->fetchAll();
     }
-
 
     public function findById(int $id): ?array
     {
@@ -133,4 +132,12 @@ class ProjectRepository implements ProjectRepositoryInterface
         $this->setStatus($id, 'Archived', $updatedBy);
     }
 
+    public function isAssignedToMember(int $projectId, int $userId): bool
+    {
+        $stmt = Database::getConnection()->prepare(
+            'SELECT COUNT(*) FROM TASKS WHERE project_id = :projectId AND assignee_id = :userId'
+        );
+        $stmt->execute(['projectId' => $projectId, 'userId' => $userId]);
+        return $stmt->fetchColumn() > 0;
+    }
 }
