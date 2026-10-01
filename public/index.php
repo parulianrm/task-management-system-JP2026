@@ -21,7 +21,7 @@ try {
             exit;
         }
 
-        if($result['inactive']) {
+        if($result['status'] === 'inactive') {
             header('Location: /login?error=inactive&email='. urldecode($_POST['email'] ?? ''));
             exit;
         }
