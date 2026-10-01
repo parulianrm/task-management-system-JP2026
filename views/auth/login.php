@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="email">Email</label>
         <div class="field-wrap">
-          <input type="email" id="email" name="email" placeholder="nama@neuronworks.co.id" required />
+          <input type="email" id="email" name="email" placeholder="nama@neuronworks.co.id" value="<?= htmlspecialchars($_GET['email'] ?? '') ?>" required />
           <span class="field-error" id="email-error"></span>
         </div>
       </div>

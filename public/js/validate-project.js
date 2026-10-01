@@ -102,9 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 var projectId = document.getElementById('project-form').dataset.projectId;
                 apiPost('/api/projects.php', { id: projectId, action: 'unarchive' }).then(function (result) {
                     if (result.success) {
-                        sessionStorage.setItem('toastMessage', 'Project berhasil diaktifkan kembali.', 'success');
-                        sessionStorage.setItem('toastType', 'success');
-                        window.location.reload(); t
+                        sessionStorage.setItem('toastMessage', 'Project berhasil diaktifkan kembali.');
+                        window.location.reload();
                     } else {
                         showToast(result.message || 'Gagal mengaktifkan project.', 'error');
                     }

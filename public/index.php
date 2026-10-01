@@ -16,13 +16,13 @@ try {
         $authService = new AuthService();
         $result = $authService->attempt($_POST['email'] ?? '', $_POST['password'] ?? '');
 
-        if ($result['status'] === 'invalid') {
-            header('Location: /login?error=invalid');
+        if($result['status'] === 'invalid') {
+            header('Location: /login?error=invalid&email='. urldecode($_POST['email'] ?? ''));
             exit;
         }
 
-        if ($result['status'] === 'inactive') {
-            header('Location: /login?error=inactive');
+        if($result['inactive']) {
+            header('Location: /login?error=inactive&email='. urldecode($_POST['email'] ?? ''));
             exit;
         }
 
@@ -59,8 +59,8 @@ try {
             $activeProjects = $isAdmin ? $dashboardRepository->countActiveProjects() : null;
             $tasksByStatus = $dashboardRepository->countTasksByStatus($scopeUserId);
             $overdueCount = $dashboardRepository->countOverdueTasks($scopeUserId);
-            $upcomingTasks = $dashboardRepository->findUpcomingTasks($scopeUserId, 5);
-
+            $upcomingLimit = 5;
+            $upcomingTasks = $dashboardRepository->findUpcomingTasks($scopeUserId, $upcomingLimit);
             require __DIR__ . '/../views/dashboard.php';
             break;
 

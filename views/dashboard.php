@@ -61,7 +61,7 @@ $statusBadge = [
 
             <div class="dashboard-content">
                 <section class="content-card">
-                    <h2><?= $_SESSION['role'] === 'Admin' ? '5 Task Due Terdekat' : '5 Task Saya yang Due Terdekat' ?>
+                    <h2><?= $_SESSION['role'] === 'Admin' ? "{$upcomingLimit} Task Due Terdekat" : "{$upcomingLimit} Task Saya yang Due Terdekat" ?>
                     </h2>
                     <ul class="item-list">
                         <?php if (empty($upcomingTasks)): ?>
