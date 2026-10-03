@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         showToast(result.message || 'Gagal mengarsipkan project.', 'error');
                     }
+                }).catch(function () {
+                    showToast('Gagal mengarsipkan project, coba lagi nanti.', 'error');
                 });
             });
         });
@@ -107,6 +109,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         showToast(result.message || 'Gagal mengaktifkan project.', 'error');
                     }
+                }).catch(function () {
+                    showToast('Gagal mengaktifkan project, coba lagi nanti.', 'error');
                 });
             });
         });

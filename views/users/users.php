@@ -29,25 +29,32 @@ require __DIR__ . '/../partials/header.php';
                     </thead>
                     <tbody>
                         <?php if (empty($users)): ?>
-                            <tr><td colspan="5" class="empty-row">Belum ada user.</td></tr>
+                            <tr>
+                                <td colspan="5" class="empty-row">Belum ada user.</td>
+                            </tr>
                         <?php else: ?>
                             <?php foreach ($users as $user): ?>
                                 <tr data-user-id="<?= $user['id'] ?>">
                                     <td><?= htmlspecialchars($user['name']) ?></td>
                                     <td><?= htmlspecialchars($user['email']) ?></td>
-                                    <td><span class="badge <?= $user['role'] === 'Admin' ? 'badge-role-admin' : 'badge-role-member' ?>"><?= $user['role'] ?></span></td>
+                                    <td><span
+                                            class="badge <?= $user['role'] === 'Admin' ? 'badge-role-admin' : 'badge-role-member' ?>"><?= $user['role'] ?></span>
+                                    </td>
                                     <td>
                                         <label class="switch">
                                             <input type="checkbox" <?= $user['is_active'] ? 'checked' : '' ?>
                                                 data-user-toggle="<?= $user['id'] ?>"
+                                                aria-label="Aktifkan atau nonaktifkan user <?= htmlspecialchars($user['name']) ?>"
                                                 <?= (int) $user['id'] === (int) $_SESSION['user_id'] ? 'disabled' : '' ?> />
                                             <span class="switch-slider"></span>
                                         </label>
                                         <span class="status-text"><?= $user['is_active'] ? 'Aktif' : 'Nonaktif' ?></span>
                                     </td>
                                     <td>
-                                        <button type="button" class="link-detail" data-user-edit="<?= $user['id'] ?>">Edit</button>
-                                        <button type="button" class="link-detail" data-user-reset="<?= $user['id'] ?>">Reset Password</button>
+                                        <button type="button" class="link-detail"
+                                            data-user-edit="<?= $user['id'] ?>">Edit</button>
+                                        <button type="button" class="link-detail" data-user-reset="<?= $user['id'] ?>">Reset
+                                            Password</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -79,12 +86,13 @@ require __DIR__ . '/../partials/header.php';
                 <span class="field-error" data-error-for="email"></span>
             </div>
         </div>
-                <div class="form-group">
+        <div class="form-group">
             <label for="user-password">Password</label>
             <div class="field-wrap">
                 <div class="password-field">
-                    <input type="password" id="user-password" name="password" autocomplete="new-password"/>
-                    <button type="button" class="password-toggle" data-password-toggle="user-password" aria-label="Lihat password"></button>
+                    <input type="password" id="user-password" name="password" autocomplete="new-password" />
+                    <button type="button" class="password-toggle" data-password-toggle="user-password"
+                        aria-label="Lihat password"></button>
                 </div>
                 <span class="field-error" data-error-for="password"></span>
             </div>
@@ -117,7 +125,7 @@ require __DIR__ . '/../partials/header.php';
         <div class="form-group">
             <label for="edit-user-email">Email</label>
             <div class="field-wrap">
-                <input type="email" id="edit-user-email" name="email" required autocomplete="off"/>
+                <input type="email" id="edit-user-email" name="email" required autocomplete="off" />
                 <span class="field-error" data-error-for="email"></span>
             </div>
         </div>
@@ -143,7 +151,8 @@ require __DIR__ . '/../partials/header.php';
             <div class="field-wrap">
                 <div class="password-field">
                     <input type="password" id="reset-password-input" name="password" required />
-                    <button type="button" class="password-toggle" data-password-toggle="reset-password-input" aria-label="Lihat password"></button>
+                    <button type="button" class="password-toggle" data-password-toggle="reset-password-input"
+                        aria-label="Lihat password"></button>
                 </div>
                 <span class="field-error" data-error-for="password"></span>
             </div>
@@ -153,7 +162,8 @@ require __DIR__ . '/../partials/header.php';
             <div class="field-wrap">
                 <div class="password-field">
                     <input type="password" id="reset-password-confirm" name="password_confirmation" required />
-                    <button type="button" class="password-toggle" data-password-toggle="reset-password-confirm" aria-label="Lihat password"></button>
+                    <button type="button" class="password-toggle" data-password-toggle="reset-password-confirm"
+                        aria-label="Lihat password"></button>
                 </div>
                 <span class="field-error" data-error-for="password_confirmation"></span>
             </div>

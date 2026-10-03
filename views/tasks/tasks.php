@@ -138,7 +138,10 @@ $priorityBadge = [
                                     </td>
                                     <td>
                                         <?php if ($canEdit): ?>
-                                            <select class="status-select" data-task-status="<?= $task['id'] ?>">
+                                            <label for="task-status-<?= $task['id'] ?>" class="visually-hidden">Status task
+                                                <?= htmlspecialchars($task['title']) ?></label>
+                                            <select id="task-status-<?= $task['id'] ?>" class="status-select"
+                                                data-task-status="<?= $task['id'] ?>">
                                                 <?php foreach (['To Do', 'In Progress', 'Done'] as $s): ?>
                                                     <option value="<?= $s ?>" <?= $s === $task['status'] ? 'selected' : '' ?>><?= $s ?>
                                                     </option>

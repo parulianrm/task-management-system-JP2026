@@ -16,13 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
                 statusText.textContent = newValue ? 'Aktif' : 'Nonaktif';
+            }).catch(function () {
+                checkbox.checked = !newValue;
+                alert('Gagal mengubah status user, coba lagi nanti.');
             });
         });
     });
 
     document.querySelectorAll('[data-user-edit]').forEach(function (btn) {
         btn.addEventListener('click', function () {
-            var user = USERS_DATA.filter(function (u) { return u.id === parseInt(btn.dataset.userEdit, 10); })[0];
+            var user = USERS_DATA.filter(function (u) { return u.id === Number.parseInt(btn.dataset.userEdit, 10); })[0];
             if (!user) return;
 
             var modal = document.getElementById('user-edit-modal');

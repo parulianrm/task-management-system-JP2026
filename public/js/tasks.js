@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var btn = event.target.closest('[data-task-edit]');
         if (!btn) return;
 
-        var task = TASKS_DATA.filter(function (t) { return t.id === parseInt(btn.dataset.taskEdit, 10); })[0];
+        var task = TASKS_DATA.filter(function (t) { return t.id === Number.parseInt(btn.dataset.taskEdit, 10); })[0];
         if (!task) return;
 
         var editModal = document.getElementById('task-edit-modal');
@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert(result.message || 'Gagal ubah status.');
             }
             window.location.reload();
+        }).catch(function () {
+            alert('Gagal mengubah status task, coba lagi nanti.');
         });
     });
 });
