@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-RUN apt-get update && apt-get install -y unzip \
+RUN apt-get update && apt-get install -y --no-install-recommends unzip \
     && docker-php-ext-install pdo pdo_mysql \
     && pecl install pcov \
     && docker-php-ext-enable pcov
