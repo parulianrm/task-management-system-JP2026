@@ -1017,3 +1017,77 @@ dialog.modal-box form button[type="submit"] {
     border: 1px solid var(--color-border);
     border-radius: 6px;
 }
+
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.toast {
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px var(--color-shadow);
+    font-size: 14px;
+    color: #ffffff;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-success {
+    background-color: #047857;
+}
+
+.toast-error {
+    background-color: #b91c1c;
+}
+
+.toast-hide {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.confirm-modal-message {
+    font-size: 14px;
+    color: var(--color-text);
+    margin: 12px 0 20px;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 32px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-muted);
+}
+
+.password-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}

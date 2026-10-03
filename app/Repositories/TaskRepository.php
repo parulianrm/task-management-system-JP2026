@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Core\Database;
+use App\Repositories\Contracts\TaskRepositoryInterface;
 
-class TaskRepository
+class TaskRepository implements TaskRepositoryInterface
 {
     private function buildWhere(array $filters): array
     {

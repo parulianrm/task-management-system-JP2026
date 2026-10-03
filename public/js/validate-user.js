@@ -56,8 +56,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
+                sessionStorage.setItem('toastMessage', userId ? 'User berhasil diperbarui.' : 'User berhasil ditambahkan.');
+                sessionStorage.setItem('toastType', 'success');
                 form.closest('dialog').close();
                 window.location.reload();
+
             }).catch(function () {
                 nameError.textContent = 'Gagal menyimpan, coba lagi nanti.';
             });

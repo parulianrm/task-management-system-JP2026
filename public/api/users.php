@@ -33,6 +33,8 @@ try {
 
             if ($action === 'toggle_active') {
                 $result = $service->setActive((int) $input['id'], (bool) $input['is_active'], (int) $_SESSION['user_id']);
+            } elseif ($action === 'reset_password') {
+                $result = $service->resetPassword((int) $input['id'], $input['password'] ?? '', (int) $_SESSION['user_id']);
             } elseif (!empty($input['id'])) {
                 $result = $service->update((int) $input['id'], $input, (int) $_SESSION['user_id']);
             } else {

@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserService
 {
-    public function __construct(private UserRepository $repository = new UserRepository())
+    public function __construct(private UserRepositoryInterface $repository = new UserRepository())
     {
     }
 
@@ -73,4 +74,23 @@ class UserService
         $this->repository->setActive($id, $isActive, $userId);
         return ['success' => true];
     }
+
+    public function resetPassword(int $id, string $password, int $userId): array
+    {
+        if (trim($password) === '') {
+            return ['success' => false, 'errors' => ['password' => 'Password wajib diisi.']];
+        }
+
+        if (strlen($password) < 8) {
+            return ['success' => false, 'errors' => ['password' => 'Password minimal 8 karakter.']];
+        }
+
+        if ($this->repository->findById($id) === null) {
+            return ['success' => false, 'message' => 'User tidak ditemukan.'];
+        }
+
+        $this->repository->resetPassword($id, password_hash($password, PASSWORD_DEFAULT), $userId);
+        return ['success' => true];
+    }
+
 }

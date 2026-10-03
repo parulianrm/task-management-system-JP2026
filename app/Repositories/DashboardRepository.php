@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Core\Database;
+use App\Repositories\Contracts\DashboardRepositoryInterface;
 
-class DashboardRepository
+class DashboardRepository implements DashboardRepositoryInterface
 {
     public function countActiveProjects(): int
     {

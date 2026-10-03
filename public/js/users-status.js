@@ -38,4 +38,56 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.showModal();
         });
     });
+
+    document.querySelectorAll('[data-user-reset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var modal = document.getElementById('user-reset-password-modal');
+            var form = modal.querySelector('form');
+            form.dataset.userId = btn.dataset.userReset;
+            form.reset();
+            modal.querySelectorAll('.field-error').forEach(function (span) { span.textContent = ''; });
+            modal.showModal();
+        });
+    });
+
+    var resetForm = document.getElementById('user-reset-password-form');
+    if (resetForm) {
+        resetForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var passwordInput = resetForm.querySelector('[name="password"]');
+            var confirmInput = resetForm.querySelector('[name="password_confirmation"]');
+            var passwordError = resetForm.querySelector('[data-error-for="password"]');
+            var confirmError = resetForm.querySelector('[data-error-for="password_confirmation"]');
+            passwordError.textContent = '';
+            confirmError.textContent = '';
+
+            if (passwordInput.value !== confirmInput.value) {
+                confirmError.textContent = 'Konfirmasi password tidak sama.';
+                return;
+            }
+
+            apiPost('/api/users.php', {
+                action: 'reset_password',
+                id: resetForm.dataset.userId,
+                password: passwordInput.value
+            }).then(function (result) {
+                if (!result.success) {
+                    if (result.errors && result.errors.password) {
+                        passwordError.textContent = result.errors.password;
+                    } else {
+                        passwordError.textContent = result.message || 'Gagal reset password.';
+                    }
+                    return;
+                }
+
+                resetForm.closest('dialog').close();
+                sessionStorage.setItem('toastMessage', 'Password berhasil direset.');
+                sessionStorage.setItem('toastType', 'success');
+                window.location.reload();
+            }).catch(function () {
+                passwordError.textContent = 'Gagal reset password, coba lagi nanti.';
+            });
+        });
+    }
+
 });

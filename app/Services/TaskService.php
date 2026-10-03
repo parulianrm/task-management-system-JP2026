@@ -5,13 +5,16 @@ namespace App\Services;
 use App\Repositories\TaskRepository;
 use App\Repositories\ProjectRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\Contracts\TaskRepositoryInterface;
+use App\Repositories\Contracts\ProjectRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class TaskService
 {
     public function __construct(
-        private TaskRepository $repository = new TaskRepository(),
-        private ProjectRepository $projectRepository = new ProjectRepository(),
-        private UserRepository $userRepository = new UserRepository()
+        private TaskRepositoryInterface $repository = new TaskRepository(),
+        private ProjectRepositoryInterface $projectRepository = new ProjectRepository(),
+        private UserRepositoryInterface $userRepository = new UserRepository()
     ) {
     }
 

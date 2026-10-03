@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Core\Database;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
-class UserRepository
+class UserRepository implements UserRepositoryInterface
 {
     public function findAll(): array
     {
@@ -82,6 +83,18 @@ class UserRepository
         );
         $stmt->execute([
             'is_active' => $isActive,
+            'updated_by' => $updatedBy,
+            'id' => $id,
+        ]);
+    }
+
+    public function resetPassword(int $id, string $passwordHash, int $updatedBy): void
+    {
+        $stmt = Database::getConnection()->prepare(
+            'UPDATE USERS SET password_hash = :password_hash, updated_by = :updated_by WHERE id = :id'
+        );
+        $stmt->execute([
+            'password_hash' => $passwordHash,
             'updated_by' => $updatedBy,
             'id' => $id,
         ]);
