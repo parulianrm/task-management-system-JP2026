@@ -97,6 +97,7 @@ try {
 
             $taskRepository = new \App\Repositories\TaskRepository();
             $tasks = $taskRepository->findByProject($projectId);
+            $activeUsers = (new \App\Repositories\UserRepository())->findActiveUsers();
 
             require __DIR__ . '/../views/projects/detail.php';
             break;

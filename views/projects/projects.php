@@ -105,15 +105,6 @@ require __DIR__ . '/../partials/header.php';
                 <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
             </div>
             <div class="form-group">
-                <label for="project-status">Status</label>
-                <select id="project-status" name="status">
-                    <option value="Planning" selected>Planning</option>
-                    <option value="Active">Active</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Archived">Archived</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="project-start">Tanggal Mulai</label>
                 <div class="field-wrap">
                     <input type="date" id="project-start" name="start_date" required />

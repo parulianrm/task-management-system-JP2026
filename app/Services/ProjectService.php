@@ -57,8 +57,13 @@ class ProjectService
 
     public function archive(int $id, int $userId): array
     {
-        if ($this->repository->findById($id) === null) {
+        $project = $this->repository->findById($id);
+        if ($project === null) {
             return ['success' => false, 'message' => 'Project tidak ditemukan.'];
+        }
+
+        if ($project['status'] === 'Planning') {
+            return ['success' => false, 'message' => 'Project yang belum dimulai (status Planning) tidak bisa diarsipkan.'];
         }
 
         $incomplete = $this->repository->countIncompleteTasks($id);
@@ -73,6 +78,7 @@ class ProjectService
         $this->repository->archive($id, $userId);
         return ['success' => true];
     }
+
 
     public function unarchive(int $id, int $userId): array
     {

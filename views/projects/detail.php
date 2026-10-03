@@ -41,9 +41,10 @@ $statusBadge = [
                         <?php if ($project['status'] === 'Archived'): ?>
                             <button type="button" class="btn-secondary" id="btn-unarchive-project">Aktifkan Kembali</button>
                         <?php else: ?>
-                            <?php if ($repository->countIncompleteTasks($project['id']) === 0): ?>
+                            <?php if ($project['status'] !== 'Planning' && $repository->countIncompleteTasks($project['id']) === 0): ?>
                                 <button type="button" class="btn-secondary" id="btn-archive-project">Arsipkan</button>
                             <?php endif; ?>
+                            <button type="button" class="btn-primary" data-modal-open="task-form-modal">+ Task Baru</button>
                             <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
                         <?php endif; ?>
                     </div>
@@ -138,9 +139,61 @@ $statusBadge = [
                     </form>
                 </dialog>
             <?php endif; ?>
+            <?php if ($_SESSION['role'] === 'Admin' && $project['status'] !== 'Archived'): ?>
+                <dialog id="task-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
+                    <div class="modal-header">
+                        <span class="modal-title">Tambah Task Baru</span>
+                        <button type="button" class="modal-close" data-modal-close>&times;</button>
+                    </div>
+                    <form class="task-form" novalidate>
+                        <input type="hidden" name="project_id" value="<?= $project['id'] ?>" />
+                        <div class="form-group">
+                            <label for="task-title">Judul</label>
+                            <div class="field-wrap">
+                                <input type="text" id="task-title" name="title" placeholder="Judul task" required />
+                                <span class="field-error" data-error-for="title"></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-textarea">
+                            <label for="task-desc">Deskripsi</label>
+                            <textarea id="task-desc" name="description" rows="3"
+                                placeholder="Deskripsi singkat task"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-assignee">Assignee</label>
+                            <select id="task-assignee" name="assignee_id">
+                                <option value="">- Belum ditugaskan -</option>
+                                <?php foreach ($activeUsers as $u): ?>
+                                    <option value="<?= $u['id'] ?>">
+                                        <?= htmlspecialchars($u['name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-priority">Priority</label>
+                            <select id="task-priority" name="priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-due">Due Date</label>
+                            <div class="field-wrap">
+                                <input type="date" id="task-due" name="due_date" required />
+                                <span class="field-error" data-error-for="due_date"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Simpan Task</button>
+                    </form>
+                </dialog>
+            <?php endif; ?>
+
         </main>
     </div>
 </div>
 
 <script src="/js/validate-project.js" defer></script>
+<script src="/js/validate-task.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!validateClientSide(form)) return;
 
+            var submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
             var payload = {
                 title: form.querySelector('[name="title"]').value.trim(),
                 description: form.querySelector('[name="description"]').value.trim(),
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             apiPost('/api/tasks.php', payload).then(function (result) {
                 if (!result.success) {
+                    submitBtn.disabled = false;
                     var titleError = form.querySelector('[data-error-for="title"]');
                     var dueError = form.querySelector('[data-error-for="due_date"]');
 
@@ -62,11 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
+                sessionStorage.setItem('toastMessage', taskId ? 'Task berhasil diperbarui.' : 'Task berhasil ditambahkan.');
+                sessionStorage.setItem('toastType', 'success');
                 form.closest('dialog').close();
                 window.location.reload();
             }).catch(function () {
-                alert('Gagal menyimpan task, coba lagi nanti.');
+                submitBtn.disabled = false;
+                showToast('Gagal menyimpan task, coba lagi nanti.', 'error');
             });
         });
     });
+
 });
