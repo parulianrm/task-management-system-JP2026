@@ -87,4 +87,16 @@ class UserRepository implements UserRepositoryInterface
             'id' => $id,
         ]);
     }
+
+    public function resetPassword(int $id, string $passwordHash, int $updatedBy): void
+    {
+        $stmt = Database::getConnection()->prepare(
+            'UPDATE USERS SET password_hash = :password_hash, updated_by = :updated_by WHERE id = :id'
+        );
+        $stmt->execute([
+            'password_hash' => $passwordHash,
+            'updated_by' => $updatedBy,
+            'id' => $id,
+        ]);
+    }
 }

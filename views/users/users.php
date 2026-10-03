@@ -45,7 +45,10 @@ require __DIR__ . '/../partials/header.php';
                                         </label>
                                         <span class="status-text"><?= $user['is_active'] ? 'Aktif' : 'Nonaktif' ?></span>
                                     </td>
-                                    <td><button type="button" class="link-detail" data-user-edit="<?= $user['id'] ?>">Edit</button></td>
+                                    <td>
+                                        <button type="button" class="link-detail" data-user-edit="<?= $user['id'] ?>">Edit</button>
+                                        <button type="button" class="link-detail" data-user-reset="<?= $user['id'] ?>">Reset Password</button>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -61,11 +64,11 @@ require __DIR__ . '/../partials/header.php';
         <span class="modal-title">Tambah User Baru</span>
         <button type="button" class="modal-close" data-modal-close>&times;</button>
     </div>
-    <form id="user-form" novalidate>
+    <form id="user-form" novalidate autocomplete="off">
         <div class="form-group">
             <label for="user-name">Nama</label>
             <div class="field-wrap">
-                <input type="text" id="user-name" name="name" required />
+                <input type="text" id="user-name" name="name" required autocomplete="off" />
                 <span class="field-error" data-error-for="name"></span>
             </div>
         </div>
@@ -76,10 +79,13 @@ require __DIR__ . '/../partials/header.php';
                 <span class="field-error" data-error-for="email"></span>
             </div>
         </div>
-        <div class="form-group">
+                <div class="form-group">
             <label for="user-password">Password</label>
             <div class="field-wrap">
-                <input type="password" id="user-password" name="password" />
+                <div class="password-field">
+                    <input type="password" id="user-password" name="password" autocomplete="new-password"/>
+                    <button type="button" class="password-toggle" data-password-toggle="user-password" aria-label="Lihat password"></button>
+                </div>
                 <span class="field-error" data-error-for="password"></span>
             </div>
         </div>
@@ -104,14 +110,14 @@ require __DIR__ . '/../partials/header.php';
         <div class="form-group">
             <label for="edit-user-name">Nama</label>
             <div class="field-wrap">
-                <input type="text" id="edit-user-name" name="name" required />
+                <input type="text" id="edit-user-name" name="name" required autocomplete="off" />
                 <span class="field-error" data-error-for="name"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="edit-user-email">Email</label>
             <div class="field-wrap">
-                <input type="email" id="edit-user-email" name="email" required />
+                <input type="email" id="edit-user-email" name="email" required autocomplete="off"/>
                 <span class="field-error" data-error-for="email"></span>
             </div>
         </div>
@@ -124,6 +130,35 @@ require __DIR__ . '/../partials/header.php';
             <span class="field-error" data-error-for="role"></span>
         </div>
         <button type="submit" class="btn-primary">Simpan Perubahan</button>
+    </form>
+</dialog>
+<dialog id="user-reset-password-modal" class="modal-box" data-reset-on-close>
+    <div class="modal-header">
+        <span class="modal-title">Reset Password</span>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form id="user-reset-password-form" data-user-id="" novalidate>
+        <div class="form-group">
+            <label for="reset-password-input">Password Baru</label>
+            <div class="field-wrap">
+                <div class="password-field">
+                    <input type="password" id="reset-password-input" name="password" required />
+                    <button type="button" class="password-toggle" data-password-toggle="reset-password-input" aria-label="Lihat password"></button>
+                </div>
+                <span class="field-error" data-error-for="password"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reset-password-confirm">Konfirmasi Password</label>
+            <div class="field-wrap">
+                <div class="password-field">
+                    <input type="password" id="reset-password-confirm" name="password_confirmation" required />
+                    <button type="button" class="password-toggle" data-password-toggle="reset-password-confirm" aria-label="Lihat password"></button>
+                </div>
+                <span class="field-error" data-error-for="password_confirmation"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn-primary">Simpan Password Baru</button>
     </form>
 </dialog>
 

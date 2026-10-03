@@ -11,4 +11,5 @@ interface UserRepositoryInterface
     public function create(array $data, int $updatedBy): int;
     public function update(int $id, array $data, int $updatedBy): void;
     public function setActive(int $id, bool $isActive, int $updatedBy): void;
+    public function resetPassword(int $id, string $passwordHash, int $updatedBy): void;
 }
