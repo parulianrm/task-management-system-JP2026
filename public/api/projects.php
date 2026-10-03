@@ -43,8 +43,6 @@ try {
             } else {
                 $result = $service->create($input, (int) $_SESSION['user_id']);
             }
-
-
             http_response_code($result['success'] ? 200 : 422);
             echo json_encode($result);
             break;
