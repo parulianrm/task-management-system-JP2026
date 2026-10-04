@@ -39,7 +39,8 @@ $priorityBadge = [
             <div class="page-header">
                 <h1 class="page-title">Daftar Task</h1>
                 <?php if ($_SESSION['role'] === 'Admin'): ?>
-                    <button type="button" class="btn-primary" data-modal-open="task-form-modal">+ Task Baru</button>
+                    <button type="button" class="btn-primary" data-modal-open="task-form-modal"><img src="/images/add.png"
+                            class="btn-icon" alt="" />Task Baru</button>
                 <?php endif; ?>
             </div>
             <div class="filter-card">
@@ -152,9 +153,12 @@ $priorityBadge = [
                                         <?php endif; ?>
                                     </td>
                                     <?php if ($_SESSION['role'] === 'Admin'): ?>
-                                        <td><button type="button" class="link-detail"
-                                                data-task-edit="<?= $task['id'] ?>">Edit</button></td>
+                                        <td><button type="button" class="btn-secondary btn-table-action"
+                                                data-task-edit="<?= $task['id'] ?>"><img src="/images/edit.png" class="btn-icon"
+                                                    alt="" />Edit</button></td>
+
                                     <?php endif; ?>
+
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -195,8 +199,8 @@ $priorityBadge = [
 <?php if ($_SESSION['role'] === 'Admin'): ?>
     <dialog id="task-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
         <div class="modal-header">
-            <span class="modal-title">Tambah Task Baru</span>
-            <button type="button" class="modal-close" data-modal-close>&times;</button>
+            <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Task Baru</span>
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
         </div>
         <form class="task-form" novalidate>
             <div class="form-group">
@@ -248,8 +252,9 @@ $priorityBadge = [
 
     <dialog id="task-edit-modal" class="modal-box modal-box-wide" data-reset-on-close>
         <div class="modal-header">
-            <span class="modal-title">Edit Task</span>
-            <button type="button" class="modal-close" data-modal-close>&times;</button>
+            <span class="modal-title"><img src="/images/edit.png" class="modal-title-icon" alt="" />Edit Task</span>
+
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
         </div>
         <form class="task-form" data-task-id="" novalidate>
             <div class="form-group">

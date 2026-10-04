@@ -39,13 +39,13 @@ $statusBadge = [
                 <?php if ($_SESSION['role'] === 'Admin'): ?>
                     <div style="display:flex; gap:0.5rem;">
                         <?php if ($project['status'] === 'Archived'): ?>
-                            <button type="button" class="btn-secondary" id="btn-unarchive-project">Aktifkan Kembali</button>
+                            <button type="button" class="btn-secondary" id="btn-unarchive-project"><img src="/images/undo.png" class="btn-icon" alt="" />Aktifkan Kembali</button>
                         <?php else: ?>
-                            <?php if ($project['status'] !== 'Planning' && $repository->countIncompleteTasks($project['id']) === 0): ?>
-                                <button type="button" class="btn-secondary" id="btn-archive-project">Arsipkan</button>
+                        <?php if ($project['status'] !== 'Planning' && $repository->countIncompleteTasks($project['id']) === 0): ?>
+                                <button type="button" class="btn-secondary" id="btn-archive-project"><img src="/images/undo.png" class="btn-icon" alt="" />Arsipkan</button>
                             <?php endif; ?>
-                            <button type="button" class="btn-primary" data-modal-open="task-form-modal">+ Task Baru</button>
-                            <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
+                            <button type="button" class="btn-primary" data-modal-open="task-form-modal"><img src="/images/add.png" class="btn-icon" alt="" />Task Baru</button>
+                            <button type="button" class="btn-primary" data-modal-open="project-form-modal"><img src="/images/edit.png" class="btn-icon" alt="" />Edit Project</button>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -102,8 +102,8 @@ $statusBadge = [
             <?php if ($_SESSION['role'] === 'Admin'): ?>
                 <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
                     <div class="modal-header">
-                        <span class="modal-title">Edit Project</span>
-                        <button type="button" class="modal-close" data-modal-close>&times;</button>
+                        <span class="modal-title"><img src="/images/edit.png" class="modal-title-icon" alt="" />Edit Project</span>
+                        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
                     </div>
                     <form id="project-form" data-project-id="<?= $project['id'] ?>" novalidate>
                         <div class="form-group">
@@ -142,8 +142,8 @@ $statusBadge = [
             <?php if ($_SESSION['role'] === 'Admin' && $project['status'] !== 'Archived'): ?>
                 <dialog id="task-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
                     <div class="modal-header">
-                        <span class="modal-title">Tambah Task Baru</span>
-                        <button type="button" class="modal-close" data-modal-close>&times;</button>
+                        <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Task Baru</span>
+                        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
                     </div>
                     <form class="task-form" novalidate>
                         <input type="hidden" name="project_id" value="<?= $project['id'] ?>" />

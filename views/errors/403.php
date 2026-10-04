@@ -5,6 +5,7 @@ require __DIR__ . '/../partials/header.php';
 ?>
 <main class="auth-screen">
     <div class="error-card">
+        <img src="/images/forbidden.png" class="error-icon" alt="" />
         <div class="error-code">403</div>
         <h1 class="error-title">Akses Ditolak</h1>
         <p class="error-desc">Kamu tidak punya izin untuk membuka halaman ini.</p>

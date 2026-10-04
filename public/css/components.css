@@ -167,7 +167,6 @@
     background-color: var(--color-surface);
 }
 
-
 .nav-caret {
     font-size: 1rem;
     color: var(--color-text-muted);
@@ -508,6 +507,11 @@
 
 .link-detail:hover {
     text-decoration: underline;
+}
+
+.btn-table-action {
+    padding: 4px 10px;
+    font-size: 13px;
 }
 
 .task-filter-bar {
@@ -957,6 +961,12 @@ button.badge {
     color: var(--color-text);
 }
 
+.modal-close-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
 dialog.modal-box form {
     text-align: right;
 }
@@ -1090,4 +1100,47 @@ dialog.modal-box form button[type="submit"] {
     width: 18px;
     height: 18px;
     display: block;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.sidebar-nav a.active .sidebar-icon {
+    filter: brightness(0) invert(1);
+}
+
+
+.btn-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 6px;
+    margin-top: -2px;
+}
+
+.btn-primary .btn-icon {
+    filter: brightness(0) invert(1);
+}
+
+
+.modal-title-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-top: -2px;
+}
+
+.error-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 12px;
 }

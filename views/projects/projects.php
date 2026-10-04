@@ -15,7 +15,9 @@ require __DIR__ . '/../partials/header.php';
             <div class="page-header">
                 <h1 class="page-title">Daftar Project</h1>
                 <?php if ($_SESSION['role'] === 'Admin'): ?>
-                    <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project Baru</button>
+                    <button type="button" class="btn-primary" data-modal-open="project-form-modal"><img
+                            src="/images/add.png" class="btn-icon" alt="" />Project Baru</button>
+
                 <?php endif; ?>
             </div>
 
@@ -89,8 +91,9 @@ require __DIR__ . '/../partials/header.php';
 <?php if ($_SESSION['role'] === 'Admin'): ?>
     <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
         <div class="modal-header">
-            <span class="modal-title">Tambah Project Baru</span>
-            <button type="button" class="modal-close" data-modal-close>&times;</button>
+            <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Project
+                Baru</span>
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
         </div>
         <form id="project-form" novalidate>
             <div class="form-group">
