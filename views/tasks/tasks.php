@@ -17,6 +17,13 @@ function daysOverdue(string $dueDate): int
     return (int) $today->diff($due)->days;
 }
 
+function daysLate(string $dueDate, string $closedAt): int
+{
+    $due = new DateTime($dueDate);
+    $closed = new DateTime(substr($closedAt, 0, 10));
+    return (int) $due->diff($closed)->days;
+}
+
 $statusBadge = [
     'To Do' => 'badge-status-todo',
     'In Progress' => 'badge-status-progress',
@@ -103,11 +110,13 @@ $priorityBadge = [
                 <table class="data-table">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Judul</th>
                             <th>Project</th>
                             <th>Assignee</th>
                             <th>Priority</th>
                             <th>Due Date</th>
+                            <th>Closed Date</th>
                             <th>Status</th>
                             <?php if ($_SESSION['role'] === 'Admin'): ?>
                                 <th>Aksi</th><?php endif; ?>
@@ -116,15 +125,17 @@ $priorityBadge = [
                     <tbody id="task-table-body">
                         <?php if (empty($tasks)): ?>
                             <tr>
-                                <td colspan="7" class="empty-row">Belum ada task.</td>
+                                <td colspan="9" class="empty-row">Belum ada task.</td>
                             </tr>
                         <?php else: ?>
+                            <?php $rowNumber = ($page - 1) * $perPage + 1; ?>
                             <?php foreach ($tasks as $task): ?>
                                 <?php
                                 $isOverdue = $task['due_date'] < date('Y-m-d') && $task['status'] !== 'Done';
                                 $canEdit = $_SESSION['role'] === 'Admin' || (int) $task['assignee_id'] === (int) $_SESSION['user_id'];
                                 ?>
                                 <tr data-task-id="<?= $task['id'] ?>">
+                                    <td><?= $rowNumber++ ?></td>
                                     <td><?= htmlspecialchars($task['title']) ?></td>
                                     <td><?= htmlspecialchars($task['project_name']) ?></td>
                                     <td><?= htmlspecialchars($task['assignee_name'] ?? '-') ?></td>
@@ -135,6 +146,16 @@ $priorityBadge = [
                                         <?= date('d M Y', strtotime($task['due_date'])) ?>
                                         <?php if ($isOverdue): ?>
                                             <span class="badge badge-overdue"><?= daysOverdue($task['due_date']) ?>d overdue</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($task['closed_at']): ?>
+                                            <?= date('d M Y', strtotime($task['closed_at'])) ?>
+                                            <?php if (substr($task['closed_at'], 0, 10) > $task['due_date']): ?>
+                                                <span class="badge badge-overdue"><?= daysLate($task['due_date'], $task['closed_at']) ?>d overdue</span>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            -
                                         <?php endif; ?>
                                     </td>
                                     <td>

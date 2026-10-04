@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS TASKS (
     status ENUM('To Do', 'In Progress', 'Done') NOT NULL DEFAULT 'To Do',
     priority ENUM('Low', 'Medium', 'High') NOT NULL DEFAULT 'Medium',
     due_date DATE NULL,
+    closed_at DATETIME NULL,
     updated_by INT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

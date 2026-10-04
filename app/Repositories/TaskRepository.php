@@ -41,7 +41,7 @@ class TaskRepository implements TaskRepositoryInterface
         [$where, $params] = $this->buildWhere($filters);
         $sortDir = ($filters['sort'] ?? 'asc') === 'desc' ? 'DESC' : 'ASC';
 
-        $sql = "SELECT TASKS.id, TASKS.project_id, TASKS.title, TASKS.description, TASKS.assignee_id, TASKS.status, TASKS.priority, TASKS.due_date,
+        $sql = "SELECT TASKS.id, TASKS.project_id, TASKS.title, TASKS.description, TASKS.assignee_id, TASKS.status, TASKS.priority, TASKS.due_date, TASKS.closed_at,
                        PROJECTS.name AS project_name, USERS.name AS assignee_name
                 FROM TASKS
                 JOIN PROJECTS ON PROJECTS.id = TASKS.project_id
@@ -72,7 +72,7 @@ class TaskRepository implements TaskRepositoryInterface
     public function findByProject(int $projectId): array
     {
         $stmt = Database::getConnection()->prepare(
-            'SELECT TASKS.id, TASKS.title, TASKS.priority, TASKS.due_date, TASKS.status,
+            'SELECT TASKS.id, TASKS.title, TASKS.priority, TASKS.due_date, TASKS.closed_at, TASKS.status,
                     USERS.name AS assignee_name
              FROM TASKS
              LEFT JOIN USERS ON USERS.id = TASKS.assignee_id
@@ -87,7 +87,7 @@ class TaskRepository implements TaskRepositoryInterface
     {
         $stmt = Database::getConnection()->prepare(
             'SELECT TASKS.id, TASKS.project_id, TASKS.title, TASKS.description, TASKS.assignee_id,
-                    TASKS.status, TASKS.priority, TASKS.due_date,
+                    TASKS.status, TASKS.priority, TASKS.due_date, TASKS.closed_at,
                     PROJECTS.name AS project_name, USERS.name AS assignee_name
              FROM TASKS
              JOIN PROJECTS ON PROJECTS.id = TASKS.project_id
@@ -141,10 +141,11 @@ class TaskRepository implements TaskRepositoryInterface
     public function updateStatus(int $id, string $status, int $updatedBy): void
     {
         $stmt = Database::getConnection()->prepare(
-            'UPDATE TASKS SET status = :status, updated_by = :updated_by WHERE id = :id'
+            'UPDATE TASKS SET status = :status, closed_at = :closed_at, updated_by = :updated_by WHERE id = :id'
         );
         $stmt->execute([
             'status' => $status,
+            'closed_at' => $status === 'Done' ? date('Y-m-d H:i:s') : null,
             'updated_by' => $updatedBy,
             'id' => $id,
         ]);

@@ -39,6 +39,13 @@ function buildProjectDetailPageUrl(int $page, int $projectId, int $perPage): str
     return '/projects/detail?' . http_build_query(['id' => $projectId, 'page' => $page, 'per_page' => $perPage]);
 }
 
+function daysLate(string $dueDate, string $closedAt): int
+{
+    $due = new DateTime($dueDate);
+    $closed = new DateTime(substr($closedAt, 0, 10));
+    return (int) $due->diff($closed)->days;
+}
+
 ?>
 
 <div class="app-layout">
@@ -128,27 +135,41 @@ function buildProjectDetailPageUrl(int $page, int $projectId, int $perPage): str
                 <table class="data-table">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Judul</th>
                             <th>Assignee</th>
                             <th>Priority</th>
                             <th>Due Date</th>
+                            <th>Closed Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($tasks)): ?>
                             <tr>
-                                <td colspan="5" class="empty-row">Belum ada task di project ini.</td>
+                                <td colspan="7" class="empty-row">Belum ada task di project ini.</td>
                             </tr>
                         <?php else: ?>
+                            <?php $rowNumber = ($page - 1) * $perPage + 1; ?>
                             <?php foreach ($tasks as $task): ?>
                                 <tr>
+                                    <td><?= $rowNumber++ ?></td>
                                     <td><?= htmlspecialchars($task['title']) ?></td>
                                     <td><?= htmlspecialchars($task['assignee_name'] ?? '-') ?></td>
                                     <td><span
                                             class="badge <?= $priorityBadge[$task['priority']] ?>"><?= $task['priority'] ?></span>
                                     </td>
                                     <td><?= date('d M Y', strtotime($task['due_date'])) ?></td>
+                                    <td>
+                                        <?php if ($task['closed_at']): ?>
+                                            <?= date('d M Y', strtotime($task['closed_at'])) ?>
+                                            <?php if (substr($task['closed_at'], 0, 10) > $task['due_date']): ?>
+                                                <span class="badge badge-overdue"><?= daysLate($task['due_date'], $task['closed_at']) ?>d overdue</span>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            -
+                                        <?php endif; ?>
+                                    </td>
                                     <td><span class="badge <?= $statusBadge[$task['status']] ?>"><?= $task['status'] ?></span>
                                     </td>
                                 </tr>
