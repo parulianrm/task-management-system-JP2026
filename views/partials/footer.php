@@ -15,5 +15,6 @@
 <script src="/js/api.js" defer></script>
 <script src="/js/modal.js" defer></script>
 <script src="/js/ui-helpers.js" defer></script>
+<script src="/js/sidebar-toggle.js" defer></script>
 </body>
 </html>

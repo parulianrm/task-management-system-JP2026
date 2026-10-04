@@ -1,4 +1,4 @@
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">TASKFLOW</div>
     <ul class="sidebar-nav">
         <li><a href="/dashboard" class="<?= ($activePage ?? '') === 'dashboard' ? 'active' : '' ?>"><img src="/images/dashboard.png" class="sidebar-icon" alt="" />Dashboard</a></li>
@@ -9,3 +9,5 @@
         <?php endif; ?>
     </ul>
 </aside>
+
+<div class="sidebar-backdrop" id="sidebar-backdrop"></div>

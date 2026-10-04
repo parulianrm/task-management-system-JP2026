@@ -77,7 +77,10 @@ require __DIR__ . '/../partials/header.php';
                             </div>
                             <div class="project-card-footer">
                                 <span class="project-task-count"><?= $taskCount ?> Task</span>
-                                <a href="/projects/detail?id=<?= $project['id'] ?>" class="link-detail">Lihat Detail &rarr;</a>
+                                <a href="/projects/detail?id=<?= $project['id'] ?>" class="link-detail">Lihat Detail <img
+                                        src="/images/right-arrow.png" class="btn-icon" alt=""
+                                        style="width: 12px; height: 12px; margin-right:0; margin-left:4px;" /></a>
+
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -93,7 +96,8 @@ require __DIR__ . '/../partials/header.php';
         <div class="modal-header">
             <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Project
                 Baru</span>
-            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon"
+                    alt="" /></button>
         </div>
         <form id="project-form" novalidate>
             <div class="form-group">

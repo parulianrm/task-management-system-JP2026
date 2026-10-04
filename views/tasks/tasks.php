@@ -180,13 +180,26 @@ $priorityBadge = [
 
                 <nav class="pagination" aria-label="Navigasi halaman">
                     <a href="<?= buildTaskPageUrl(max(1, $page - 1)) ?>"
-                        class="pagination-btn<?= $page === 1 ? ' is-disabled' : '' ?>">&laquo; Sebelumnya</a>
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        class="pagination-btn<?= $page === 1 ? ' is-disabled' : '' ?>"><img src="/images/left-arrow.png" class="btn-icon" alt="" style="margin:0; width:12px; height:12px;" /></a>
+                    <?php
+                    $pageStart = max(1, $page - 1);
+                    $pageEnd = min($totalPages, $page + 1);
+                    ?>
+                    <?php if ($pageStart > 1): ?>
+                        <a href="<?= buildTaskPageUrl(1) ?>" class="pagination-page">1</a>
+                        <?php if ($pageStart > 2): ?><span class="pagination-ellipsis">&hellip;</span><?php endif; ?>
+                    <?php endif; ?>
+                    <?php for ($i = $pageStart; $i <= $pageEnd; $i++): ?>
                         <a href="<?= buildTaskPageUrl($i) ?>"
                             class="pagination-page<?= $i === $page ? ' is-active' : '' ?>"><?= $i ?></a>
                     <?php endfor; ?>
+                    <?php if ($pageEnd < $totalPages): ?>
+                        <?php if ($pageEnd < $totalPages - 1): ?><span class="pagination-ellipsis">&hellip;</span><?php endif; ?>
+                        <a href="<?= buildTaskPageUrl($totalPages) ?>" class="pagination-page"><?= $totalPages ?></a>
+                    <?php endif; ?>
+
                     <a href="<?= buildTaskPageUrl(min($totalPages, $page + 1)) ?>"
-                        class="pagination-btn<?= $page === $totalPages ? ' is-disabled' : '' ?>">Berikutnya &raquo;</a>
+                        class="pagination-btn<?= $page === $totalPages ? ' is-disabled' : '' ?>"><img src="/images/right-arrow.png" class="btn-icon" alt="" style="margin:0; width:12px; height:12px;" /></a>
                 </nav>
             </div>
         </main>
@@ -200,7 +213,8 @@ $priorityBadge = [
     <dialog id="task-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
         <div class="modal-header">
             <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Task Baru</span>
-            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon"
+                    alt="" /></button>
         </div>
         <form class="task-form" novalidate>
             <div class="form-group">
@@ -254,7 +268,8 @@ $priorityBadge = [
         <div class="modal-header">
             <span class="modal-title"><img src="/images/edit.png" class="modal-title-icon" alt="" />Edit Task</span>
 
-            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon"
+                    alt="" /></button>
         </div>
         <form class="task-form" data-task-id="" novalidate>
             <div class="form-group">
