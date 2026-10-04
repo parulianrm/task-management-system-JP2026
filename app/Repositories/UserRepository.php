@@ -54,7 +54,7 @@ class UserRepository implements UserRepositoryInterface
             'email' => $data['email'],
             'password_hash' => $data['password_hash'],
             'role' => $data['role'] ?? 'Member',
-            'is_active' => $data['is_active'] ?? true,
+            'is_active' => ($data['is_active'] ?? true) ? 1 : 0,
             'updated_by' => $updatedBy,
         ]);
 
@@ -82,7 +82,7 @@ class UserRepository implements UserRepositoryInterface
             'UPDATE USERS SET is_active = :is_active, updated_by = :updated_by WHERE id = :id'
         );
         $stmt->execute([
-            'is_active' => $isActive,
+            'is_active' => $isActive ? 1 : 0,
             'updated_by' => $updatedBy,
             'id' => $id,
         ]);

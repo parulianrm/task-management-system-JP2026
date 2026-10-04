@@ -5,7 +5,7 @@
     padding: 32px 28px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px var(--shadow-color-soft);
 }
 
 .login-title {
@@ -103,7 +103,7 @@
     height: 28px;
     border-radius: 50%;
     background-color: var(--color-text);
-    color: #fff;
+    color: var(--color-surface);
     font-size: 13px;
     font-weight: 700;
     flex-shrink: 0;
@@ -154,7 +154,7 @@
 
 .sidebar-nav a.active {
     background-color: var(--color-text);
-    color: #fff;
+    color: var(--color-surface);
     font-weight: 600;
 }
 
@@ -178,13 +178,13 @@
 }
 
 .badge-role-member {
-    background-color: #e0f2fe;
-    color: #0369a1;
+    background-color: var(--color-info-bg);
+    color: var(--color-info-text);
 }
 
 .badge-role-admin {
-    background-color: #ede9fe;
-    color: #6d28d9;
+    background-color: var(--color-purple-bg);
+    color: var(--color-purple-text);
 }
 
 .nav-user-dropdown {
@@ -195,7 +195,7 @@
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px var(--shadow-color-strong);
     padding: 14px;
     z-index: 20;
 }
@@ -220,7 +220,7 @@
 
 .nav-dropdown-divider {
     border: none;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--color-border-light);
     margin: 10px 0;
 }
 
@@ -238,7 +238,7 @@
 }
 
 .nav-dropdown-item-danger {
-    color: #dc2626;
+    color: var(--color-danger);
 }
 
 .btn-logout {
@@ -255,8 +255,8 @@
 }
 
 .btn-logout:hover {
-    background-color: #5a0300;
-    color: #fcfcfc;
+    background-color: var(--color-danger-strong);
+    color: var(--color-danger-contrast);
 }
 
 .stats-grid {
@@ -275,7 +275,7 @@
 
 .stat-card h3 {
     font-size: 13px;
-    color: #6b7280;
+    color: var(--color-text-subtle);
     text-transform: uppercase;
     margin-bottom: 8px;
 }
@@ -298,7 +298,7 @@
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: 16px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--color-border-light);
     padding-bottom: 10px;
 }
 
@@ -311,7 +311,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid var(--color-divider);
     font-size: 14px;
 }
 
@@ -327,28 +327,28 @@
 }
 
 .badge-progress {
-    background-color: #e0f2fe;
-    color: #0369a1;
+    background-color: var(--color-info-bg);
+    color: var(--color-info-text);
 }
 
 .badge-pending {
-    background-color: #fef3c7;
-    color: #b45309;
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-text);
 }
 
 .badge-urgent {
-    background-color: #fee2e2;
-    color: #b91c1c;
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-text);
 }
 
 .badge-completed {
-    background-color: #d1fae5;
-    color: #047857;
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
 }
 
 .badge-archived {
-    background-color: #f3f4f6;
-    color: #4b5563;
+    background-color: var(--color-neutral-bg);
+    color: var(--color-neutral-text);
 }
 
 .page-header {
@@ -378,12 +378,12 @@
 }
 
 .btn-secondary:hover {
-    background-color: #f3f4f6;
+    background-color: var(--color-divider);
 }
 
 .btn-primary {
     background-color: var(--color-text);
-    color: #ffffff;
+    color: var(--color-surface);
     padding: 8px 16px;
     border-radius: 6px;
     text-decoration: none;
@@ -396,7 +396,7 @@
 
 
 .btn-primary:hover {
-    background-color: #374151;
+    background-color: var(--color-text-muted);
 }
 
 .search-form {
@@ -426,7 +426,7 @@
     padding: 8px 16px;
     border: 1px solid var(--color-text);
     background-color: var(--color-text);
-    color: #ffffff;
+    color: var(--color-surface);
     border-radius: 0 6px 6px 0;
     cursor: pointer;
     font-size: 14px;
@@ -434,7 +434,7 @@
 }
 
 .btn-search:hover {
-    background-color: #374151;
+    background-color: var(--color-text-muted);
 }
 
 .projects-grid {
@@ -451,13 +451,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 6px var(--shadow-color-light);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px var(--shadow-color-medium);
 }
 
 .project-card-header {
@@ -488,7 +488,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #f3f4f6;
+    border-top: 1px solid var(--color-divider);
     padding-top: 12px;
     margin-top: 12px;
 }
@@ -574,7 +574,7 @@
 }
 
 .data-table tbody tr {
-    border-top: 1px solid #f3f4f6;
+    border-top: 1px solid var(--color-divider);
 }
 
 .data-table tbody tr:hover {
@@ -582,43 +582,43 @@
 }
 
 .is-overdue {
-    color: #b91c1c;
+    color: var(--color-danger-text);
     font-weight: 600;
 }
 
 .badge-status-todo {
-    background-color: #f3f4f6;
-    color: #4b5563;
+    background-color: var(--color-neutral-bg);
+    color: var(--color-neutral-text);
 }
 
 .badge-status-progress {
-    background-color: #e0f2fe;
-    color: #0369a1;
+    background-color: var(--color-info-bg);
+    color: var(--color-info-text);
 }
 
 .badge-status-done {
-    background-color: #d1fae5;
-    color: #047857;
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
 }
 
 .badge-priority-low {
-    background-color: #f3f4f6;
-    color: #4b5563;
+    background-color: var(--color-neutral-bg);
+    color: var(--color-neutral-text);
 }
 
 .badge-priority-medium {
-    background-color: #fef3c7;
-    color: #b45309;
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-text);
 }
 
 .badge-priority-high {
-    background-color: #fee2e2;
-    color: #b91c1c;
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-text);
 }
 
 .badge-active {
-    background-color: #d1fae5;
-    color: #047857;
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
 }
 
 .badge-inactive {
@@ -697,7 +697,7 @@ dialog.modal-box::backdrop {
     gap: 32px;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid #f3f4f6;
+    border-top: 1px solid var(--color-divider);
 }
 
 .meta-label {
@@ -765,7 +765,7 @@ dialog.modal-box::backdrop {
     padding: 48px 32px;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px var(--shadow-color-soft);
 }
 
 .error-code {
@@ -796,7 +796,7 @@ dialog.modal-box::backdrop {
 
 .field-error {
     font-size: 12px;
-    color: #dc2626;
+    color: var(--color-danger);
     margin-top: 4px;
     min-height: 14px;
 }
@@ -851,7 +851,7 @@ button.badge {
     width: 16px;
     left: 3px;
     bottom: 3px;
-    background-color: #ffffff;
+    background-color: var(--color-surface);
     transition: 0.2s;
     border-radius: 50%;
 }
@@ -872,9 +872,9 @@ button.badge {
 }
 
 .alert-error {
-    background: #fdecea;
-    color: #b3261e;
-    border: 1px solid #f5c2c0;
+    background: var(--color-alert-bg);
+    color: var(--color-alert-text);
+    border: 1px solid var(--color-alert-border);
     border-radius: 6px;
     padding: 0.6rem 0.9rem;
     margin-bottom: 1rem;
@@ -907,7 +907,7 @@ button.badge {
 .filter-field label {
     font-size: 12px;
     font-weight: 600;
-    color: var(--color-text-muted, #6b7280);
+    color: var(--color-text-subtle);
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }
@@ -1043,17 +1043,17 @@ dialog.modal-box form button[type="submit"] {
     border-radius: 8px;
     box-shadow: 0 8px 20px var(--color-shadow);
     font-size: 14px;
-    color: #ffffff;
+    color: var(--color-surface);
     opacity: 1;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .toast-success {
-    background-color: #047857;
+    background-color: var(--color-success-text);
 }
 
 .toast-error {
-    background-color: #b91c1c;
+    background-color: var(--color-danger-text);
 }
 
 .toast-hide {
