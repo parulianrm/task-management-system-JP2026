@@ -1,0 +1,178 @@
+- generic [ref=f40e2]:
+  - complementary [ref=f40e3]:
+    - generic [ref=f40e4]: TASKFLOW
+    - list [ref=f40e5]:
+      - listitem [ref=f40e6]:
+        - link "Dashboard" [ref=f40e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f40e8]:
+        - link "Projects" [ref=f40e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f40e10]:
+        - link "Tasks" [ref=f40e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f40e12]:
+        - link "Users" [ref=f40e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f40e14]:
+    - banner [ref=f40e15]:
+      - group [ref=f40e16]:
+        - generic "P Parulian R M ▾" [ref=f40e17] [cursor=pointer]:
+          - generic [ref=f40e18]: P
+          - generic [ref=f40e19]: Parulian R M
+          - generic [ref=f40e20]: ▾
+    - main [ref=f40e21]:
+      - generic [ref=f40e22]:
+        - heading "Daftar Task" [level=1] [ref=f40e23]
+        - button "Task Baru" [ref=f40e24] [cursor=pointer]
+      - generic [ref=f40e26]:
+        - generic [ref=f40e27]:
+          - generic [ref=f40e28]:
+            - generic [ref=f40e29]: Cari Judul
+            - searchbox "Cari Judul" [ref=f40e30]
+          - generic [ref=f40e31]:
+            - generic [ref=f40e32]: Project
+            - combobox "Project" [ref=f40e33]:
+              - option "Semua Project" [selected]
+              - option "QA Test Project BVA Same Date"
+              - option "test"
+              - option "project diluar abrar"
+              - option "E-Commerce Mobile App"
+              - option "HRIS Internal System"
+              - option "Payment Gateway Integration"
+          - generic [ref=f40e34]:
+            - generic [ref=f40e35]: Status
+            - combobox "Status" [ref=f40e36]:
+              - option "Semua Status" [selected]
+              - option "To Do"
+              - option "In Progress"
+              - option "Done"
+          - generic [ref=f40e37]:
+            - generic [ref=f40e38]: Priority
+            - combobox "Priority" [ref=f40e39]:
+              - option "Semua Priority" [selected]
+              - option "Low"
+              - option "Medium"
+              - option "High"
+          - generic [ref=f40e40]:
+            - generic [ref=f40e41]: Urutkan Due Date
+            - combobox "Urutkan Due Date" [ref=f40e42]:
+              - option "Terdekat ↑" [selected]
+              - option "Terjauh ↓"
+        - generic [ref=f40e43]:
+          - link "Reset Filter" [ref=f40e44] [cursor=pointer]:
+            - /url: /tasks
+          - button "Terapkan Filter" [ref=f40e45] [cursor=pointer]
+      - table [ref=f40e47]:
+        - rowgroup [ref=f40e48]:
+          - row [ref=f40e49]:
+            - columnheader "No" [ref=f40e50]
+            - columnheader "Judul" [ref=f40e51]
+            - columnheader "Project" [ref=f40e52]
+            - columnheader "Assignee" [ref=f40e53]
+            - columnheader "Priority" [ref=f40e54]
+            - columnheader "Due Date" [ref=f40e55]
+            - columnheader "Closed Date" [ref=f40e56]
+            - columnheader "Status" [ref=f40e57]
+            - columnheader "Aksi" [ref=f40e58]
+        - rowgroup [ref=f40e59]:
+          - row [ref=f40e60]:
+            - cell "1" [ref=f40e61]
+            - cell "Setup Webhook Payment" [ref=f40e62]
+            - cell "Payment Gateway Integration" [ref=f40e63]
+            - cell "Parulian R M" [ref=f40e64]
+            - cell "High" [ref=f40e65]
+            - cell "01 Jul 2026" [ref=f40e66]
+            - cell "04 Oct 2026 95d overdue" [ref=f40e67]
+            - cell [ref=f40e68]:
+              - generic [ref=f40e69]: Status task Setup Webhook Payment
+              - combobox "Status task Setup Webhook Payment" [ref=f40e70]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+            - cell [ref=f40e71]:
+              - button "Edit" [ref=f40e72] [cursor=pointer]
+          - row [ref=f40e73]:
+            - cell "2" [ref=f40e74]
+            - cell "Perbaikan UI Mobile Payment" [ref=f40e75]
+            - cell "Payment Gateway Integration" [ref=f40e76]
+            - cell "Abrar Halomoan R M" [ref=f40e77]
+            - cell "Medium" [ref=f40e78]
+            - cell "15 Jul 2026 85d overdue" [ref=f40e79]
+            - cell "-" [ref=f40e80]
+            - cell [ref=f40e81]:
+              - generic [ref=f40e82]: Status task Perbaikan UI Mobile Payment
+              - combobox "Status task Perbaikan UI Mobile Payment" [ref=f40e83]:
+                - option "To Do"
+                - option "In Progress" [selected]
+                - option "Done"
+            - cell [ref=f40e84]:
+              - button "Edit" [ref=f40e85] [cursor=pointer]
+          - row [ref=f40e86]:
+            - cell "3" [ref=f40e87]
+            - cell "Fix Pagination Bug" [ref=f40e88]
+            - cell "Payment Gateway Integration" [ref=f40e89]
+            - cell "Parulian R M" [ref=f40e90]
+            - cell "Medium" [ref=f40e91]
+            - cell "20 Jul 2026" [ref=f40e92]
+            - cell "-" [ref=f40e93]
+            - cell [ref=f40e94]:
+              - generic [ref=f40e95]: Status task Fix Pagination Bug
+              - combobox "Status task Fix Pagination Bug" [ref=f40e96]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+            - cell [ref=f40e97]:
+              - button "Edit" [ref=f40e98] [cursor=pointer]
+          - row [ref=f40e99]:
+            - cell "4" [ref=f40e100]
+            - cell "Dokumentasi API Payment" [ref=f40e101]
+            - cell "Payment Gateway Integration" [ref=f40e102]
+            - cell "Parulian R M" [ref=f40e103]
+            - cell "Low" [ref=f40e104]
+            - cell "25 Jul 2026" [ref=f40e105]
+            - cell "-" [ref=f40e106]
+            - cell [ref=f40e107]:
+              - generic [ref=f40e108]: Status task Dokumentasi API Payment
+              - combobox "Status task Dokumentasi API Payment" [ref=f40e109]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+            - cell [ref=f40e110]:
+              - button "Edit" [ref=f40e111] [cursor=pointer]
+          - row [ref=f40e112]:
+            - cell "5" [ref=f40e113]
+            - cell "Optimasi Query Report" [ref=f40e114]
+            - cell "Payment Gateway Integration" [ref=f40e115]
+            - cell "Abrar Halomoan R M" [ref=f40e116]
+            - cell "Low" [ref=f40e117]
+            - cell "05 Aug 2026" [ref=f40e118]
+            - cell "-" [ref=f40e119]
+            - cell [ref=f40e120]:
+              - generic [ref=f40e121]: Status task Optimasi Query Report
+              - combobox "Status task Optimasi Query Report" [ref=f40e122]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+            - cell [ref=f40e123]:
+              - button "Edit" [ref=f40e124] [cursor=pointer]
+      - generic [ref=f40e125]:
+        - generic [ref=f40e126]:
+          - generic [ref=f40e127]: Tampilkan
+          - combobox "Tampilkan" [ref=f40e128]:
+            - option "5" [selected]
+            - option "10"
+            - option "25"
+            - option "50"
+        - navigation "Navigasi halaman" [ref=f40e129]:
+          - link:
+            - /url: /tasks?per_page=5&page=1
+          - link "1" [ref=f40e130] [cursor=pointer]:
+            - /url: /tasks?per_page=5&page=1
+          - link "2" [ref=f40e131] [cursor=pointer]:
+            - /url: /tasks?per_page=5&page=2
+          - generic [ref=f40e132]: …
+          - link "10" [ref=f40e133] [cursor=pointer]:
+            - /url: /tasks?per_page=5&page=10
+          - link [ref=f40e134] [cursor=pointer]:
+            - /url: /tasks?per_page=5&page=2

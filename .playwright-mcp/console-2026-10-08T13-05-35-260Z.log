@@ -1,0 +1,2 @@
+[   26701ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:8080/login:0
+[   42241ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8080/api/tasks.php?limit=200&offset=0:0

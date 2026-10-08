@@ -1,0 +1,7 @@
+- main [ref=f42e2]:
+  - generic [ref=f42e3]:
+    - generic [ref=f42e4]: "404"
+    - heading "Halaman Tidak Ditemukan" [level=1] [ref=f42e5]
+    - paragraph [ref=f42e6]: URL yang kamu buka tidak ada atau sudah dipindahkan.
+    - link "Kembali ke Dashboard" [ref=f42e7] [cursor=pointer]:
+      - /url: /dashboard

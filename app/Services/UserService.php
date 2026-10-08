@@ -53,7 +53,7 @@ class UserService
             return ['success' => false, 'errors' => $errors];
         }
 
-        $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         $id = $this->repository->create($data, $userId);
         return ['success' => true, 'id' => $id];
     }

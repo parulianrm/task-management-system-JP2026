@@ -15,7 +15,9 @@ require __DIR__ . '/../partials/header.php';
             <div class="page-header">
                 <h1 class="page-title">Daftar Project</h1>
                 <?php if ($_SESSION['role'] === 'Admin'): ?>
-                    <button type="button" class="btn-primary" data-modal-open="project-form-modal">+ Project Baru</button>
+                    <button type="button" class="btn-primary" data-modal-open="project-form-modal"><img
+                            src="/images/add.png" class="btn-icon" alt="" />Project Baru</button>
+
                 <?php endif; ?>
             </div>
 
@@ -75,7 +77,10 @@ require __DIR__ . '/../partials/header.php';
                             </div>
                             <div class="project-card-footer">
                                 <span class="project-task-count"><?= $taskCount ?> Task</span>
-                                <a href="/projects/detail?id=<?= $project['id'] ?>" class="link-detail">Lihat Detail &rarr;</a>
+                                <a href="/projects/detail?id=<?= $project['id'] ?>" class="link-detail">Lihat Detail <img
+                                        src="/images/right-arrow.png" class="btn-icon" alt=""
+                                        style="width: 12px; height: 12px; margin-right:0; margin-left:4px;" /></a>
+
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -89,8 +94,10 @@ require __DIR__ . '/../partials/header.php';
 <?php if ($_SESSION['role'] === 'Admin'): ?>
     <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
         <div class="modal-header">
-            <span class="modal-title">Tambah Project Baru</span>
-            <button type="button" class="modal-close" data-modal-close>&times;</button>
+            <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Project
+                Baru</span>
+            <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon"
+                    alt="" /></button>
         </div>
         <form id="project-form" novalidate>
             <div class="form-group">
@@ -103,15 +110,6 @@ require __DIR__ . '/../partials/header.php';
             <div class="form-group form-group-textarea">
                 <label for="project-desc">Deskripsi</label>
                 <textarea id="project-desc" name="description" rows="3" placeholder="Deskripsi singkat project"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="project-status">Status</label>
-                <select id="project-status" name="status">
-                    <option value="Planning" selected>Planning</option>
-                    <option value="Active">Active</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Archived">Archived</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="project-start">Tanggal Mulai</label>

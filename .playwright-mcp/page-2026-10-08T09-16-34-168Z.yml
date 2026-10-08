@@ -1,0 +1,102 @@
+- generic [ref=f11e1]:
+  - generic [ref=f11e2]:
+    - complementary [ref=f11e3]:
+      - generic [ref=f11e4]: TASKFLOW
+      - list [ref=f11e5]:
+        - listitem [ref=f11e6]:
+          - link "Dashboard" [ref=f11e7] [cursor=pointer]:
+            - /url: /dashboard
+        - listitem [ref=f11e8]:
+          - link "Projects" [ref=f11e9] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=f11e10]:
+          - link "Tasks" [ref=f11e11] [cursor=pointer]:
+            - /url: /tasks
+        - listitem [ref=f11e12]:
+          - link "Users" [ref=f11e13] [cursor=pointer]:
+            - /url: /users
+    - generic [ref=f11e14]:
+      - banner [ref=f11e15]:
+        - group [ref=f11e16]:
+          - generic "P Parulian R M ▾" [ref=f11e17] [cursor=pointer]:
+            - generic [ref=f11e18]: P
+            - generic [ref=f11e19]: Parulian R M
+            - generic [ref=f11e20]: ▾
+      - main [ref=f11e21]:
+        - generic [ref=f11e22]:
+          - heading "Manajemen User" [level=1] [ref=f11e23]
+          - button "User Baru" [ref=f11e24] [cursor=pointer]
+        - table [ref=f11e26]:
+          - rowgroup [ref=f11e27]:
+            - row [ref=f11e28]:
+              - columnheader "Nama" [ref=f11e29]
+              - columnheader "Email" [ref=f11e30]
+              - columnheader "Role" [ref=f11e31]
+              - columnheader "Status" [ref=f11e32]
+              - columnheader "Aksi" [ref=f11e33]
+          - rowgroup [ref=f11e34]:
+            - row [ref=f11e35]:
+              - cell "Abrar Halomoan R M" [ref=f11e36]
+              - cell "abrar@neuronworks.co.id" [ref=f11e37]
+              - cell "Member" [ref=f11e38]
+              - cell "Aktifkan atau nonaktifkan user Abrar Halomoan R M Aktif" [ref=f11e39]:
+                - generic [ref=f11e40]:
+                  - checkbox "Aktifkan atau nonaktifkan user Abrar Halomoan R M" [checked]
+                  - generic [ref=f11e41] [cursor=pointer]
+                - text: Aktif
+              - cell [ref=f11e42]:
+                - button "Edit" [ref=f11e43] [cursor=pointer]
+                - button "Reset Password" [ref=f11e44] [cursor=pointer]
+            - row [ref=f11e45]:
+              - cell "Parulian R M" [ref=f11e46]
+              - cell "parulian.manik@neuronworks.co.id" [ref=f11e47]
+              - cell "Admin" [ref=f11e48]
+              - cell "Aktifkan atau nonaktifkan user Parulian R M Aktif" [ref=f11e49]:
+                - generic [ref=f11e50]:
+                  - checkbox "Aktifkan atau nonaktifkan user Parulian R M" [checked] [disabled]
+                  - generic [ref=f11e51] [cursor=pointer]
+                - text: Aktif
+              - cell [ref=f11e52]:
+                - button "Edit" [ref=f11e53] [cursor=pointer]
+                - button "Reset Password" [ref=f11e54] [cursor=pointer]
+            - row [ref=f11e55]:
+              - cell "QA Tester BVA8" [ref=f11e56]
+              - cell "qa.bva8@neuronworks.co.id" [ref=f11e57]
+              - cell "Member" [ref=f11e58]
+              - cell "Aktifkan atau nonaktifkan user QA Tester BVA8 Aktif" [ref=f11e59]:
+                - generic [ref=f11e60]:
+                  - checkbox "Aktifkan atau nonaktifkan user QA Tester BVA8" [checked]
+                  - generic [ref=f11e61] [cursor=pointer]
+                - text: Aktif
+              - cell [ref=f11e62]:
+                - button "Edit" [ref=f11e63] [cursor=pointer]
+                - button "Reset Password" [ref=f11e64] [cursor=pointer]
+            - row [ref=f11e65]:
+              - cell "Rian Hidayat" [ref=f11e66]
+              - cell "rian@neuronworks.co.id" [ref=f11e67]
+              - cell "Member" [ref=f11e68]
+              - cell "Aktifkan atau nonaktifkan user Rian Hidayat Nonaktif" [ref=f11e69]:
+                - generic [ref=f11e70]:
+                  - checkbox "Aktifkan atau nonaktifkan user Rian Hidayat"
+                  - generic [ref=f11e71] [cursor=pointer]
+                - text: Nonaktif
+              - cell [ref=f11e72]:
+                - button "Edit" [ref=f11e73] [cursor=pointer]
+                - button "Reset Password" [ref=f11e74] [cursor=pointer]
+  - dialog [ref=f11e77]:
+    - generic [ref=f11e78]:
+      - generic [ref=f11e79]: Edit User
+      - button [active] [ref=f11e80] [cursor=pointer]
+    - generic [ref=f11e81]:
+      - generic [ref=f11e82]:
+        - generic [ref=f11e83]: Nama
+        - textbox "Nama" [ref=f11e85]: QA Tester BVA8
+      - generic [ref=f11e87]:
+        - generic [ref=f11e88]: Email
+        - textbox "Email" [ref=f11e90]: qa.bva8@neuronworks.co.id
+      - generic [ref=f11e92]:
+        - generic [ref=f11e93]: Role
+        - combobox "Role" [ref=f11e94]:
+          - option "Member" [selected]
+          - option "Admin"
+      - button "Simpan Perubahan" [ref=f11e95] [cursor=pointer]

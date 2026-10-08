@@ -1,0 +1,59 @@
+- generic [ref=f16e2]:
+  - complementary [ref=f16e3]:
+    - generic [ref=f16e4]: TASKFLOW
+    - list [ref=f16e5]:
+      - listitem [ref=f16e6]:
+        - link "Dashboard" [ref=f16e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f16e8]:
+        - link "Projects" [ref=f16e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f16e10]:
+        - link "Tasks" [ref=f16e11] [cursor=pointer]:
+          - /url: /tasks
+  - generic [ref=f16e12]:
+    - banner [ref=f16e13]:
+      - group [ref=f16e14]:
+        - generic "A Abrar Halomoan R M ▾" [ref=f16e15] [cursor=pointer]:
+          - generic [ref=f16e16]: A
+          - generic [ref=f16e17]: Abrar Halomoan R M
+          - generic [ref=f16e18]: ▾
+    - main [ref=f16e19]:
+      - generic [ref=f16e21]:
+        - heading "Dashboard" [level=1] [ref=f16e22]
+        - paragraph [ref=f16e23]: Ringkasan task yang ditugaskan ke Anda
+      - generic [ref=f16e24]:
+        - generic [ref=f16e25]:
+          - heading "Belum Dikerjakan" [level=3] [ref=f16e26]
+          - generic [ref=f16e27]: "18"
+          - paragraph [ref=f16e28]: Task berstatus To Do
+        - generic [ref=f16e29]:
+          - heading "Sedang Dikerjakan" [level=3] [ref=f16e30]
+          - generic [ref=f16e31]: "2"
+          - paragraph [ref=f16e32]: Task berstatus In Progress
+        - generic [ref=f16e33]:
+          - heading "Selesai" [level=3] [ref=f16e34]
+          - generic [ref=f16e35]: "6"
+          - paragraph [ref=f16e36]: Task berstatus Done
+        - generic [ref=f16e37]:
+          - heading "Terlambat" [level=3] [ref=f16e38]
+          - generic [ref=f16e39]: "4"
+          - paragraph [ref=f16e40]: Due date lewat & belum selesai
+      - generic [ref=f16e42]:
+        - heading "5 Task Saya yang Due Terdekat" [level=2] [ref=f16e43]
+        - list [ref=f16e44]:
+          - listitem [ref=f16e45]:
+            - generic [ref=f16e46]: Perbaikan UI Mobile Payment — Payment Gateway Integration
+            - generic [ref=f16e47]: 15 Jul 2026
+          - listitem [ref=f16e48]:
+            - generic [ref=f16e49]: Review Security Checklist — E-Commerce Mobile App
+            - generic [ref=f16e50]: 06 Sep 2026
+          - listitem [ref=f16e51]:
+            - generic [ref=f16e52]: Design ERD Diagram — HRIS Internal System
+            - generic [ref=f16e53]: 15 Sep 2026
+          - listitem [ref=f16e54]:
+            - generic [ref=f16e55]: Testing Modul Checkout — E-Commerce Mobile App
+            - generic [ref=f16e56]: 25 Sep 2026
+          - listitem [ref=f16e57]:
+            - generic [ref=f16e58]: Setup Push Notification — E-Commerce Mobile App
+            - generic [ref=f16e59]: 10 Oct 2026

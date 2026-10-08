@@ -56,8 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var projectId = form.dataset.projectId;
             if (projectId) {
                 payload.id = projectId;
-            } else {
-                payload.status = document.getElementById('project-status').value;
             }
 
             apiPost('/api/projects.php', payload).then(function (result) {

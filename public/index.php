@@ -16,13 +16,13 @@ try {
         $authService = new AuthService();
         $result = $authService->attempt($_POST['email'] ?? '', $_POST['password'] ?? '');
 
-        if($result['status'] === 'invalid') {
-            header('Location: /login?error=invalid&email='. urldecode($_POST['email'] ?? ''));
+        if ($result['status'] === 'invalid') {
+            header('Location: /login?error=invalid&email=' . urldecode($_POST['email'] ?? ''));
             exit;
         }
 
-        if($result['status'] === 'inactive') {
-            header('Location: /login?error=inactive&email='. urldecode($_POST['email'] ?? ''));
+        if ($result['status'] === 'inactive') {
+            header('Location: /login?error=inactive&email=' . urldecode($_POST['email'] ?? ''));
             exit;
         }
 
@@ -46,6 +46,10 @@ try {
 
     switch (true) {
         case $uri === '/' || $uri === '/login':
+            if (!empty($_SESSION['user_id'])) {
+                header('Location: /dashboard');
+                exit;
+            }
             require __DIR__ . '/../views/auth/login.php';
             break;
 
@@ -96,10 +100,22 @@ try {
             }
 
             $taskRepository = new \App\Repositories\TaskRepository();
-            $tasks = $taskRepository->findByProject($projectId);
+            $allTasks = $taskRepository->findByProject($projectId);
+            $activeUsers = (new \App\Repositories\UserRepository())->findActiveUsers();
+
+            $allowedPerPage = [5, 10, 25, 50];
+            $perPage = (int) ($_GET['per_page'] ?? 10);
+            if (!in_array($perPage, $allowedPerPage, true)) {
+                $perPage = 10;
+            }
+            $totalTasksAll = count($allTasks);
+            $totalPages = max(1, (int) ceil($totalTasksAll / $perPage));
+            $page = max(1, min((int) ($_GET['page'] ?? 1), $totalPages));
+            $tasks = array_slice($allTasks, ($page - 1) * $perPage, $perPage);
 
             require __DIR__ . '/../views/projects/detail.php';
             break;
+
 
         case $uri === '/tasks':
             AuthMiddleware::requireLogin();

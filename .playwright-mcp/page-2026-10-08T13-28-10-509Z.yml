@@ -1,0 +1,66 @@
+- generic [ref=f46e2]:
+  - complementary [ref=f46e3]:
+    - generic [ref=f46e4]: TASKFLOW
+    - list [ref=f46e5]:
+      - listitem [ref=f46e6]:
+        - link "Dashboard" [ref=f46e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f46e8]:
+        - link "Projects" [ref=f46e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f46e10]:
+        - link "Tasks" [ref=f46e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f46e12]:
+        - link "Users" [ref=f46e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f46e14]:
+    - banner [ref=f46e15]:
+      - group [ref=f46e16]:
+        - generic "P Parulian R M ▾" [ref=f46e17] [cursor=pointer]:
+          - generic [ref=f46e18]: P
+          - generic [ref=f46e19]: Parulian R M
+          - generic [ref=f46e20]: ▾
+    - main [ref=f46e21]:
+      - generic [ref=f46e23]:
+        - heading "Dashboard" [level=1] [ref=f46e24]
+        - paragraph [ref=f46e25]: Ringkasan seluruh project & task di sistem
+      - generic [ref=f46e26]:
+        - generic [ref=f46e27]:
+          - heading "Project Aktif" [level=3] [ref=f46e28]
+          - generic [ref=f46e29]: "5"
+          - paragraph [ref=f46e30]: Project berstatus Active saat ini
+        - generic [ref=f46e31]:
+          - heading "Belum Dikerjakan" [level=3] [ref=f46e32]
+          - generic [ref=f46e33]: "27"
+          - paragraph [ref=f46e34]: Task berstatus To Do
+        - generic [ref=f46e35]:
+          - heading "Sedang Dikerjakan" [level=3] [ref=f46e36]
+          - generic [ref=f46e37]: "5"
+          - paragraph [ref=f46e38]: Task berstatus In Progress
+        - generic [ref=f46e39]:
+          - heading "Selesai" [level=3] [ref=f46e40]
+          - generic [ref=f46e41]: "14"
+          - paragraph [ref=f46e42]: Task berstatus Done
+        - generic [ref=f46e43]:
+          - heading "Terlambat" [level=3] [ref=f46e44]
+          - generic [ref=f46e45]: "8"
+          - paragraph [ref=f46e46]: Due date lewat & belum selesai
+      - generic [ref=f46e48]:
+        - heading "5 Task Due Terdekat" [level=2] [ref=f46e49]
+        - list [ref=f46e50]:
+          - listitem [ref=f46e51]:
+            - generic [ref=f46e52]: Perbaikan UI Mobile Payment — Payment Gateway Integration
+            - generic [ref=f46e53]: 15 Jul 2026
+          - listitem [ref=f46e54]:
+            - generic [ref=f46e55]: Review Security Checklist — E-Commerce Mobile App
+            - generic [ref=f46e56]: 06 Sep 2026
+          - listitem [ref=f46e57]:
+            - generic [ref=f46e58]: Setup Database HRIS — HRIS Internal System
+            - generic [ref=f46e59]: 10 Sep 2026
+          - listitem [ref=f46e60]:
+            - generic [ref=f46e61]: Design ERD Diagram — HRIS Internal System
+            - generic [ref=f46e62]: 15 Sep 2026
+          - listitem [ref=f46e63]:
+            - generic [ref=f46e64]: Integrasi Payment Gateway — E-Commerce Mobile App
+            - generic [ref=f46e65]: 20 Sep 2026

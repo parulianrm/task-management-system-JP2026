@@ -1,0 +1,14 @@
+- main [ref=f20e2]:
+  - heading "Login" [level=1] [ref=f20e3]
+  - generic [ref=f20e4]:
+    - heading "Login" [level=2] [ref=f20e5]
+    - generic [ref=f20e7]:
+      - generic [ref=f20e8]:
+        - generic [ref=f20e9]: Email
+        - textbox "Email" [ref=f20e11]:
+          - /placeholder: nama@neuronworks.co.id
+      - generic [ref=f20e13]:
+        - generic [ref=f20e14]: Password
+        - textbox "Password" [ref=f20e16]:
+          - /placeholder: "********"
+      - button "Masuk" [ref=f20e18] [cursor=pointer]

@@ -94,7 +94,7 @@ Centang [x] kalau sudah BENAR-BENAR berfungsi (bukan cuma tampilan statis).
 ### UI-01 — Responsive dan usability
 
 - [x] Layout dasar jalan di desktop
-- [ ] Dicek ulang di lebar 360px (terutama sidebar & tabel)
+- [x] Dicek ulang di lebar 360px (terutama sidebar & tabel)
 - [x] Form punya label (login, project, task, user)
 - [ ] Kontras & focus state dicek menyeluruh
 

@@ -1,0 +1,230 @@
+- generic [ref=f6e2]:
+  - complementary [ref=f6e3]:
+    - generic [ref=f6e4]: TASKFLOW
+    - list [ref=f6e5]:
+      - listitem [ref=f6e6]:
+        - link "Dashboard" [ref=f6e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f6e8]:
+        - link "Projects" [ref=f6e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f6e10]:
+        - link "Tasks" [ref=f6e11] [cursor=pointer]:
+          - /url: /tasks
+  - generic [ref=f6e12]:
+    - banner [ref=f6e13]:
+      - group [ref=f6e14]:
+        - generic "A Abrar Halomoan R M ▾" [ref=f6e15] [cursor=pointer]:
+          - generic [ref=f6e16]: A
+          - generic [ref=f6e17]: Abrar Halomoan R M
+          - generic [ref=f6e18]: ▾
+    - main [ref=f6e19]:
+      - heading "Daftar Task" [level=1] [ref=f6e21]
+      - generic [ref=f6e23]:
+        - generic [ref=f6e24]:
+          - generic [ref=f6e25]:
+            - generic [ref=f6e26]: Cari Judul
+            - searchbox "Cari Judul" [ref=f6e27]
+          - generic [ref=f6e28]:
+            - generic [ref=f6e29]: Project
+            - combobox "Project" [ref=f6e30]:
+              - option "Semua Project" [selected]
+              - option "test"
+              - option "project diluar abrar"
+              - option "E-Commerce Mobile App"
+              - option "HRIS Internal System"
+              - option "Payment Gateway Integration"
+          - generic [ref=f6e31]:
+            - generic [ref=f6e32]: Status
+            - combobox "Status" [ref=f6e33]:
+              - option "Semua Status" [selected]
+              - option "To Do"
+              - option "In Progress"
+              - option "Done"
+          - generic [ref=f6e34]:
+            - generic [ref=f6e35]: Priority
+            - combobox "Priority" [ref=f6e36]:
+              - option "Semua Priority" [selected]
+              - option "Low"
+              - option "Medium"
+              - option "High"
+          - generic [ref=f6e37]:
+            - generic [ref=f6e38]: Urutkan Due Date
+            - combobox "Urutkan Due Date" [ref=f6e39]:
+              - option "Terdekat ↑" [selected]
+              - option "Terjauh ↓"
+        - generic [ref=f6e40]:
+          - link "Reset Filter" [ref=f6e41] [cursor=pointer]:
+            - /url: /tasks
+          - button "Terapkan Filter" [ref=f6e42] [cursor=pointer]
+      - table [ref=f6e44]:
+        - rowgroup [ref=f6e45]:
+          - row [ref=f6e46]:
+            - columnheader "No" [ref=f6e47]
+            - columnheader "Judul" [ref=f6e48]
+            - columnheader "Project" [ref=f6e49]
+            - columnheader "Assignee" [ref=f6e50]
+            - columnheader "Priority" [ref=f6e51]
+            - columnheader "Due Date" [ref=f6e52]
+            - columnheader "Closed Date" [ref=f6e53]
+            - columnheader "Status" [ref=f6e54]
+        - rowgroup [ref=f6e55]:
+          - row [ref=f6e56]:
+            - cell "1" [ref=f6e57]
+            - cell "Perbaikan UI Mobile Payment" [ref=f6e58]
+            - cell "Payment Gateway Integration" [ref=f6e59]
+            - cell "Abrar Halomoan R M" [ref=f6e60]
+            - cell "Medium" [ref=f6e61]
+            - cell "15 Jul 2026 85d overdue" [ref=f6e62]
+            - cell "-" [ref=f6e63]
+            - cell [ref=f6e64]:
+              - generic [ref=f6e65]: Status task Perbaikan UI Mobile Payment
+              - combobox "Status task Perbaikan UI Mobile Payment" [ref=f6e66]:
+                - option "To Do"
+                - option "In Progress" [selected]
+                - option "Done"
+          - row [ref=f6e67]:
+            - cell "2" [ref=f6e68]
+            - cell "Optimasi Query Report" [ref=f6e69]
+            - cell "Payment Gateway Integration" [ref=f6e70]
+            - cell "Abrar Halomoan R M" [ref=f6e71]
+            - cell "Low" [ref=f6e72]
+            - cell "05 Aug 2026" [ref=f6e73]
+            - cell "-" [ref=f6e74]
+            - cell [ref=f6e75]:
+              - generic [ref=f6e76]: Status task Optimasi Query Report
+              - combobox "Status task Optimasi Query Report" [ref=f6e77]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+          - row [ref=f6e78]:
+            - cell "3" [ref=f6e79]
+            - cell "Testing Refund Flow" [ref=f6e80]
+            - cell "Payment Gateway Integration" [ref=f6e81]
+            - cell "Abrar Halomoan R M" [ref=f6e82]
+            - cell "Medium" [ref=f6e83]
+            - cell "12 Aug 2026" [ref=f6e84]
+            - cell "-" [ref=f6e85]
+            - cell [ref=f6e86]:
+              - generic [ref=f6e87]: Status task Testing Refund Flow
+              - combobox "Status task Testing Refund Flow" [ref=f6e88]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+          - row [ref=f6e89]:
+            - cell "4" [ref=f6e90]
+            - cell "Fix Auth API" [ref=f6e91]
+            - cell "E-Commerce Mobile App" [ref=f6e92]
+            - cell "Abrar Halomoan R M" [ref=f6e93]
+            - cell "High" [ref=f6e94]
+            - cell "04 Sep 2026" [ref=f6e95]
+            - cell "04 Oct 2026 30d overdue" [ref=f6e96]
+            - cell [ref=f6e97]:
+              - generic [ref=f6e98]: Status task Fix Auth API
+              - combobox "Status task Fix Auth API" [ref=f6e99]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+          - row [ref=f6e100]:
+            - cell "5" [ref=f6e101]
+            - cell "Analisis Kebutuhan Payroll" [ref=f6e102]
+            - cell "HRIS Internal System" [ref=f6e103]
+            - cell "Abrar Halomoan R M" [ref=f6e104]
+            - cell "Medium" [ref=f6e105]
+            - cell "05 Sep 2026" [ref=f6e106]
+            - cell "-" [ref=f6e107]
+            - cell [ref=f6e108]:
+              - generic [ref=f6e109]: Status task Analisis Kebutuhan Payroll
+              - combobox "Status task Analisis Kebutuhan Payroll" [ref=f6e110]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+          - row [ref=f6e175]:
+            - cell "6" [ref=f6e112]
+            - cell "Review Security Checklist" [ref=f6e113]
+            - cell "E-Commerce Mobile App" [ref=f6e114]
+            - cell "Abrar Halomoan R M" [ref=f6e115]
+            - cell "High" [ref=f6e116]
+            - cell "06 Sep 2026 32d overdue" [ref=f6e117]
+            - cell "-" [ref=f6e118]
+            - cell [ref=f6e176]:
+              - generic [ref=f6e120]: Status task Review Security Checklist
+              - combobox "Status task Review Security Checklist" [ref=f6e121]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+          - row [ref=f6e122]:
+            - cell "7" [ref=f6e123]
+            - cell "Desain Halaman Checkout" [ref=f6e124]
+            - cell "E-Commerce Mobile App" [ref=f6e125]
+            - cell "Abrar Halomoan R M" [ref=f6e126]
+            - cell "Medium" [ref=f6e127]
+            - cell "14 Sep 2026" [ref=f6e128]
+            - cell "-" [ref=f6e129]
+            - cell [ref=f6e130]:
+              - generic [ref=f6e131]: Status task Desain Halaman Checkout
+              - combobox "Status task Desain Halaman Checkout" [ref=f6e132]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+          - row [ref=f6e133]:
+            - cell "8" [ref=f6e134]
+            - cell "Design ERD Diagram" [ref=f6e135]
+            - cell "HRIS Internal System" [ref=f6e136]
+            - cell "Abrar Halomoan R M" [ref=f6e137]
+            - cell "Medium" [ref=f6e138]
+            - cell "15 Sep 2026 23d overdue" [ref=f6e139]
+            - cell "-" [ref=f6e140]
+            - cell [ref=f6e141]:
+              - generic [ref=f6e142]: Status task Design ERD Diagram
+              - combobox "Status task Design ERD Diagram" [ref=f6e143]:
+                - option "To Do"
+                - option "In Progress" [selected]
+                - option "Done"
+          - row [ref=f6e144]:
+            - cell "9" [ref=f6e145]
+            - cell "Testing Modul Checkout" [ref=f6e146]
+            - cell "E-Commerce Mobile App" [ref=f6e147]
+            - cell "Abrar Halomoan R M" [ref=f6e148]
+            - cell "Medium" [ref=f6e149]
+            - cell "25 Sep 2026 13d overdue" [ref=f6e150]
+            - cell "-" [ref=f6e151]
+            - cell [ref=f6e152]:
+              - generic [ref=f6e153]: Status task Testing Modul Checkout
+              - combobox "Status task Testing Modul Checkout" [ref=f6e154]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+          - row [ref=f6e155]:
+            - cell "10" [ref=f6e156]
+            - cell "task 7 double" [ref=f6e157]
+            - cell "test" [ref=f6e158]
+            - cell "Abrar Halomoan R M" [ref=f6e159]
+            - cell "High" [ref=f6e160]
+            - cell "03 Oct 2026" [ref=f6e161]
+            - cell "04 Oct 2026 1d overdue" [ref=f6e162]
+            - cell [ref=f6e163]:
+              - generic [ref=f6e164]: Status task task 7 double
+              - combobox "Status task task 7 double" [ref=f6e165]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+      - generic [ref=f6e166]:
+        - generic [ref=f6e167]:
+          - generic [ref=f6e168]: Tampilkan
+          - combobox "Tampilkan" [ref=f6e169]:
+            - option "5"
+            - option "10" [selected]
+            - option "25"
+            - option "50"
+        - navigation "Navigasi halaman" [ref=f6e170]:
+          - link:
+            - /url: /tasks?page=1
+          - link "1" [ref=f6e171] [cursor=pointer]:
+            - /url: /tasks?page=1
+          - link "2" [ref=f6e172] [cursor=pointer]:
+            - /url: /tasks?page=2
+          - link "3" [ref=f6e173] [cursor=pointer]:
+            - /url: /tasks?page=3
+          - link [ref=f6e174] [cursor=pointer]:
+            - /url: /tasks?page=2

@@ -22,6 +22,30 @@ $statusBadge = [
     'In Progress' => 'badge-status-progress',
     'Done' => 'badge-status-done',
 ];
+
+$totalTasks = count($allTasks);
+$doneTasks = count(array_filter($allTasks, fn($t) => $t['status'] === 'Done'));
+$progressPercent = $totalTasks > 0 ? (int) round(($doneTasks / $totalTasks) * 100) : 0;
+
+$assigneeNames = [];
+foreach ($allTasks as $t) {
+    if (!empty($t['assignee_name']) && !in_array($t['assignee_name'], $assigneeNames, true)) {
+        $assigneeNames[] = $t['assignee_name'];
+    }
+}
+
+function buildProjectDetailPageUrl(int $page, int $projectId, int $perPage): string
+{
+    return '/projects/detail?' . http_build_query(['id' => $projectId, 'page' => $page, 'per_page' => $perPage]);
+}
+
+function daysLate(string $dueDate, string $closedAt): int
+{
+    $due = new DateTime($dueDate);
+    $closed = new DateTime(substr($closedAt, 0, 10));
+    return (int) $due->diff($closed)->days;
+}
+
 ?>
 
 <div class="app-layout">
@@ -33,18 +57,27 @@ $statusBadge = [
         <main class="dashboard-container">
             <div class="page-header">
                 <div>
-                    <a href="/projects" class="link-detail">&larr; Kembali ke Daftar Proyek</a>
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="/projects">Projects</a>
+                        <span class="breadcrumb-sep">&rsaquo;</span>
+                        <span class="breadcrumb-current">Detail Project</span>
+                    </nav>
                     <h1 class="page-title"><?= htmlspecialchars($project['name']) ?></h1>
                 </div>
                 <?php if ($_SESSION['role'] === 'Admin'): ?>
                     <div style="display:flex; gap:0.5rem;">
                         <?php if ($project['status'] === 'Archived'): ?>
-                            <button type="button" class="btn-secondary" id="btn-unarchive-project">Aktifkan Kembali</button>
+                            <button type="button" class="btn-secondary" id="btn-unarchive-project"><img src="/images/undo.png"
+                                    class="btn-icon" alt="" />Aktifkan Kembali</button>
                         <?php else: ?>
-                            <?php if ($repository->countIncompleteTasks($project['id']) === 0): ?>
-                                <button type="button" class="btn-secondary" id="btn-archive-project">Arsipkan</button>
+                            <?php if ($project['status'] !== 'Planning' && $repository->countIncompleteTasks($project['id']) === 0): ?>
+                                <button type="button" class="btn-secondary" id="btn-archive-project"><img src="/images/undo.png"
+                                        class="btn-icon" alt="" />Arsipkan</button>
                             <?php endif; ?>
-                            <button type="button" class="btn-primary" data-modal-open="project-form-modal">Edit Project</button>
+                            <button type="button" class="btn-primary" data-modal-open="task-form-modal"><img
+                                    src="/images/add.png" class="btn-icon" alt="" />Task Baru</button>
+                            <button type="button" class="btn-primary" data-modal-open="project-form-modal"><img
+                                    src="/images/edit.png" class="btn-icon" alt="" />Edit Project</button>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -52,14 +85,48 @@ $statusBadge = [
             </div>
 
             <div class="project-detail-info">
-                <span class="badge <?= $badgeClass ?>"><?= htmlspecialchars($project['status']) ?></span>
-                <p class="project-detail-desc"><?= nl2br(htmlspecialchars($project['description'] ?? '-')) ?></p>
-                <div class="project-detail-meta">
-                    <div><span class="meta-label">Tanggal Mulai</span><span
-                            class="meta-value"><?= date('d M Y', strtotime($project['start_date'])) ?></span></div>
-                    <div><span class="meta-label">Target Selesai</span><span
-                            class="meta-value"><?= date('d M Y', strtotime($project['target_date'])) ?></span></div>
+                <div class="detail-row">
+                    <span class="detail-row-label">Status</span>
+                    <span class="detail-row-value"><span
+                            class="badge <?= $badgeClass ?>"><?= htmlspecialchars($project['status']) ?></span></span>
                 </div>
+                <div class="detail-row">
+                    <span class="detail-row-label">Start Date</span>
+                    <span class="detail-row-value"><?= date('d M Y', strtotime($project['start_date'])) ?></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-row-label">Due Date</span>
+                    <span class="detail-row-value"><?= date('d M Y', strtotime($project['target_date'])) ?></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-row-label">Assignees</span>
+                    <span class="detail-row-value">
+                        <div class="assignee-avatars">
+                            <?php if (empty($assigneeNames)): ?>
+                                -
+                            <?php else: ?>
+                                <?php foreach ($assigneeNames as $name): ?>
+                                    <span class="nav-avatar"
+                                        title="<?= htmlspecialchars($name) ?>"><?= htmlspecialchars(strtoupper(substr($name, 0, 1))) ?></span>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-row-label">Progress</span>
+                    <span class="detail-row-value">
+                        <div class="progress-bar-track">
+                            <div class="progress-bar-fill" style="width: <?= $progressPercent ?>%;"></div>
+                        </div>
+                        <?= $progressPercent ?>% (<?= $doneTasks ?>/<?= $totalTasks ?> task)
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-row-label">Description</span>
+                    <span class="detail-row-value"><?= nl2br(htmlspecialchars($project['description'] ?? '-')) ?></span>
+                </div>
+
             </div>
 
             <h2 class="section-heading">Task pada Project Ini</h2>
@@ -68,27 +135,41 @@ $statusBadge = [
                 <table class="data-table">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Judul</th>
                             <th>Assignee</th>
                             <th>Priority</th>
                             <th>Due Date</th>
+                            <th>Closed Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($tasks)): ?>
                             <tr>
-                                <td colspan="5" class="empty-row">Belum ada task di project ini.</td>
+                                <td colspan="7" class="empty-row">Belum ada task di project ini.</td>
                             </tr>
                         <?php else: ?>
+                            <?php $rowNumber = ($page - 1) * $perPage + 1; ?>
                             <?php foreach ($tasks as $task): ?>
                                 <tr>
+                                    <td><?= $rowNumber++ ?></td>
                                     <td><?= htmlspecialchars($task['title']) ?></td>
                                     <td><?= htmlspecialchars($task['assignee_name'] ?? '-') ?></td>
                                     <td><span
                                             class="badge <?= $priorityBadge[$task['priority']] ?>"><?= $task['priority'] ?></span>
                                     </td>
                                     <td><?= date('d M Y', strtotime($task['due_date'])) ?></td>
+                                    <td>
+                                        <?php if ($task['closed_at']): ?>
+                                            <?= date('d M Y', strtotime($task['closed_at'])) ?>
+                                            <?php if (substr($task['closed_at'], 0, 10) > $task['due_date']): ?>
+                                                <span class="badge badge-overdue"><?= daysLate($task['due_date'], $task['closed_at']) ?>d overdue</span>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            -
+                                        <?php endif; ?>
+                                    </td>
                                     <td><span class="badge <?= $statusBadge[$task['status']] ?>"><?= $task['status'] ?></span>
                                     </td>
                                 </tr>
@@ -98,11 +179,49 @@ $statusBadge = [
                 </table>
             </div>
 
+            <div class="pagination-bar">
+                <form method="GET" action="/projects/detail" class="per-page-form">
+                    <input type="hidden" name="id" value="<?= $project['id'] ?>" />
+                    <label for="per-page-select">Tampilkan</label>
+                    <select name="per_page" id="per-page-select" onchange="this.form.submit()">
+                        <?php foreach ([5, 10, 25, 50] as $n): ?>
+                            <option value="<?= $n ?>" <?= $perPage === $n ? 'selected' : '' ?>><?= $n ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+
+                <nav class="pagination" aria-label="Navigasi halaman">
+                    <a href="<?= buildProjectDetailPageUrl(max(1, $page - 1), $project['id'], $perPage) ?>"
+                        class="pagination-btn<?= $page === 1 ? ' is-disabled' : '' ?>"><img src="/images/left-arrow.png" class="btn-icon" alt="" style="margin:0; width:12px; height:12px;" /></a>
+                    <?php
+                    $pageStart = max(1, $page - 1);
+                    $pageEnd = min($totalPages, $page + 1);
+                    ?>
+                    <?php if ($pageStart > 1): ?>
+                        <a href="<?= buildProjectDetailPageUrl(1, $project['id'], $perPage) ?>" class="pagination-page">1</a>
+                        <?php if ($pageStart > 2): ?><span class="pagination-ellipsis">&hellip;</span><?php endif; ?>
+                    <?php endif; ?>
+                    <?php for ($i = $pageStart; $i <= $pageEnd; $i++): ?>
+                        <a href="<?= buildProjectDetailPageUrl($i, $project['id'], $perPage) ?>"
+                            class="pagination-page<?= $i === $page ? ' is-active' : '' ?>"><?= $i ?></a>
+                    <?php endfor; ?>
+                    <?php if ($pageEnd < $totalPages): ?>
+                        <?php if ($pageEnd < $totalPages - 1): ?><span class="pagination-ellipsis">&hellip;</span><?php endif; ?>
+                        <a href="<?= buildProjectDetailPageUrl($totalPages, $project['id'], $perPage) ?>" class="pagination-page"><?= $totalPages ?></a>
+                    <?php endif; ?>
+
+                    <a href="<?= buildProjectDetailPageUrl(min($totalPages, $page + 1), $project['id'], $perPage) ?>"
+                        class="pagination-btn<?= $page === $totalPages ? ' is-disabled' : '' ?>"><img src="/images/right-arrow.png" class="btn-icon" alt="" style="margin:0; width:12px; height:12px;" /></a>
+                </nav>
+            </div>
+
             <?php if ($_SESSION['role'] === 'Admin'): ?>
                 <dialog id="project-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
                     <div class="modal-header">
-                        <span class="modal-title">Edit Project</span>
-                        <button type="button" class="modal-close" data-modal-close>&times;</button>
+                        <span class="modal-title"><img src="/images/edit.png" class="modal-title-icon" alt="" />Edit
+                            Project</span>
+                        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png"
+                                class="modal-close-icon" alt="" /></button>
                     </div>
                     <form id="project-form" data-project-id="<?= $project['id'] ?>" novalidate>
                         <div class="form-group">
@@ -138,9 +257,63 @@ $statusBadge = [
                     </form>
                 </dialog>
             <?php endif; ?>
+            <?php if ($_SESSION['role'] === 'Admin' && $project['status'] !== 'Archived'): ?>
+                <dialog id="task-form-modal" class="modal-box modal-box-wide" data-reset-on-close>
+                    <div class="modal-header">
+                        <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah Task
+                            Baru</span>
+                        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png"
+                                class="modal-close-icon" alt="" /></button>
+                    </div>
+                    <form class="task-form" novalidate>
+                        <input type="hidden" name="project_id" value="<?= $project['id'] ?>" />
+                        <div class="form-group">
+                            <label for="task-title">Judul</label>
+                            <div class="field-wrap">
+                                <input type="text" id="task-title" name="title" placeholder="Judul task" required />
+                                <span class="field-error" data-error-for="title"></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-textarea">
+                            <label for="task-desc">Deskripsi</label>
+                            <textarea id="task-desc" name="description" rows="3"
+                                placeholder="Deskripsi singkat task"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-assignee">Assignee</label>
+                            <select id="task-assignee" name="assignee_id">
+                                <option value="">- Belum ditugaskan -</option>
+                                <?php foreach ($activeUsers as $u): ?>
+                                    <option value="<?= $u['id'] ?>">
+                                        <?= htmlspecialchars($u['name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-priority">Priority</label>
+                            <select id="task-priority" name="priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-due">Due Date</label>
+                            <div class="field-wrap">
+                                <input type="date" id="task-due" name="due_date" required />
+                                <span class="field-error" data-error-for="due_date"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Simpan Task</button>
+                    </form>
+                </dialog>
+            <?php endif; ?>
+
         </main>
     </div>
 </div>
 
 <script src="/js/validate-project.js" defer></script>
+<script src="/js/validate-task.js" defer></script>
 <?php require __DIR__ . '/../partials/footer.php'; ?>

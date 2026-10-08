@@ -1,8 +1,8 @@
 INSERT INTO
-    USERS (
+    users (
         name,
         email,
-        password_hash,
+        password,
         role,
         is_active,
         updated_by
@@ -10,7 +10,7 @@ INSERT INTO
 VALUES (
         'Parulian R M',
         'parulian.manik@neuronworks.co.id',
-        '$2y$10$eImiTXuWVxfM37uY4JANjQhTftIM0M8H1eIkFVDIEYzJXbf4wLGCe',
+        '$2y$10$9WMzq3Qiitvi0vUNQYEcfehljX1cNAtJjRMsjnam080MnegikeGMm',
         'Admin',
         TRUE,
         NULL
@@ -18,7 +18,7 @@ VALUES (
     (
         'Abrar Halomoan R M',
         'abrar@neuronworks.co.id',
-        '$2y$10$eImiTXuWVxfM37uY4JANjQhTftIM0M8H1eIkFVDIEYzJXbf4wLGCe',
+        '$2y$10$9WMzq3Qiitvi0vUNQYEcfehljX1cNAtJjRMsjnam080MnegikeGMm',
         'Member',
         TRUE,
         1
@@ -26,14 +26,14 @@ VALUES (
     (
         'Rian Hidayat',
         'rian@neuronworks.co.id',
-        '$2y$10$eImiTXuWVxfM37uY4JANjQhTftIM0M8H1eIkFVDIEYzJXbf4wLGCe',
+        '$2y$10$9WMzq3Qiitvi0vUNQYEcfehljX1cNAtJjRMsjnam080MnegikeGMm',
         'Member',
         FALSE,
         1
     );
 
 INSERT INTO
-    PROJECTS (
+    projects (
         name,
         description,
         status,
@@ -67,7 +67,7 @@ VALUES (
     );
 
 INSERT INTO
-    TASKS (
+    tasks (
         project_id,
         title,
         description,

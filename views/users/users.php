@@ -13,7 +13,9 @@ require __DIR__ . '/../partials/header.php';
         <main class="dashboard-container">
             <div class="page-header">
                 <h1 class="page-title">Manajemen User</h1>
-                <button type="button" class="btn-primary" data-modal-open="user-form-modal">+ User Baru</button>
+                <button type="button" class="btn-primary" data-modal-open="user-form-modal"><img src="/images/add.png"
+                        class="btn-icon" alt="" />User Baru</button>
+
             </div>
 
             <div class="table-wrap">
@@ -51,11 +53,15 @@ require __DIR__ . '/../partials/header.php';
                                         <span class="status-text"><?= $user['is_active'] ? 'Aktif' : 'Nonaktif' ?></span>
                                     </td>
                                     <td>
-                                        <button type="button" class="link-detail"
-                                            data-user-edit="<?= $user['id'] ?>">Edit</button>
-                                        <button type="button" class="link-detail" data-user-reset="<?= $user['id'] ?>">Reset
+                                    
+                                        <button type="button" class="btn-secondary btn-table-action"
+                                            data-user-edit="<?= $user['id'] ?>"><img src="/images/edit.png" class="btn-icon"
+                                                alt="" />Edit</button>
+                                        <button type="button" class="btn-secondary btn-table-action"
+                                            data-user-reset="<?= $user['id'] ?>"><img src="/images/undo.png" class="btn-icon"
+                                                alt="" />Reset
                                             Password</button>
-                                    </td>
+
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -68,8 +74,9 @@ require __DIR__ . '/../partials/header.php';
 
 <dialog id="user-form-modal" class="modal-box" data-reset-on-close>
     <div class="modal-header">
-        <span class="modal-title">Tambah User Baru</span>
-        <button type="button" class="modal-close" data-modal-close>&times;</button>
+        <span class="modal-title"><img src="/images/add.png" class="modal-title-icon" alt="" />Tambah User Baru</span>
+
+        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
     </div>
     <form id="user-form" novalidate autocomplete="off">
         <div class="form-group">
@@ -111,8 +118,9 @@ require __DIR__ . '/../partials/header.php';
 
 <dialog id="user-edit-modal" class="modal-box" data-reset-on-close>
     <div class="modal-header">
-        <span class="modal-title">Edit User</span>
-        <button type="button" class="modal-close" data-modal-close>&times;</button>
+        <span class="modal-title"><img src="/images/edit.png" class="modal-title-icon" alt="" />Edit User</span>
+
+        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
     </div>
     <form id="user-edit-form" data-user-id="" novalidate>
         <div class="form-group">
@@ -142,8 +150,8 @@ require __DIR__ . '/../partials/header.php';
 </dialog>
 <dialog id="user-reset-password-modal" class="modal-box" data-reset-on-close>
     <div class="modal-header">
-        <span class="modal-title">Reset Password</span>
-        <button type="button" class="modal-close" data-modal-close>&times;</button>
+        <span class="modal-title"><img src="/images/edit.png" class="modal-title-icon" alt="" />Reset Password</span>
+        <button type="button" class="modal-close" data-modal-close><img src="/images/close.png" class="modal-close-icon" alt="" /></button>
     </div>
     <form id="user-reset-password-form" data-user-id="" novalidate>
         <div class="form-group">

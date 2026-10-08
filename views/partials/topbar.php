@@ -6,6 +6,9 @@ $avatarInitial = $userName !== '' ? strtoupper(substr($userName, 0, 1)) : '?';
 $roleBadgeClass = $userRole === 'Admin' ? 'badge-role-admin' : 'badge-role-member';
 ?>
 <header class="app-topbar">
+    <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Buka menu navigasi">
+        <span></span><span></span><span></span>
+    </button>
     <details class="nav-user-menu">
         <summary class="nav-user-summary">
             <span class="nav-avatar"><?= $avatarInitial ?></span>
