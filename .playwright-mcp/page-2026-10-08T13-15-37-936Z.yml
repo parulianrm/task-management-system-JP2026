@@ -1,0 +1,59 @@
+- generic [ref=f38e2]:
+  - complementary [ref=f38e3]:
+    - generic [ref=f38e4]: TASKFLOW
+    - list [ref=f38e5]:
+      - listitem [ref=f38e6]:
+        - link "Dashboard" [ref=f38e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f38e8]:
+        - link "Projects" [ref=f38e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f38e10]:
+        - link "Tasks" [ref=f38e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f38e12]:
+        - link "Users" [ref=f38e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f38e14]:
+    - banner [ref=f38e15]:
+      - group [ref=f38e16]:
+        - generic "P Parulian R M ▾" [ref=f38e17] [cursor=pointer]:
+          - generic [ref=f38e18]: P
+          - generic [ref=f38e19]: Parulian R M
+          - generic [ref=f38e20]: ▾
+    - main [ref=f38e21]:
+      - generic [ref=f38e22]:
+        - heading "Daftar Project" [level=1] [ref=f38e23]
+        - button "Project Baru" [ref=f38e24] [cursor=pointer]
+      - generic [ref=f38e26]:
+        - generic [ref=f38e27]:
+          - generic [ref=f38e28]:
+            - generic [ref=f38e29]: Cari Nama Project
+            - searchbox "Cari Nama Project" [ref=f38e30]: HRIS
+          - generic [ref=f38e31]:
+            - generic [ref=f38e32]: Status
+            - combobox "Status" [ref=f38e33]:
+              - option "Semua Status"
+              - option "Planning" [selected]
+              - option "Active"
+              - option "Completed"
+              - option "Archived"
+        - generic [ref=f38e34]:
+          - link "Reset Filter" [ref=f38e35] [cursor=pointer]:
+            - /url: /projects
+          - button "Terapkan Filter" [ref=f38e36] [cursor=pointer]
+      - generic [ref=f38e38]:
+        - generic [ref=f38e39]:
+          - generic [ref=f38e40]:
+            - link "HRIS Internal System" [ref=f38e41] [cursor=pointer]:
+              - /url: /projects/detail?id=2
+            - generic [ref=f38e42]: Planning
+          - generic [ref=f38e43]:
+            - text: "Mulai:"
+            - strong [ref=f38e44]: 01 Sep 2026
+            - text: "— Target:"
+            - strong [ref=f38e45]: 01 Dec 2026
+        - generic [ref=f38e46]:
+          - generic [ref=f38e47]: 9 Task
+          - link "Lihat Detail" [ref=f38e48] [cursor=pointer]:
+            - /url: /projects/detail?id=2

@@ -9,12 +9,12 @@ class AuthService
     public function attempt(string $email, string $password): array
     {
         $stmt = Database::getConnection()->prepare(
-            'SELECT id, name, email, password_hash, role, is_active FROM USERS WHERE email = :email'
+            'SELECT id, name, email, password, role, is_active FROM users WHERE email = :email'
         );
         $stmt->execute(['email' => $email]);
         $user = $stmt->fetch();
 
-        if (!$user || !password_verify($password, $user['password_hash'])) {
+        if (!$user || !password_verify($password, $user['password'])) {
             return ['status' => 'invalid'];
         }
 

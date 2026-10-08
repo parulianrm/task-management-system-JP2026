@@ -1,0 +1,164 @@
+- generic [ref=f48e2]:
+  - complementary [ref=f48e3]:
+    - generic [ref=f48e4]: TASKFLOW
+    - list [ref=f48e5]:
+      - listitem [ref=f48e6]:
+        - link "Dashboard" [ref=f48e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f48e8]:
+        - link "Projects" [ref=f48e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f48e10]:
+        - link "Tasks" [ref=f48e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f48e12]:
+        - link "Users" [ref=f48e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f48e14]:
+    - banner [ref=f48e15]:
+      - group [ref=f48e16]:
+        - generic "P Parulian R M ▾" [ref=f48e17] [cursor=pointer]:
+          - generic [ref=f48e18]: P
+          - generic [ref=f48e19]: Parulian R M
+          - generic [ref=f48e20]: ▾
+    - main [ref=f48e21]:
+      - generic [ref=f48e22]:
+        - generic [ref=f48e23]:
+          - navigation "Breadcrumb" [ref=f48e24]:
+            - link "Projects" [ref=f48e25] [cursor=pointer]:
+              - /url: /projects
+            - text: › Detail Project
+          - heading "test" [level=1] [ref=f48e26]
+        - generic [ref=f48e27]:
+          - button "Task Baru" [ref=f48e28] [cursor=pointer]
+          - button "Edit Project" [ref=f48e29] [cursor=pointer]
+      - generic [ref=f48e30]:
+        - generic [ref=f48e31]:
+          - generic [ref=f48e32]: Status
+          - generic [ref=f48e33]: Active
+        - generic [ref=f48e35]:
+          - generic [ref=f48e36]: Start Date
+          - generic [ref=f48e37]: 01 Oct 2026
+        - generic [ref=f48e38]:
+          - generic [ref=f48e39]: Due Date
+          - generic [ref=f48e40]: 31 Oct 2026
+        - generic [ref=f48e41]:
+          - generic [ref=f48e42]: Assignees
+          - generic [ref=f48e44]:
+            - generic "Parulian R M" [ref=f48e45]: P
+            - generic "Abrar Halomoan R M" [ref=f48e46]: A
+        - generic [ref=f48e47]:
+          - generic [ref=f48e48]: Progress
+          - generic [ref=f48e49]: 13% (2/16 task)
+        - generic [ref=f48e52]:
+          - generic [ref=f48e53]: Description
+          - generic [ref=f48e54]: test
+      - heading "Task pada Project Ini" [level=2] [ref=f48e55]
+      - table [ref=f48e57]:
+        - rowgroup [ref=f48e58]:
+          - row [ref=f48e59]:
+            - columnheader "No" [ref=f48e60]
+            - columnheader "Judul" [ref=f48e61]
+            - columnheader "Assignee" [ref=f48e62]
+            - columnheader "Priority" [ref=f48e63]
+            - columnheader "Due Date" [ref=f48e64]
+            - columnheader "Closed Date" [ref=f48e65]
+            - columnheader "Status" [ref=f48e66]
+        - rowgroup [ref=f48e67]:
+          - row [ref=f48e68]:
+            - cell "1" [ref=f48e69]
+            - cell "uji overdue" [ref=f48e70]
+            - cell "Parulian R M" [ref=f48e71]
+            - cell "Medium" [ref=f48e72]
+            - cell "01 Oct 2026" [ref=f48e73]
+            - cell "04 Oct 2026 3d overdue" [ref=f48e74]
+            - cell "Done" [ref=f48e75]
+          - row [ref=f48e76]:
+            - cell "2" [ref=f48e77]
+            - cell "task 7 double" [ref=f48e78]
+            - cell "Abrar Halomoan R M" [ref=f48e79]
+            - cell "High" [ref=f48e80]
+            - cell "03 Oct 2026" [ref=f48e81]
+            - cell "04 Oct 2026 1d overdue" [ref=f48e82]
+            - cell "Done" [ref=f48e83]
+          - row [ref=f48e84]:
+            - cell "3" [ref=f48e85]
+            - cell "task 8 double" [ref=f48e86]
+            - cell "Abrar Halomoan R M" [ref=f48e87]
+            - cell "Medium" [ref=f48e88]
+            - cell "13 Oct 2026" [ref=f48e89]
+            - cell "-" [ref=f48e90]
+            - cell "To Do" [ref=f48e91]
+          - row [ref=f48e92]:
+            - cell "4" [ref=f48e93]
+            - cell "task 4" [ref=f48e94]
+            - cell "Abrar Halomoan R M" [ref=f48e95]
+            - cell "High" [ref=f48e96]
+            - cell "21 Oct 2026" [ref=f48e97]
+            - cell "-" [ref=f48e98]
+            - cell "To Do" [ref=f48e99]
+          - row [ref=f48e100]:
+            - cell "5" [ref=f48e101]
+            - cell "task 5" [ref=f48e102]
+            - cell "Parulian R M" [ref=f48e103]
+            - cell "High" [ref=f48e104]
+            - cell "21 Oct 2026" [ref=f48e105]
+            - cell "-" [ref=f48e106]
+            - cell "To Do" [ref=f48e107]
+          - row [ref=f48e108]:
+            - cell "6" [ref=f48e109]
+            - cell "task 6 double" [ref=f48e110]
+            - cell "Parulian R M" [ref=f48e111]
+            - cell "Medium" [ref=f48e112]
+            - cell "21 Oct 2026" [ref=f48e113]
+            - cell "-" [ref=f48e114]
+            - cell "To Do" [ref=f48e115]
+          - row [ref=f48e116]:
+            - cell "7" [ref=f48e117]
+            - cell "task 5" [ref=f48e118]
+            - cell "Abrar Halomoan R M" [ref=f48e119]
+            - cell "Low" [ref=f48e120]
+            - cell "22 Oct 2026" [ref=f48e121]
+            - cell "-" [ref=f48e122]
+            - cell "To Do" [ref=f48e123]
+          - row [ref=f48e124]:
+            - cell "8" [ref=f48e125]
+            - cell "task 3" [ref=f48e126]
+            - cell "Abrar Halomoan R M" [ref=f48e127]
+            - cell "High" [ref=f48e128]
+            - cell "24 Oct 2026" [ref=f48e129]
+            - cell "-" [ref=f48e130]
+            - cell "To Do" [ref=f48e131]
+          - row [ref=f48e132]:
+            - cell "9" [ref=f48e133]
+            - cell "task 3" [ref=f48e134]
+            - cell "Abrar Halomoan R M" [ref=f48e135]
+            - cell "High" [ref=f48e136]
+            - cell "24 Oct 2026" [ref=f48e137]
+            - cell "-" [ref=f48e138]
+            - cell "To Do" [ref=f48e139]
+          - row [ref=f48e140]:
+            - cell "10" [ref=f48e141]
+            - cell "task 3" [ref=f48e142]
+            - cell "Abrar Halomoan R M" [ref=f48e143]
+            - cell "High" [ref=f48e144]
+            - cell "24 Oct 2026" [ref=f48e145]
+            - cell "-" [ref=f48e146]
+            - cell "To Do" [ref=f48e147]
+      - generic [ref=f48e148]:
+        - generic [ref=f48e149]:
+          - generic [ref=f48e150]: Tampilkan
+          - combobox "Tampilkan" [ref=f48e151]:
+            - option "5"
+            - option "10" [selected]
+            - option "25"
+            - option "50"
+        - navigation "Navigasi halaman" [ref=f48e152]:
+          - link:
+            - /url: /projects/detail?id=5&page=1&per_page=10
+          - link "1" [ref=f48e153] [cursor=pointer]:
+            - /url: /projects/detail?id=5&page=1&per_page=10
+          - link "2" [ref=f48e154] [cursor=pointer]:
+            - /url: /projects/detail?id=5&page=2&per_page=10
+          - link [ref=f48e155] [cursor=pointer]:
+            - /url: /projects/detail?id=5&page=2&per_page=10

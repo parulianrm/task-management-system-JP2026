@@ -24,7 +24,7 @@ class ProjectRepository implements ProjectRepositoryInterface
 
         $where = implode(' AND ', $conditions);
 
-        $stmt = Database::getConnection()->prepare("SELECT * FROM PROJECTS WHERE {$where} ORDER BY created_at DESC");
+        $stmt = Database::getConnection()->prepare("SELECT * FROM projects WHERE {$where} ORDER BY created_at DESC");
         $stmt->execute($params);
         return $stmt->fetchAll();
     }
@@ -35,21 +35,21 @@ class ProjectRepository implements ProjectRepositoryInterface
         $params = ['userId' => $userId];
 
         if (!empty($filters['search'])) {
-            $conditions[] = 'PROJECTS.name LIKE :search';
+            $conditions[] = 'projects.name LIKE :search';
             $params['search'] = '%' . $filters['search'] . '%';
         }
         if (!empty($filters['status'])) {
-            $conditions[] = 'PROJECTS.status = :status';
+            $conditions[] = 'projects.status = :status';
             $params['status'] = $filters['status'];
         }
 
         $where = implode(' AND ', $conditions);
 
         $stmt = Database::getConnection()->prepare(
-            "SELECT DISTINCT PROJECTS.* FROM PROJECTS
-             JOIN TASKS ON TASKS.project_id = PROJECTS.id
-             WHERE TASKS.assignee_id = :userId AND {$where}
-             ORDER BY PROJECTS.created_at DESC"
+            "SELECT DISTINCT projects.* FROM projects
+             JOIN tasks ON tasks.project_id = projects.id
+             WHERE tasks.assignee_id = :userId AND {$where}
+             ORDER BY projects.created_at DESC"
         );
         $stmt->execute($params);
         return $stmt->fetchAll();
@@ -57,7 +57,7 @@ class ProjectRepository implements ProjectRepositoryInterface
 
     public function findById(int $id): ?array
     {
-        $stmt = Database::getConnection()->prepare('SELECT * FROM PROJECTS WHERE id = :id');
+        $stmt = Database::getConnection()->prepare('SELECT * FROM projects WHERE id = :id');
         $stmt->execute(['id' => $id]);
         $project = $stmt->fetch();
         return $project ?: null;
@@ -65,7 +65,7 @@ class ProjectRepository implements ProjectRepositoryInterface
 
     public function countTasks(int $projectId): int
     {
-        $stmt = Database::getConnection()->prepare('SELECT COUNT(*) FROM TASKS WHERE project_id = :id');
+        $stmt = Database::getConnection()->prepare('SELECT COUNT(*) FROM tasks WHERE project_id = :id');
         $stmt->execute(['id' => $projectId]);
         return (int) $stmt->fetchColumn();
     }
@@ -73,7 +73,7 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function countIncompleteTasks(int $projectId): int
     {
         $stmt = Database::getConnection()->prepare(
-            "SELECT COUNT(*) FROM TASKS WHERE project_id = :id AND status != 'Done'"
+            "SELECT COUNT(*) FROM tasks WHERE project_id = :id AND status != 'Done'"
         );
         $stmt->execute(['id' => $projectId]);
         return (int) $stmt->fetchColumn();
@@ -82,7 +82,7 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function create(array $data, int $updatedBy): int
     {
         $stmt = Database::getConnection()->prepare(
-            'INSERT INTO PROJECTS (name, description, status, start_date, target_date, updated_by)
+            'INSERT INTO projects (name, description, status, start_date, target_date, updated_by)
              VALUES (:name, :description, :status, :start_date, :target_date, :updated_by)'
         );
         $stmt->execute([
@@ -100,7 +100,7 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function update(int $id, array $data, int $updatedBy): void
     {
         $stmt = Database::getConnection()->prepare(
-            'UPDATE PROJECTS
+            'UPDATE projects
              SET name = :name, description = :description, start_date = :start_date,
                  target_date = :target_date, updated_by = :updated_by
              WHERE id = :id'
@@ -118,7 +118,7 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function setStatus(int $id, string $status, int $updatedBy): void
     {
         $stmt = Database::getConnection()->prepare(
-            'UPDATE PROJECTS SET status = :status, updated_by = :updated_by WHERE id = :id'
+            'UPDATE projects SET status = :status, updated_by = :updated_by WHERE id = :id'
         );
         $stmt->execute([
             'status' => $status,
@@ -135,7 +135,7 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function isAssignedToMember(int $projectId, int $userId): bool
     {
         $stmt = Database::getConnection()->prepare(
-            'SELECT COUNT(*) FROM TASKS WHERE project_id = :projectId AND assignee_id = :userId'
+            'SELECT COUNT(*) FROM tasks WHERE project_id = :projectId AND assignee_id = :userId'
         );
         $stmt->execute(['projectId' => $projectId, 'userId' => $userId]);
         return $stmt->fetchColumn() > 0;

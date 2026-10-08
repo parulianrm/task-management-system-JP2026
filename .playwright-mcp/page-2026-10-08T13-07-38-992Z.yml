@@ -1,0 +1,120 @@
+- generic [ref=f19e2]:
+  - complementary [ref=f19e3]:
+    - generic [ref=f19e4]: TASKFLOW
+    - list [ref=f19e5]:
+      - listitem [ref=f19e6]:
+        - link "Dashboard" [ref=f19e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f19e8]:
+        - link "Projects" [ref=f19e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f19e10]:
+        - link "Tasks" [ref=f19e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f19e12]:
+        - link "Users" [ref=f19e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f19e14]:
+    - banner [ref=f19e15]:
+      - group [ref=f19e16]:
+        - generic "P Parulian R M ▾" [ref=f19e17] [cursor=pointer]:
+          - generic [ref=f19e18]: P
+          - generic [ref=f19e19]: Parulian R M
+          - generic [ref=f19e20]: ▾
+    - main [ref=f19e21]:
+      - generic [ref=f19e22]:
+        - heading "Daftar Project" [level=1] [ref=f19e23]
+        - button "Project Baru" [ref=f19e24] [cursor=pointer]
+      - generic [ref=f19e26]:
+        - generic [ref=f19e27]:
+          - generic [ref=f19e28]:
+            - generic [ref=f19e29]: Cari Nama Project
+            - searchbox "Cari Nama Project" [ref=f19e30]
+          - generic [ref=f19e31]:
+            - generic [ref=f19e32]: Status
+            - combobox "Status" [ref=f19e33]:
+              - option "Semua Status" [selected]
+              - option "Planning"
+              - option "Active"
+              - option "Completed"
+              - option "Archived"
+        - generic [ref=f19e34]:
+          - link "Reset Filter" [ref=f19e35] [cursor=pointer]:
+            - /url: /projects
+          - button "Terapkan Filter" [ref=f19e36] [cursor=pointer]
+      - generic [ref=f19e37]:
+        - generic [ref=f19e38]:
+          - generic [ref=f19e39]:
+            - generic [ref=f19e40]:
+              - link "test" [ref=f19e41] [cursor=pointer]:
+                - /url: /projects/detail?id=5
+              - generic [ref=f19e42]: Active
+            - generic [ref=f19e43]:
+              - text: "Mulai:"
+              - strong [ref=f19e44]: 01 Oct 2026
+              - text: "— Target:"
+              - strong [ref=f19e45]: 31 Oct 2026
+          - generic [ref=f19e46]:
+            - generic [ref=f19e47]: 16 Task
+            - link "Lihat Detail" [ref=f19e48] [cursor=pointer]:
+              - /url: /projects/detail?id=5
+        - generic [ref=f19e49]:
+          - generic [ref=f19e50]:
+            - generic [ref=f19e51]:
+              - link "project diluar abrar" [ref=f19e52] [cursor=pointer]:
+                - /url: /projects/detail?id=4
+              - generic [ref=f19e53]: Active
+            - generic [ref=f19e54]:
+              - text: "Mulai:"
+              - strong [ref=f19e55]: 01 Oct 2026
+              - text: "— Target:"
+              - strong [ref=f19e56]: 31 Oct 2026
+          - generic [ref=f19e57]:
+            - generic [ref=f19e58]: 1 Task
+            - link "Lihat Detail" [ref=f19e59] [cursor=pointer]:
+              - /url: /projects/detail?id=4
+        - generic [ref=f19e60]:
+          - generic [ref=f19e61]:
+            - generic [ref=f19e62]:
+              - link "E-Commerce Mobile App" [ref=f19e63] [cursor=pointer]:
+                - /url: /projects/detail?id=1
+              - generic [ref=f19e64]: Active
+            - generic [ref=f19e65]:
+              - text: "Mulai:"
+              - strong [ref=f19e66]: 01 Aug 2026
+              - text: "— Target:"
+              - strong [ref=f19e67]: 31 Oct 2026
+          - generic [ref=f19e68]:
+            - generic [ref=f19e69]: 11 Task
+            - link "Lihat Detail" [ref=f19e70] [cursor=pointer]:
+              - /url: /projects/detail?id=1
+        - generic [ref=f19e71]:
+          - generic [ref=f19e72]:
+            - generic [ref=f19e73]:
+              - link "HRIS Internal System" [ref=f19e74] [cursor=pointer]:
+                - /url: /projects/detail?id=2
+              - generic [ref=f19e75]: Planning
+            - generic [ref=f19e76]:
+              - text: "Mulai:"
+              - strong [ref=f19e77]: 01 Sep 2026
+              - text: "— Target:"
+              - strong [ref=f19e78]: 01 Dec 2026
+          - generic [ref=f19e79]:
+            - generic [ref=f19e80]: 9 Task
+            - link "Lihat Detail" [ref=f19e81] [cursor=pointer]:
+              - /url: /projects/detail?id=2
+        - generic [ref=f19e82]:
+          - generic [ref=f19e83]:
+            - generic [ref=f19e84]:
+              - link "Payment Gateway Integration" [ref=f19e85] [cursor=pointer]:
+                - /url: /projects/detail?id=3
+              - generic [ref=f19e86]: Active
+            - generic [ref=f19e87]:
+              - text: "Mulai:"
+              - strong [ref=f19e88]: 01 Jun 2026
+              - text: "— Target:"
+              - strong [ref=f19e89]: 15 Aug 2026
+          - generic [ref=f19e90]:
+            - generic [ref=f19e91]: 8 Task
+            - link "Lihat Detail" [ref=f19e92] [cursor=pointer]:
+              - /url: /projects/detail?id=3

@@ -1,0 +1,100 @@
+- generic [ref=f11e2]:
+  - complementary [ref=f11e3]:
+    - generic [ref=f11e4]: TASKFLOW
+    - list [ref=f11e5]:
+      - listitem [ref=f11e6]:
+        - link "Dashboard" [ref=f11e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f11e8]:
+        - link "Projects" [ref=f11e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f11e10]:
+        - link "Tasks" [ref=f11e11] [cursor=pointer]:
+          - /url: /tasks
+  - generic [ref=f11e12]:
+    - banner [ref=f11e13]:
+      - group [ref=f11e14]:
+        - generic "A Abrar Halomoan R M ▾" [ref=f11e15] [cursor=pointer]:
+          - generic [ref=f11e16]: A
+          - generic [ref=f11e17]: Abrar Halomoan R M
+          - generic [ref=f11e18]: ▾
+    - main [ref=f11e19]:
+      - heading "Daftar Project" [level=1] [ref=f11e21]
+      - generic [ref=f11e23]:
+        - generic [ref=f11e24]:
+          - generic [ref=f11e25]:
+            - generic [ref=f11e26]: Cari Nama Project
+            - searchbox "Cari Nama Project" [ref=f11e27]
+          - generic [ref=f11e28]:
+            - generic [ref=f11e29]: Status
+            - combobox "Status" [ref=f11e30]:
+              - option "Semua Status" [selected]
+              - option "Planning"
+              - option "Active"
+              - option "Completed"
+              - option "Archived"
+        - generic [ref=f11e31]:
+          - link "Reset Filter" [ref=f11e32] [cursor=pointer]:
+            - /url: /projects
+          - button "Terapkan Filter" [ref=f11e33] [cursor=pointer]
+      - generic [ref=f11e34]:
+        - generic [ref=f11e35]:
+          - generic [ref=f11e36]:
+            - generic [ref=f11e37]:
+              - link "test" [ref=f11e38] [cursor=pointer]:
+                - /url: /projects/detail?id=5
+              - generic [ref=f11e39]: Active
+            - generic [ref=f11e40]:
+              - text: "Mulai:"
+              - strong [ref=f11e41]: 01 Oct 2026
+              - text: "— Target:"
+              - strong [ref=f11e42]: 31 Oct 2026
+          - generic [ref=f11e43]:
+            - generic [ref=f11e44]: 16 Task
+            - link "Lihat Detail" [ref=f11e45] [cursor=pointer]:
+              - /url: /projects/detail?id=5
+        - generic [ref=f11e46]:
+          - generic [ref=f11e47]:
+            - generic [ref=f11e48]:
+              - link "E-Commerce Mobile App" [ref=f11e49] [cursor=pointer]:
+                - /url: /projects/detail?id=1
+              - generic [ref=f11e50]: Active
+            - generic [ref=f11e51]:
+              - text: "Mulai:"
+              - strong [ref=f11e52]: 01 Aug 2026
+              - text: "— Target:"
+              - strong [ref=f11e53]: 31 Oct 2026
+          - generic [ref=f11e54]:
+            - generic [ref=f11e55]: 11 Task
+            - link "Lihat Detail" [ref=f11e56] [cursor=pointer]:
+              - /url: /projects/detail?id=1
+        - generic [ref=f11e57]:
+          - generic [ref=f11e58]:
+            - generic [ref=f11e59]:
+              - link "HRIS Internal System" [ref=f11e60] [cursor=pointer]:
+                - /url: /projects/detail?id=2
+              - generic [ref=f11e61]: Planning
+            - generic [ref=f11e62]:
+              - text: "Mulai:"
+              - strong [ref=f11e63]: 01 Sep 2026
+              - text: "— Target:"
+              - strong [ref=f11e64]: 01 Dec 2026
+          - generic [ref=f11e65]:
+            - generic [ref=f11e66]: 9 Task
+            - link "Lihat Detail" [ref=f11e67] [cursor=pointer]:
+              - /url: /projects/detail?id=2
+        - generic [ref=f11e68]:
+          - generic [ref=f11e69]:
+            - generic [ref=f11e70]:
+              - link "Payment Gateway Integration" [ref=f11e71] [cursor=pointer]:
+                - /url: /projects/detail?id=3
+              - generic [ref=f11e72]: Active
+            - generic [ref=f11e73]:
+              - text: "Mulai:"
+              - strong [ref=f11e74]: 01 Jun 2026
+              - text: "— Target:"
+              - strong [ref=f11e75]: 15 Aug 2026
+          - generic [ref=f11e76]:
+            - generic [ref=f11e77]: 8 Task
+            - link "Lihat Detail" [ref=f11e78] [cursor=pointer]:
+              - /url: /projects/detail?id=3

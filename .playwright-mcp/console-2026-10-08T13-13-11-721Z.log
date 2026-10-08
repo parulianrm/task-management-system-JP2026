@@ -1,0 +1,1 @@
+[   34830ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://localhost:8080/api/projects.php:0

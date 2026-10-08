@@ -1,0 +1,18 @@
+- main [ref=e2]:
+  - heading "Login" [level=1] [ref=e3]
+  - generic [ref=e4]:
+    - heading "Login" [level=2] [ref=e5]
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]: Email
+        - generic [ref=e10]:
+          - textbox "Email" [ref=e11]:
+            - /placeholder: nama@neuronworks.co.id
+          - generic [ref=e12]: Email wajib diisi.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Password
+        - generic [ref=e15]:
+          - textbox "Password" [ref=e16]:
+            - /placeholder: "********"
+          - generic [ref=e17]: Password wajib diisi.
+      - button "Masuk" [active] [ref=e18] [cursor=pointer]

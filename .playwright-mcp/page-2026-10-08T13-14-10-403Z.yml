@@ -1,0 +1,109 @@
+- generic [ref=f32e2]:
+  - complementary [ref=f32e3]:
+    - generic [ref=f32e4]: TASKFLOW
+    - list [ref=f32e5]:
+      - listitem [ref=f32e6]:
+        - link "Dashboard" [ref=f32e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f32e8]:
+        - link "Projects" [ref=f32e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f32e10]:
+        - link "Tasks" [ref=f32e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f32e12]:
+        - link "Users" [ref=f32e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f32e14]:
+    - banner [ref=f32e15]:
+      - group [ref=f32e16]:
+        - generic "P Parulian R M ▾" [ref=f32e17] [cursor=pointer]:
+          - generic [ref=f32e18]: P
+          - generic [ref=f32e19]: Parulian R M
+          - generic [ref=f32e20]: ▾
+    - main [ref=f32e21]:
+      - generic [ref=f32e22]:
+        - heading "Daftar Task" [level=1] [ref=f32e23]
+        - button "Task Baru" [ref=f32e24] [cursor=pointer]
+      - generic [ref=f32e26]:
+        - generic [ref=f32e27]:
+          - generic [ref=f32e28]:
+            - generic [ref=f32e29]: Cari Judul
+            - searchbox "Cari Judul" [ref=f32e30]: QA Task BVA Due Date Boundary v2
+          - generic [ref=f32e31]:
+            - generic [ref=f32e32]: Project
+            - combobox "Project" [ref=f32e33]:
+              - option "Semua Project" [selected]
+              - option "QA Test Project BVA Same Date"
+              - option "test"
+              - option "project diluar abrar"
+              - option "E-Commerce Mobile App"
+              - option "HRIS Internal System"
+              - option "Payment Gateway Integration"
+          - generic [ref=f32e34]:
+            - generic [ref=f32e35]: Status
+            - combobox "Status" [ref=f32e36]:
+              - option "Semua Status" [selected]
+              - option "To Do"
+              - option "In Progress"
+              - option "Done"
+          - generic [ref=f32e37]:
+            - generic [ref=f32e38]: Priority
+            - combobox "Priority" [ref=f32e39]:
+              - option "Semua Priority" [selected]
+              - option "Low"
+              - option "Medium"
+              - option "High"
+          - generic [ref=f32e40]:
+            - generic [ref=f32e41]: Urutkan Due Date
+            - combobox "Urutkan Due Date" [ref=f32e42]:
+              - option "Terdekat ↑" [selected]
+              - option "Terjauh ↓"
+        - generic [ref=f32e43]:
+          - link "Reset Filter" [ref=f32e44] [cursor=pointer]:
+            - /url: /tasks
+          - button "Terapkan Filter" [ref=f32e45] [cursor=pointer]
+      - table [ref=f32e47]:
+        - rowgroup [ref=f32e48]:
+          - row [ref=f32e49]:
+            - columnheader "No" [ref=f32e50]
+            - columnheader "Judul" [ref=f32e51]
+            - columnheader "Project" [ref=f32e52]
+            - columnheader "Assignee" [ref=f32e53]
+            - columnheader "Priority" [ref=f32e54]
+            - columnheader "Due Date" [ref=f32e55]
+            - columnheader "Closed Date" [ref=f32e56]
+            - columnheader "Status" [ref=f32e57]
+            - columnheader "Aksi" [ref=f32e58]
+        - rowgroup [ref=f32e59]:
+          - row [ref=f32e79]:
+            - cell "1" [ref=f32e61]
+            - cell "QA Task BVA Due Date Boundary v2" [ref=f32e62]
+            - cell "QA Test Project BVA Same Date" [ref=f32e63]
+            - cell "-" [ref=f32e64]
+            - cell "Medium" [ref=f32e65]
+            - cell "01 Nov 2026" [ref=f32e66]
+            - cell "-" [ref=f32e67]
+            - cell [ref=f32e80]:
+              - generic [ref=f32e69]: Status task QA Task BVA Due Date Boundary v2
+              - combobox "Status task QA Task BVA Due Date Boundary v2" [ref=f32e70]:
+                - option "To Do"
+                - option "In Progress"
+                - option "Done" [selected]
+            - cell [ref=f32e71]:
+              - button "Edit" [ref=f32e72] [cursor=pointer]
+      - generic [ref=f32e73]:
+        - generic [ref=f32e74]:
+          - generic [ref=f32e75]: Tampilkan
+          - combobox "Tampilkan" [ref=f32e76]:
+            - option "5"
+            - option "10" [selected]
+            - option "25"
+            - option "50"
+        - navigation "Navigasi halaman" [ref=f32e77]:
+          - link:
+            - /url: /tasks?q=QA+Task+BVA+Due+Date+Boundary+v2&page=1
+          - link "1" [ref=f32e78] [cursor=pointer]:
+            - /url: /tasks?q=QA+Task+BVA+Due+Date+Boundary+v2&page=1
+          - link:
+            - /url: /tasks?q=QA+Task+BVA+Due+Date+Boundary+v2&page=1

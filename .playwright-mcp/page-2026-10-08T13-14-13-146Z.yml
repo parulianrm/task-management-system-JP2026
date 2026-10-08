@@ -1,0 +1,87 @@
+- generic [ref=f34e2]:
+  - complementary [ref=f34e3]:
+    - generic [ref=f34e4]: TASKFLOW
+    - list [ref=f34e5]:
+      - listitem [ref=f34e6]:
+        - link "Dashboard" [ref=f34e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f34e8]:
+        - link "Projects" [ref=f34e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f34e10]:
+        - link "Tasks" [ref=f34e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f34e12]:
+        - link "Users" [ref=f34e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f34e14]:
+    - banner [ref=f34e15]:
+      - group [ref=f34e16]:
+        - generic "P Parulian R M ▾" [ref=f34e17] [cursor=pointer]:
+          - generic [ref=f34e18]: P
+          - generic [ref=f34e19]: Parulian R M
+          - generic [ref=f34e20]: ▾
+    - main [ref=f34e21]:
+      - generic [ref=f34e22]:
+        - generic [ref=f34e23]:
+          - navigation "Breadcrumb" [ref=f34e24]:
+            - link "Projects" [ref=f34e25] [cursor=pointer]:
+              - /url: /projects
+            - text: › Detail Project
+          - heading "QA Test Project BVA Same Date" [level=1] [ref=f34e26]
+        - generic [ref=f34e27]:
+          - button "Arsipkan" [ref=f34e28] [cursor=pointer]
+          - button "Task Baru" [ref=f34e29] [cursor=pointer]
+          - button "Edit Project" [ref=f34e30] [cursor=pointer]
+      - generic [ref=f34e31]:
+        - generic [ref=f34e32]:
+          - generic [ref=f34e33]: Status
+          - generic [ref=f34e34]: Completed
+        - generic [ref=f34e36]:
+          - generic [ref=f34e37]: Start Date
+          - generic [ref=f34e38]: 01 Nov 2026
+        - generic [ref=f34e39]:
+          - generic [ref=f34e40]: Due Date
+          - generic [ref=f34e41]: 01 Nov 2026
+        - generic [ref=f34e42]:
+          - generic [ref=f34e43]: Assignees
+          - generic [ref=f34e44]: "-"
+        - generic [ref=f34e46]:
+          - generic [ref=f34e47]: Progress
+          - generic [ref=f34e48]: 100% (1/1 task)
+        - generic [ref=f34e51]: Description
+      - heading "Task pada Project Ini" [level=2] [ref=f34e53]
+      - table [ref=f34e55]:
+        - rowgroup [ref=f34e56]:
+          - row [ref=f34e57]:
+            - columnheader "No" [ref=f34e58]
+            - columnheader "Judul" [ref=f34e59]
+            - columnheader "Assignee" [ref=f34e60]
+            - columnheader "Priority" [ref=f34e61]
+            - columnheader "Due Date" [ref=f34e62]
+            - columnheader "Closed Date" [ref=f34e63]
+            - columnheader "Status" [ref=f34e64]
+        - rowgroup [ref=f34e65]:
+          - row [ref=f34e66]:
+            - cell "1" [ref=f34e67]
+            - cell "QA Task BVA Due Date Boundary v2" [ref=f34e68]
+            - cell "-" [ref=f34e69]
+            - cell "Medium" [ref=f34e70]
+            - cell "01 Nov 2026" [ref=f34e71]
+            - cell "08 Oct 2026" [ref=f34e72]
+            - cell "Done" [ref=f34e73]
+      - generic [ref=f34e74]:
+        - generic [ref=f34e75]:
+          - generic [ref=f34e76]: Tampilkan
+          - combobox "Tampilkan" [ref=f34e77]:
+            - option "5"
+            - option "10" [selected]
+            - option "25"
+            - option "50"
+        - navigation "Navigasi halaman" [ref=f34e78]:
+          - link:
+            - /url: /projects/detail?id=6&page=1&per_page=10
+          - link "1" [ref=f34e79] [cursor=pointer]:
+            - /url: /projects/detail?id=6&page=1&per_page=10
+          - link:
+            - /url: /projects/detail?id=6&page=1&per_page=10

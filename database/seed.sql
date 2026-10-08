@@ -1,8 +1,8 @@
 INSERT INTO
-    USERS (
+    users (
         name,
         email,
-        password_hash,
+        password,
         role,
         is_active,
         updated_by
@@ -33,7 +33,7 @@ VALUES (
     );
 
 INSERT INTO
-    PROJECTS (
+    projects (
         name,
         description,
         status,
@@ -67,7 +67,7 @@ VALUES (
     );
 
 INSERT INTO
-    TASKS (
+    tasks (
         project_id,
         title,
         description,

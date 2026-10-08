@@ -1,0 +1,257 @@
+- generic [ref=f44e2]:
+  - complementary [ref=f44e3]:
+    - generic [ref=f44e4]: TASKFLOW
+    - list [ref=f44e5]:
+      - listitem [ref=f44e6]:
+        - link "Dashboard" [ref=f44e7] [cursor=pointer]:
+          - /url: /dashboard
+      - listitem [ref=f44e8]:
+        - link "Projects" [ref=f44e9] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=f44e10]:
+        - link "Tasks" [ref=f44e11] [cursor=pointer]:
+          - /url: /tasks
+      - listitem [ref=f44e12]:
+        - link "Users" [ref=f44e13] [cursor=pointer]:
+          - /url: /users
+  - generic [ref=f44e14]:
+    - banner [ref=f44e15]:
+      - group [ref=f44e16]:
+        - generic "P Parulian R M ▾" [ref=f44e17] [cursor=pointer]:
+          - generic [ref=f44e18]: P
+          - generic [ref=f44e19]: Parulian R M
+          - generic [ref=f44e20]: ▾
+    - main [ref=f44e21]:
+      - generic [ref=f44e22]:
+        - heading "Daftar Task" [level=1] [ref=f44e23]
+        - button "Task Baru" [ref=f44e24] [cursor=pointer]
+      - generic [ref=f44e26]:
+        - generic [ref=f44e27]:
+          - generic [ref=f44e28]:
+            - generic [ref=f44e29]: Cari Judul
+            - searchbox "Cari Judul" [ref=f44e30]
+          - generic [ref=f44e31]:
+            - generic [ref=f44e32]: Project
+            - combobox "Project" [ref=f44e33]:
+              - option "Semua Project" [selected]
+              - option "QA Test Project BVA Same Date"
+              - option "test"
+              - option "project diluar abrar"
+              - option "E-Commerce Mobile App"
+              - option "HRIS Internal System"
+              - option "Payment Gateway Integration"
+          - generic [ref=f44e34]:
+            - generic [ref=f44e35]: Status
+            - combobox "Status" [ref=f44e36]:
+              - option "Semua Status"
+              - option "To Do" [selected]
+              - option "In Progress"
+              - option "Done"
+          - generic [ref=f44e37]:
+            - generic [ref=f44e38]: Priority
+            - combobox "Priority" [ref=f44e39]:
+              - option "Semua Priority" [selected]
+              - option "Low"
+              - option "Medium"
+              - option "High"
+          - generic [ref=f44e40]:
+            - generic [ref=f44e41]: Urutkan Due Date
+            - combobox "Urutkan Due Date" [ref=f44e42]:
+              - option "Terdekat ↑" [selected]
+              - option "Terjauh ↓"
+        - generic [ref=f44e43]:
+          - link "Reset Filter" [ref=f44e44] [cursor=pointer]:
+            - /url: /tasks
+          - button "Terapkan Filter" [ref=f44e45] [cursor=pointer]
+      - table [ref=f44e47]:
+        - rowgroup [ref=f44e48]:
+          - row [ref=f44e49]:
+            - columnheader "No" [ref=f44e50]
+            - columnheader "Judul" [ref=f44e51]
+            - columnheader "Project" [ref=f44e52]
+            - columnheader "Assignee" [ref=f44e53]
+            - columnheader "Priority" [ref=f44e54]
+            - columnheader "Due Date" [ref=f44e55]
+            - columnheader "Closed Date" [ref=f44e56]
+            - columnheader "Status" [ref=f44e57]
+            - columnheader "Aksi" [ref=f44e58]
+        - rowgroup [ref=f44e59]:
+          - row [ref=f44e60]:
+            - cell "1" [ref=f44e61]
+            - cell "Review Security Checklist" [ref=f44e62]
+            - cell "E-Commerce Mobile App" [ref=f44e63]
+            - cell "Abrar Halomoan R M" [ref=f44e64]
+            - cell "High" [ref=f44e65]
+            - cell "06 Sep 2026 32d overdue" [ref=f44e66]
+            - cell "-" [ref=f44e67]
+            - cell [ref=f44e68]:
+              - generic [ref=f44e69]: Status task Review Security Checklist
+              - combobox "Status task Review Security Checklist" [ref=f44e70]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e71]:
+              - button "Edit" [ref=f44e72] [cursor=pointer]
+          - row [ref=f44e73]:
+            - cell "2" [ref=f44e74]
+            - cell "Setup Database HRIS" [ref=f44e75]
+            - cell "HRIS Internal System" [ref=f44e76]
+            - cell "Parulian R M" [ref=f44e77]
+            - cell "High" [ref=f44e78]
+            - cell "10 Sep 2026 28d overdue" [ref=f44e79]
+            - cell "-" [ref=f44e80]
+            - cell [ref=f44e81]:
+              - generic [ref=f44e82]: Status task Setup Database HRIS
+              - combobox "Status task Setup Database HRIS" [ref=f44e83]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e84]:
+              - button "Edit" [ref=f44e85] [cursor=pointer]
+          - row [ref=f44e86]:
+            - cell "3" [ref=f44e87]
+            - cell "Testing Modul Checkout" [ref=f44e88]
+            - cell "E-Commerce Mobile App" [ref=f44e89]
+            - cell "Abrar Halomoan R M" [ref=f44e90]
+            - cell "Medium" [ref=f44e91]
+            - cell "25 Sep 2026 13d overdue" [ref=f44e92]
+            - cell "-" [ref=f44e93]
+            - cell [ref=f44e94]:
+              - generic [ref=f44e95]: Status task Testing Modul Checkout
+              - combobox "Status task Testing Modul Checkout" [ref=f44e96]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e97]:
+              - button "Edit" [ref=f44e98] [cursor=pointer]
+          - row [ref=f44e99]:
+            - cell "4" [ref=f44e100]
+            - cell "Setup CI Pipeline" [ref=f44e101]
+            - cell "E-Commerce Mobile App" [ref=f44e102]
+            - cell "Parulian R M" [ref=f44e103]
+            - cell "Medium" [ref=f44e104]
+            - cell "01 Oct 2026 7d overdue" [ref=f44e105]
+            - cell "-" [ref=f44e106]
+            - cell [ref=f44e107]:
+              - generic [ref=f44e108]: Status task Setup CI Pipeline
+              - combobox "Status task Setup CI Pipeline" [ref=f44e109]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e110]:
+              - button "Edit" [ref=f44e111] [cursor=pointer]
+          - row [ref=f44e112]:
+            - cell "5" [ref=f44e113]
+            - cell "Wireframe Modul Absensi" [ref=f44e114]
+            - cell "HRIS Internal System" [ref=f44e115]
+            - cell "Parulian R M" [ref=f44e116]
+            - cell "Low" [ref=f44e117]
+            - cell "01 Oct 2026 7d overdue" [ref=f44e118]
+            - cell "-" [ref=f44e119]
+            - cell [ref=f44e120]:
+              - generic [ref=f44e121]: Status task Wireframe Modul Absensi
+              - combobox "Status task Wireframe Modul Absensi" [ref=f44e122]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e123]:
+              - button "Edit" [ref=f44e124] [cursor=pointer]
+          - row [ref=f44e125]:
+            - cell "6" [ref=f44e126]
+            - cell "Setup Push Notification" [ref=f44e127]
+            - cell "E-Commerce Mobile App" [ref=f44e128]
+            - cell "Abrar Halomoan R M" [ref=f44e129]
+            - cell "Medium" [ref=f44e130]
+            - cell "10 Oct 2026" [ref=f44e131]
+            - cell "-" [ref=f44e132]
+            - cell [ref=f44e133]:
+              - generic [ref=f44e134]: Status task Setup Push Notification
+              - combobox "Status task Setup Push Notification" [ref=f44e135]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e136]:
+              - button "Edit" [ref=f44e137] [cursor=pointer]
+          - row [ref=f44e138]:
+            - cell "7" [ref=f44e139]
+            - cell "task 8 double" [ref=f44e140]
+            - cell "test" [ref=f44e141]
+            - cell "Abrar Halomoan R M" [ref=f44e142]
+            - cell "Medium" [ref=f44e143]
+            - cell "13 Oct 2026" [ref=f44e144]
+            - cell "-" [ref=f44e145]
+            - cell [ref=f44e146]:
+              - generic [ref=f44e147]: Status task task 8 double
+              - combobox "Status task task 8 double" [ref=f44e148]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e149]:
+              - button "Edit" [ref=f44e150] [cursor=pointer]
+          - row [ref=f44e151]:
+            - cell "8" [ref=f44e152]
+            - cell "Setup Role & Permission" [ref=f44e153]
+            - cell "HRIS Internal System" [ref=f44e154]
+            - cell "Parulian R M" [ref=f44e155]
+            - cell "High" [ref=f44e156]
+            - cell "20 Oct 2026" [ref=f44e157]
+            - cell "-" [ref=f44e158]
+            - cell [ref=f44e159]:
+              - generic [ref=f44e160]: Status task Setup Role & Permission
+              - combobox "Status task Setup Role & Permission" [ref=f44e161]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e162]:
+              - button "Edit" [ref=f44e163] [cursor=pointer]
+          - row [ref=f44e164]:
+            - cell "9" [ref=f44e165]
+            - cell "task 4" [ref=f44e166]
+            - cell "test" [ref=f44e167]
+            - cell "Abrar Halomoan R M" [ref=f44e168]
+            - cell "High" [ref=f44e169]
+            - cell "21 Oct 2026" [ref=f44e170]
+            - cell "-" [ref=f44e171]
+            - cell [ref=f44e172]:
+              - generic [ref=f44e173]: Status task task 4
+              - combobox "Status task task 4" [ref=f44e174]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e175]:
+              - button "Edit" [ref=f44e176] [cursor=pointer]
+          - row [ref=f44e177]:
+            - cell "10" [ref=f44e178]
+            - cell "task 5" [ref=f44e179]
+            - cell "test" [ref=f44e180]
+            - cell "Parulian R M" [ref=f44e181]
+            - cell "High" [ref=f44e182]
+            - cell "21 Oct 2026" [ref=f44e183]
+            - cell "-" [ref=f44e184]
+            - cell [ref=f44e185]:
+              - generic [ref=f44e186]: Status task task 5
+              - combobox "Status task task 5" [ref=f44e187]:
+                - option "To Do" [selected]
+                - option "In Progress"
+                - option "Done"
+            - cell [ref=f44e188]:
+              - button "Edit" [ref=f44e189] [cursor=pointer]
+      - generic [ref=f44e190]:
+        - generic [ref=f44e191]:
+          - generic [ref=f44e192]: Tampilkan
+          - combobox "Tampilkan" [ref=f44e193]:
+            - option "5"
+            - option "10" [selected]
+            - option "25"
+            - option "50"
+        - navigation "Navigasi halaman" [ref=f44e194]:
+          - link:
+            - /url: /tasks?status=To+Do&sort=asc&page=1
+          - link "1" [ref=f44e195] [cursor=pointer]:
+            - /url: /tasks?status=To+Do&sort=asc&page=1
+          - link "2" [ref=f44e196] [cursor=pointer]:
+            - /url: /tasks?status=To+Do&sort=asc&page=2
+          - link "3" [ref=f44e197] [cursor=pointer]:
+            - /url: /tasks?status=To+Do&sort=asc&page=3
+          - link [ref=f44e198] [cursor=pointer]:
+            - /url: /tasks?status=To+Do&sort=asc&page=2
