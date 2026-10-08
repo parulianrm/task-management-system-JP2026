@@ -215,9 +215,15 @@
     font-size: 15px;
 }
 
+.nav-user-dropdown-info {
+    min-width: 0;
+    flex: 1;
+}
+
 .nav-user-email {
     font-size: 12px;
     color: var(--color-text-muted);
+    overflow-wrap: anywhere;
 }
 
 .nav-user-dropdown-separator {
