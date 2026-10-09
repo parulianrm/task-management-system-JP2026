@@ -7,7 +7,7 @@ use App\Repositories\Contracts\DashboardRepositoryInterface;
 
 class DashboardRepository implements DashboardRepositoryInterface
 {
-    public function countActiveprojects(): int
+    public function countActiveProjects(): int
     {
         $stmt = Database::getConnection()->query("SELECT COUNT(*) FROM projects WHERE status = 'Active'");
         return (int) $stmt->fetchColumn();
