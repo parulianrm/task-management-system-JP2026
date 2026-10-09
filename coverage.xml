@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1791549597">
-  <project timestamp="1791549597">
+<coverage generated="1791553542">
+  <project timestamp="1791553542">
     <file name="/var/www/html/app/Core/Database.php">
       <class name="App\Core\Database" namespace="global">
         <metrics complexity="6" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="12" coveredelements="0"/>

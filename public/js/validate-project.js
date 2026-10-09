@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var startInput = document.getElementById('project-start');
         var targetInput = document.getElementById('project-target');
         var descInput = document.getElementById('project-desc');
-
         var nameError = document.getElementById('project-name-error');
         var startError = document.getElementById('project-start-error');
         var targetError = document.getElementById('project-target-error');
@@ -46,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!validateClientSide()) return;
 
+            var submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
             var payload = {
                 name: nameInput.value.trim(),
                 description: descInput.value.trim(),
@@ -60,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             apiPost('/api/projects.php', payload).then(function (result) {
                 if (!result.success) {
+                    submitBtn.disabled = false;
                     if (result.errors && result.errors.name) nameError.textContent = result.errors.name;
                     if (result.errors && result.errors.target_date) targetError.textContent = result.errors.target_date;
                     return;
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('project-form-modal').close();
                 window.location.reload();
             }).catch(function () {
+                submitBtn.disabled = false;
                 nameError.textContent = 'Gagal menyimpan project, coba lagi nanti.';
             });
         });

@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         dialog.addEventListener('close', function () {
+            var submitBtn = dialog.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.disabled = false;
+
             if (dialog.hasAttribute('data-reset-on-close')) {
                 var form = dialog.querySelector('form');
                 if (form) form.reset();
