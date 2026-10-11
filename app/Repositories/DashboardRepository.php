@@ -66,7 +66,8 @@ class DashboardRepository implements DashboardRepositoryInterface
                 FROM tasks
                 JOIN projects ON projects.id = tasks.project_id
                 WHERE projects.status != 'Archived'
-                  AND tasks.status != 'Done'";
+                  AND tasks.status != 'Done'
+                  AND tasks.due_date <= NOW() + INTERVAL 1 MONTH";
         $params = [];
 
         if ($assigneeId !== null) {
